@@ -5,6 +5,7 @@ import connectMongo from "../../../../lib/mongodb";  // Assuming this is your Mo
 export async function POST(req) {
   try {
     // Connect to MongoDB
+    console.log("later moving this to the server");
     await connectMongo();
 
     // Destructure the request body
