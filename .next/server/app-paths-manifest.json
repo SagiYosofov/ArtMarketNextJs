@@ -1,9 +1,0 @@
-{
-  "/api/users/Login/route": "app/api/users/Login/route.js",
-  "/Artworks/page": "app/Artworks/page.js",
-  "/Login/page": "app/Login/page.js",
-  "/ArtistProfile/page": "app/ArtistProfile/page.js",
-  "/page": "app/page.js",
-  "/Artists/page": "app/Artists/page.js",
-  "/Cart/page": "app/Cart/page.js"
-}
