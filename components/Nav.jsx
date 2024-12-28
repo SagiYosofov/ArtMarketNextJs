@@ -5,6 +5,7 @@ import DarkLightSwitch from "/components/DarkLighSwitch"
 import Link from "next/link";
 import { useUser } from "../context/UserContext";
 import { useEffect, useState } from "react";
+import Image from 'next/image'
 
 const Nav = () => {
   const { user, setUser } = useUser(); // Access the user context
@@ -35,8 +36,20 @@ const Nav = () => {
   return (
     <div className="flex fixed w-full top-0 left-0 bg-white dark:bg-slate-800 dark:text-white items-center drop-shadow-xl">
       <div className="inline mx-2 my-2">
-        <img className="dark:hidden" width="75" height="75" src={logo} alt="ArtMarket Logo" />
-        <img className="hidden dark:block" width="75" height="75" src={darkLogo} alt="ArtMarket Logo" />
+        <Image 
+          className="dark:hidden"
+          width={75}
+          height={75}
+          src={logo}
+          alt="ArtMarket Logo"
+        />
+        <Image
+          className="hidden dark:block"
+          width={75}
+          height={75}
+          src={darkLogo}
+          alt="ArtMarket Logo"
+        />
       </div>
 
       <Link href="/" className="hidden md:inline hover:underline mx-2 focus:outline-none">
