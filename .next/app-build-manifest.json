@@ -11,15 +11,35 @@
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
     ],
+    "/Artworks/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/Artworks/page.js"
+    ],
     "/Login/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/Login/page.js"
     ],
-    "/SignUp/page": [
+    "/api/users/Login/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/SignUp/page.js"
+      "static/chunks/app/api/users/Login/route.js"
+    ],
+    "/ArtistProfile/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/ArtistProfile/page.js"
+    ],
+    "/Artists/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/Artists/page.js"
+    ],
+    "/Cart/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/Cart/page.js"
     ]
   }
 }
