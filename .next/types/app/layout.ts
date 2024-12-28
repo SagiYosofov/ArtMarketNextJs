@@ -1,4 +1,4 @@
-// File: D:\GitHub\ArtMarketNextJs\app\layout.jsx
+// File: C:\Users\sagi9\Documents\GitHub\ArtMarketNextJs\app\layout.jsx
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

@@ -3,9 +3,9 @@ import { useState } from "react";
 
 const RegisterForm = () => {
 
-
-console.log("read server form env file", SERVER_URL);
 const SERVER_URL = process.env.SERVER_URL;
+console.log("read server form env file", SERVER_URL);
+
 
 
   // State to store form data with initial values for each field
