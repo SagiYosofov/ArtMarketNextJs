@@ -16,10 +16,10 @@
       "static/chunks/main-app.js",
       "static/chunks/app/Login/page.js"
     ],
-    "/SignUp/page": [
+    "/api/users/Login/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/SignUp/page.js"
+      "static/chunks/app/api/users/Login/route.js"
     ]
   }
 }
