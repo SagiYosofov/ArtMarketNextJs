@@ -3,6 +3,12 @@ import { useState } from "react";
 import { useUser } from "../../context/UserContext";
 
 const LoginForm = () => {
+
+  // const SERVER_URL = process.env.SERVER_URL;
+  const SERVER_URL = "http://localhost:3000";
+  console.log("read server form env file", SERVER_URL);
+
+
   const { setUser } = useUser(); // Destructure setUser from context to update user state
   const [formData, setFormData] = useState({
     username: "",
@@ -20,7 +26,7 @@ const LoginForm = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3000/api/users/Login", {
+      const response = await fetch(SERVER_URL + "/api/users/Login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
