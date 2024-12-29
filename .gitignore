@@ -10,6 +10,11 @@
 /build
 /dist
 
+# Next.js
+/.next/
+/out/
+next-env.d.ts
+
 # Environment files
 .env
 .env.local
@@ -43,4 +48,7 @@ yarn-error.log*
 *.tgz
 
 # Yarn Integrity file
-.yarn-integrity 
+.yarn-integrity
+
+# Vercel
+.vercel 
