@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from 'react'
 import artistsData from './mockData.json'
+import Image from 'next/image'
 
 const ArtistsPage = () => {
   const [selectedArtist, setSelectedArtist] = useState(null);
@@ -42,11 +43,12 @@ const ArtistsPage = () => {
             onClick={() => handleArtistClick(artist.id)}
           >
             <div className={`flex ${selectedArtist === artist.id ? 'flex-row' : 'flex-col'}`}>
-              <div className={`${selectedArtist === artist.id ? 'w-1/3' : 'w-full'} aspect-square overflow-hidden`}>
-                <img 
-                  src="./pfp.jpeg" 
+              <div className={`${selectedArtist === artist.id ? 'w-1/4' : 'w-full h-48'} overflow-hidden relative`}>
+                <Image 
+                  src={`/artists/${artist.picture}`}
                   alt={artist.fullName}
-                  className='w-full h-full object-cover transition-transform duration-300 group-hover:scale-110'
+                  fill
+                  className='object-cover transition-transform duration-300 group-hover:scale-110'
                 />
               </div>
               <div className='p-6 flex-1'>
