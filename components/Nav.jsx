@@ -64,6 +64,10 @@ const Nav = () => {
         Artworks
       </Link>
 
+      <Link href="/About" className="hidden md:inline hover:underline mx-2 focus:outline-none">
+        About
+      </Link>
+
       <Link href="/Cart" className="hidden md:inline hover:underline mx-2 focus:outline-none">
         Cart
       </Link>
