@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
           <title>ArtMarket</title>
           {/* Add other meta tags or links like CSS or favicon here */}
         </head>
-      <body className="min-h-screen bg-white dark:bg-gray-900">
+      <body className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
         <Nav />
         <main className="container mx-auto px-4 py-8">
           {children}
