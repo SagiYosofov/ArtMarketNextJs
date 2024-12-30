@@ -1,0 +1,26 @@
+{
+    "artworks": [
+      {
+        "id": 1,
+        "artistId":"art2",
+        "title": "Starry Night",
+        "artistName": "Vincent van Gogh",
+        "description": "A depiction of a night sky filled with swirling clouds and bright stars.",
+        "medium": "Oil on canvas",
+        "dimensions": "73.7 cm × 92.1 cm",
+        "location": "The Museum of Modern Art, New York",
+        "picture": "starry-night.jpg"
+      },
+      {
+        "id": 2,
+        "artistId":"art1",
+        "title": "The Persistence of Memory",
+        "artistName": "Salvador Dalí",
+        "description": "A surreal representation of melting clocks in a desert landscape.",
+        "medium": "Oil on canvas",
+        "dimensions": "24 cm × 33 cm",
+        "location": "The Museum of Modern Art, New York",
+        "picture": "persistence-of-memory.jpg"
+      }
+    ]
+  }
