@@ -35,7 +35,7 @@ const Nav = () => {
 
   return (
     <div className="flex fixed w-full top-0 left-0 bg-white dark:bg-slate-800 dark:text-white items-center drop-shadow-xl">
-      <div className="inline mx-2 my-2">
+      <Link href="/" className="inline mx-2 my-2">
         <Image 
           className="dark:hidden"
           width={75}
@@ -50,17 +50,17 @@ const Nav = () => {
           src={darkLogo}
           alt="ArtMarket Logo"
         />
-      </div>
+      </Link>
 
-      <Link href="/" className="hidden md:inline hover:underline mx-2 focus:outline-none">
+      <Link href="/" className="hidden md:inline hover:underline mx-2 focus:outline-none text-gray-800 dark:text-white">
         Home
       </Link>
 
-      <Link href="/Artists" className="hidden md:inline hover:underline mx-2 focus:outline-none">
+      <Link href="/Artists" className="hidden md:inline hover:underline mx-2 focus:outline-none text-gray-800 dark:text-white">
         Artists
       </Link>
 
-      <Link href="/Artworks" className="hidden md:inline hover:underline mx-2 focus:outline-none">
+      <Link href="/Artworks" className="hidden md:inline hover:underline mx-2 focus:outline-none text-gray-800 dark:text-white">
         Artworks
       </Link>
 
