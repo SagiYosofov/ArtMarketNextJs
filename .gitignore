@@ -11,6 +11,8 @@
 /dist
 
 # Next.js
+.next/**
+.next
 /.next/
 /out/
 next-env.d.ts
@@ -51,4 +53,4 @@ yarn-error.log*
 .yarn-integrity
 
 # Vercel
-.vercel 
+.vercel
