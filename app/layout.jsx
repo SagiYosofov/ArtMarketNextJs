@@ -14,18 +14,13 @@ export default function RootLayout({ children }) {
           <title>ArtMarket</title>
           {/* Add other meta tags or links like CSS or favicon here */}
         </head>
-        <body>
-        <div>
-        {/* Navbar */}
+      <body className="min-h-screen bg-white dark:bg-gray-900">
         <Nav />
-
-        {/* Content Wrapper */}
-        <main> {/* Added pt-20 globally */}
+        <main className="container mx-auto px-4 py-8">
           {children}
         </main>
-      </div>
-        </body>
-      </html>
+      </body>
+    </html>
     </UserProvider>
   );
 }
