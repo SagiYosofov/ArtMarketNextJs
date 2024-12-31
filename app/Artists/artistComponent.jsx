@@ -6,48 +6,60 @@ const ArtistComponent = ({ artist, artworks }) => {
   const artistArtworks = artworks?.filter(artwork => artwork.artistId === artist.id) || []
 
   return (
-    <Link href={`/Artists/${artist.id}`} className="block">
-      <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+    <Link href={`/Artists/${artist.id}`} className="block group">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
         <div className="relative h-64 w-full">
           <Image
             src={`/artists/${artist.picture}`}
             alt={artist.fullName}
             fill
-            className="object-cover"
+            className="object-cover rounded-t-lg"
           />
-        </div>
-        <div className="p-6">
-          <div className="flex justify-between items-start mb-4">
-            <h2 className="text-xl font-bold text-gray-800">{artist.fullName}</h2>
-            <span className="text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded">
-              {artist.country}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-t-lg" />
+          <div className="absolute bottom-0 left-0 right-0 p-4">
+            <span className="inline-block px-2 py-1 bg-white/20 rounded-full text-white text-sm mb-2">
+              🌍 {artist.country}
             </span>
           </div>
+        </div>
+
+        <div className="p-4">
+          <div className="flex justify-between items-start mb-2">
+            <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+              {artist.fullName}
+            </h2>
+          </div>
           
-          <p className="text-gray-600 mb-4 line-clamp-2">{artist.bio}</p>
+          <p className="text-gray-600 dark:text-gray-300 text-sm line-clamp-2 mb-4">
+            {artist.bio}
+          </p>
           
-          <div className="border-t pt-4">
-            <div className="flex items-center justify-between text-sm text-gray-500">
-              <span>🎨 {artistArtworks.length} Artworks</span>
-              <span className="flex items-center gap-2">
-                <span>🌍 {artist.country}</span>
+          <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
+            <div className="flex items-center justify-between text-sm">
+              <span className="text-gray-500 dark:text-gray-400">
+                🎨 {artistArtworks.length} Artworks
+              </span>
+              <span className="text-blue-500 dark:text-blue-400 group-hover:text-blue-600 dark:group-hover:text-blue-300">
+                View Profile →
               </span>
             </div>
           </div>
 
           {/* Preview of artist's artworks */}
-          <div className="mt-4 flex gap-2 overflow-x-auto pb-2">
-            {artistArtworks.slice(0, 3).map((artwork) => (
-              <div key={artwork.id} className="relative w-16 h-16 flex-shrink-0">
-                <Image
-                  src={`/artworks/${artwork.picture}`}
-                  alt={artwork.title}
-                  fill
-                  className="object-cover rounded"
-                />
-              </div>
-            ))}
-          </div>
+          {artistArtworks.length > 0 && (
+            <div className="mt-4 flex gap-2">
+              {artistArtworks.slice(0, 3).map((artwork) => (
+                <div key={artwork.id} className="relative w-16 h-16 flex-shrink-0">
+                  <Image
+                    src={`/artworks/${artwork.picture}`}
+                    alt={artwork.title}
+                    fill
+                    className="object-cover rounded-md"
+                  />
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </Link>
