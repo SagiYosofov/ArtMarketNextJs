@@ -10,6 +10,7 @@ import Image from 'next/image'
 const Nav = () => {
   const { user, setUser } = useUser(); // Access the user context
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login status
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // Add this state
 
   // Update the login status based on the user data
   useEffect(() => {
@@ -34,92 +35,170 @@ const Nav = () => {
   };
 
   return (
-    <div className="fixed top-0 left-0 right-0 bg-white dark:bg-gray-900 shadow-md z-50 flex w-full items-center drop-shadow-xl">
-      <Link href="/" className="inline mx-2 my-2">
-        <Image 
-          className="dark:hidden"
-          width={75}
-          height={75}
-          src={logo}
-          alt="ArtMarket Logo"
-        />
-        <Image
-          className="hidden dark:block"
-          width={75}
-          height={75}
-          src={darkLogo}
-          alt="ArtMarket Logo"
-        />
-      </Link>
+    <div className="fixed top-0 left-0 right-0 bg-white dark:bg-gray-900 shadow-md z-50 w-full">
+      <div className="flex items-center justify-between w-full drop-shadow-xl">
+        <Link href="/" className="inline mx-2 my-2">
+          <Image 
+            className="dark:hidden"
+            width={75}
+            height={75}
+            src={logo}
+            alt="ArtMarket Logo"
+          />
+          <Image
+            className="hidden dark:block"
+            width={75}
+            height={75}
+            src={darkLogo}
+            alt="ArtMarket Logo"
+          />
+        </Link>
 
-      <Link href="/" className="hidden md:inline hover:underline mx-2 focus:outline-none text-gray-800 dark:text-white">
-        Home
-      </Link>
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center flex-grow">
+          <Link href="/" className="hover:underline mx-2 focus:outline-none text-gray-800 dark:text-white">
+            Home
+          </Link>
+          <Link href="/Artists" className="hover:underline mx-2 focus:outline-none text-gray-800 dark:text-white">
+            Artists
+          </Link>
+          <Link href="/Artworks" className="hover:underline mx-2 focus:outline-none text-gray-800 dark:text-white">
+            Artworks
+          </Link>
+          <Link href="/About" className="hover:underline mx-2 focus:outline-none text-gray-800 dark:text-white">
+            About
+          </Link>
+          <Link href="/Cart" className="hover:underline mx-2 focus:outline-none text-gray-800 dark:text-white">
+            Cart
+          </Link>
+        </div>
 
-      <Link href="/Artists" className="hidden md:inline hover:underline mx-2 focus:outline-none text-gray-800 dark:text-white">
-        Artists
-      </Link>
+        {/* Mobile & Desktop Controls */}
+        <div className="flex items-center space-x-4">
+          <DarkLightSwitch />
+          
+          {/* Hamburger Menu Button */}
+          <button
+            className="md:hidden p-4"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            <svg
+              className="w-6 h-6 text-gray-800 dark:text-white"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              {isMobileMenuOpen ? (
+                <path d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
 
-      <Link href="/Artworks" className="hidden md:inline hover:underline mx-2 focus:outline-none text-gray-800 dark:text-white">
-        Artworks
-      </Link>
-
-      <Link href="/About" className="hidden md:inline hover:underline mx-2 focus:outline-none">
-        About
-      </Link>
-
-      <Link href="/Cart" className="hidden md:inline hover:underline mx-2 focus:outline-none text-gray-800 dark:text-white">
-        Cart
-      </Link>
-
-      {/* Grouping DarkLightSwitch, Login, SignUp buttons together */}
-      <div className="absolute right-0 flex items-center mx-2 p-4 space-x-4">
-        <DarkLightSwitch />
-
-        {/* Conditional Rendering Based on User Login State */}
-        {!isLoggedIn ? (
-          <>
-            <Link href="/Login" className="hover:underline mx-2 focus:outline-none">
-              <button className="rounded-full font-semibold hover:bg-red-700 text-white shadow-2xl bg-red-500 p-3">
-                Log in
-              </button>
-            </Link>
-
-            <div className="hidden md:flex items-center space-x-1">
-              <Link href="/SignUp" className="hover:underline mx-2 focus:outline-none">
-                <button className="rounded-full shadow-2xl font-semibold hover:bg-blue-950 text-white bg-blue-800 p-3">
-                  Sign up
-                </button>
-              </Link>
-            </div>
-          </>
-        ) : (
-          <>
-            {/* Logout Button */}
-            <Link href="/" onClick={handleLogout} className="hover:underline mx-2 focus:outline-none">
-              <button className="rounded-full font-semibold hover:bg-red-700 text-white shadow-2xl bg-red-500 p-3">
-                Logout
-              </button>
-            </Link>
-
-            {/* Show profile buttons based on user type */}
-            {user?.userType === "ARTIST" && (
-              <Link href="/ArtistProfile" className="hover:underline mx-2 focus:outline-none">
-                <button className="rounded-full font-semibold hover:bg-green-700 text-white shadow-2xl bg-green-500 p-3">
-                  Artist Profile
-                </button>
-              </Link>
+          {/* Desktop Auth Buttons */}
+          <div className="hidden md:flex items-center space-x-4">
+            {!isLoggedIn ? (
+              <>
+                <Link href="/Login" className="hover:underline mx-2 focus:outline-none">
+                  <button className="rounded-full font-semibold hover:bg-red-700 text-white shadow-2xl bg-red-500 p-3">
+                    Log in
+                  </button>
+                </Link>
+                <Link href="/SignUp" className="hover:underline mx-2 focus:outline-none">
+                  <button className="rounded-full shadow-2xl font-semibold hover:bg-blue-950 text-white bg-blue-800 p-3">
+                    Sign up
+                  </button>
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link href="/" onClick={handleLogout} className="hover:underline mx-2 focus:outline-none">
+                  <button className="rounded-full font-semibold hover:bg-red-700 text-white shadow-2xl bg-red-500 p-3">
+                    Logout
+                  </button>
+                </Link>
+                {user?.userType === "ARTIST" && (
+                  <Link href="/ArtistProfile" className="hover:underline mx-2 focus:outline-none">
+                    <button className="rounded-full font-semibold hover:bg-green-700 text-white shadow-2xl bg-green-500 p-3">
+                      Artist Profile
+                    </button>
+                  </Link>
+                )}
+                {user?.userType === "ADMIN" && (
+                  <Link href="/AdminProfile" className="hover:underline mx-2 focus:outline-none">
+                    <button className="rounded-full font-semibold hover:bg-blue-700 text-white shadow-2xl bg-blue-500 p-3">
+                      Admin Profile
+                    </button>
+                  </Link>
+                )}
+              </>
             )}
+          </div>
+        </div>
+      </div>
 
-            {user?.userType === "ADMIN" && (
-              <Link href="/AdminProfile" className="hover:underline mx-2 focus:outline-none">
-                <button className="rounded-full font-semibold hover:bg-blue-700 text-white shadow-2xl bg-blue-500 p-3">
-                  Admin Profile
-                </button>
-              </Link>
+      {/* Mobile Menu */}
+      <div className={`md:hidden ${isMobileMenuOpen ? 'block' : 'hidden'} bg-white dark:bg-gray-900 pb-4`}>
+        <div className="flex flex-col space-y-4 px-4">
+          <Link href="/" className="hover:underline focus:outline-none text-gray-800 dark:text-white">
+            Home
+          </Link>
+          <Link href="/Artists" className="hover:underline focus:outline-none text-gray-800 dark:text-white">
+            Artists
+          </Link>
+          <Link href="/Artworks" className="hover:underline focus:outline-none text-gray-800 dark:text-white">
+            Artworks
+          </Link>
+          <Link href="/About" className="hover:underline focus:outline-none text-gray-800 dark:text-white">
+            About
+          </Link>
+          <Link href="/Cart" className="hover:underline focus:outline-none text-gray-800 dark:text-white">
+            Cart
+          </Link>
+          
+          <div className="flex flex-col space-y-2">
+            {!isLoggedIn ? (
+              <>
+                <Link href="/Login" className="w-full">
+                  <button className="w-full rounded-full font-semibold hover:bg-red-700 text-white shadow-2xl bg-red-500 p-3">
+                    Log in
+                  </button>
+                </Link>
+                <Link href="/SignUp" className="w-full">
+                  <button className="w-full rounded-full shadow-2xl font-semibold hover:bg-blue-950 text-white bg-blue-800 p-3">
+                    Sign up
+                  </button>
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link href="/" onClick={handleLogout} className="w-full">
+                  <button className="w-full rounded-full font-semibold hover:bg-red-700 text-white shadow-2xl bg-red-500 p-3">
+                    Logout
+                  </button>
+                </Link>
+                {user?.userType === "ARTIST" && (
+                  <Link href="/ArtistProfile" className="w-full">
+                    <button className="w-full rounded-full font-semibold hover:bg-green-700 text-white shadow-2xl bg-green-500 p-3">
+                      Artist Profile
+                    </button>
+                  </Link>
+                )}
+                {user?.userType === "ADMIN" && (
+                  <Link href="/AdminProfile" className="w-full">
+                    <button className="w-full rounded-full font-semibold hover:bg-blue-700 text-white shadow-2xl bg-blue-500 p-3">
+                      Admin Profile
+                    </button>
+                  </Link>
+                )}
+              </>
             )}
-          </>
-        )}
+          </div>
+        </div>
       </div>
     </div>
   );
