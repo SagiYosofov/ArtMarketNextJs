@@ -35,7 +35,7 @@ const Nav = () => {
   };
 
   return (
-    <div className="fixed top-0 left-0 right-0 bg-white dark:bg-gray-900 shadow-md z-50 w-full">
+    <div className="fixed top-0 left-0 right-0 bg-white dark:bg-slate-800 shadow-md z-50 w-full">
       <div className="flex items-center justify-between w-full drop-shadow-xl">
         <Link href="/" className="inline mx-2 my-2">
           <Image 
