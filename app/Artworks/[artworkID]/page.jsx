@@ -8,63 +8,81 @@ export default async function ArtworkPage({ params }) {
 
   if (!artworkData) {
     return (
-      <div className="pt-20 text-center min-h-screen bg-gray-100 dark:bg-gray-900">
-        <h1 className="text-3xl font-bold text-red-500 dark:text-red-400">Artwork Not Found</h1>
-        <p className="text-lg text-gray-600 dark:text-gray-300">
+      <div className="pt-20 text-center min-h-screen bg-white dark:bg-black flex flex-col items-center justify-center">
+        <h1 className="text-3xl font-bold text-red-500 dark:text-red-400">
+          Artwork Not Found
+        </h1>
+        <p className="text-lg text-gray-600 dark:text-gray-300 mt-4">
           Please check the artwork ID and try again.
         </p>
-        <a
+        <Link
           href="/"
-          className="mt-4 inline-block px-4 py-2 text-white bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 rounded-md"
+          className="mt-6 inline-block px-6 py-3 text-black bg-gray-200 hover:bg-gray-300 dark:text-white dark:bg-gray-800 dark:hover:bg-gray-700 rounded-lg text-lg shadow-sm transition-transform transform hover:scale-105"
         >
           Go Back
-        </a>
+        </Link>
       </div>
     );
   }
 
   return (
-    <div className="pt-20 flex justify-center items-center min-h-screen bg-gray-100 dark:bg-gray-900">
-      <div className="max-w-4xl w-full bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
-        {/* Artwork Image */}
-        <img
-          src={artworkData.picture}
-          alt={artworkData.title}
-          className="w-full h-64 md:h-96 object-cover"
-        />
-        <div className="p-6">
-          {/* Artwork Title */}
-          <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100">{artworkData.title}</h1>
-          <p className="text-gray-600 dark:text-gray-300 text-sm mt-2">By {artworkData.artistName}</p>
-
-          {/* Description */}
-          <p className="mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">
-            {artworkData.description}
-          </p>
-
-          {/* Details */}
-          <div className="mt-6 space-y-4">
-            <div>
-              <p className="text-gray-800 dark:text-gray-100 font-semibold">Medium:</p>
-              <p className="text-gray-600 dark:text-gray-300">{artworkData.medium}</p>
-            </div>
-            <div>
-              <p className="text-gray-800 dark:text-gray-100 font-semibold">Dimensions:</p>
-              <p className="text-gray-600 dark:text-gray-300">{artworkData.dimensions}</p>
-            </div>
-            <div>
-              <p className="text-gray-800 dark:text-gray-100 font-semibold">Location:</p>
-              <p className="text-gray-600 dark:text-gray-300">{artworkData.location}</p>
-            </div>
+    <div className="pt-20 min-h-screen bg-white dark:bg-black text-black dark:text-white">
+      <div className="container mx-auto px-4 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          {/* Artwork Image */}
+          <div className="aspect-square w-full max-w-lg mx-auto lg:mx-0">
+            <img
+              src={artworkData.picture}
+              alt={artworkData.title}
+              className="w-full h-full object-cover shadow-md rounded-md"
+            />
           </div>
 
-          {/* Back Button */}
-          <Link
-            href="/Artworks"
-            className="mt-6 inline-block px-4 py-2 text-white bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 rounded-md"
-          >
-            Back to Gallery
-          </Link>
+          {/* Artwork Details */}
+          <div>
+            <h1 className="text-4xl font-semibold leading-tight">
+              {artworkData.title}
+            </h1>
+            <Link href={`/Artists/${artworkData.artistId}`}>
+              By
+              <p className="px-2 inline mt-4 text-lg text-gray-700 dark:text-gray-300 hover:underline hover:text-blue-400">
+                {artworkData.artistName}
+              </p>
+            </Link>
+            <p className="mt-8 text-gray-800 dark:text-gray-200 text-lg leading-relaxed">
+              {artworkData.description}
+            </p>
+
+            <div className="mt-12 space-y-6">
+              <div className="border-t border-gray-300 dark:border-gray-700 pt-6">
+                <h3 className="text-lg font-medium">Medium</h3>
+                <p className="mt-1 text-gray-700 dark:text-gray-300">
+                  {artworkData.medium}
+                </p>
+              </div>
+              <div className="border-t border-gray-300 dark:border-gray-700 pt-6">
+                <h3 className="text-lg font-medium">Dimensions</h3>
+                <p className="mt-1 text-gray-700 dark:text-gray-300">
+                  {artworkData.dimensions}
+                </p>
+              </div>
+              <div className="border-t border-gray-300 dark:border-gray-700 pt-6">
+                <h3 className="text-lg font-medium">Location</h3>
+                <p className="mt-1 text-gray-700 dark:text-gray-300">
+                  {artworkData.location}
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-12">
+              <Link
+                href="/Artworks"
+                className="px-6 py-3 text-white bg-black hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200 rounded-md text-lg shadow-md transition-transform transform hover:scale-105"
+              >
+                Back to Gallery
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </div>
