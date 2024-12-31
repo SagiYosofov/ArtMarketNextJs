@@ -74,7 +74,7 @@ export default function ArtistPage({ params }) {
                 <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
                   <div className="relative h-48 md:h-64">
                     <Image
-                      src={`/artworks/${artwork.picture}`}
+                      src={artwork.picture}
                       alt={artwork.title}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-300"

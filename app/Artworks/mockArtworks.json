@@ -20,7 +20,7 @@
       "medium": "Digital Photography",
       "dimensions": "80 cm × 120 cm",
       "location": "Vancouver Art Gallery",
-      "picture": "https://example.com/images/pacific-intersection.jpg"
+      "picture": "https://images.pexels.com/photos/1781710/pexels-photo-1781710.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
     },
     {
       "id": "aw301",
@@ -31,7 +31,7 @@
       "medium": "Mixed Media",
       "dimensions": "200 cm × 300 cm",
       "location": "Lagos Museum of Contemporary Art",
-      "picture": "https://example.com/images/heritage-fusion.jpg"
+      "picture": "https://images.pexels.com/photos/1569002/pexels-photo-1569002.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
     },
     {
       "id": "aw401",
@@ -42,7 +42,7 @@
       "medium": "Mixed Media Installation",
       "dimensions": "400 cm × 300 cm × 250 cm",
       "location": "Stockholm Modern Art Museum",
-      "picture": "https://example.com/images/recycled-dreams.jpg"
+      "picture": "https://images.pexels.com/photos/3778179/pexels-photo-3778179.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
     }
   ]
 }

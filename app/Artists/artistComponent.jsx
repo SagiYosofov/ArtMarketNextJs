@@ -51,7 +51,7 @@ const ArtistComponent = ({ artist, artworks }) => {
               {artistArtworks.slice(0, 3).map((artwork) => (
                 <div key={artwork.id} className="relative w-16 h-16 flex-shrink-0">
                   <Image
-                    src={`/artworks/${artwork.picture}`}
+                    src={artwork.picture}
                     alt={artwork.title}
                     fill
                     className="object-cover rounded-md"
