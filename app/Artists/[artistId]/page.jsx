@@ -6,7 +6,8 @@ import artistsData from '../mockData.json'
 import artworksData from '../../Artworks/mockArtworks.json'
 
 export default function ArtistPage({ params }) {
-  const { artistId } = params
+  const unwrappedParams = React.use(params)
+  const { artistId } = unwrappedParams
   
   const artist = artistsData.artists.find(a => a.id === artistId)
   const artistArtworks = artworksData.artworks.filter(artwork => artwork.artistId === artistId)
