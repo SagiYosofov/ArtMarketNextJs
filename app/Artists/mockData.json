@@ -5,7 +5,7 @@
       "fullName": "Daniel Feldstone",
       "country": "Germany",
       "bio": "Daniel Feldstone is a contemporary artist known for his vibrant abstract expressionism. Born in Berlin, he studied at the Royal Academy of Fine Arts before developing his signature style that combines Mediterranean influences with modern techniques. His work has been exhibited in major galleries across Europe and the Americas.",
-      "picture": "3.jpg",
+      "picture": "https://images.pexels.com/photos/3779014/pexels-photo-3779014.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "artworkIds": ["aw101", "aw102", "aw103", "aw104"]
     },
     {
@@ -13,7 +13,7 @@
       "fullName": "Arthur Cherry",
       "country": "Canada",
       "bio": "Vancouver-based artist Arthur Cherry specializes in contemporary photography and digital art. His work explores the intersection of nature and urban landscapes, drawing from his background in environmental science. Chen's photographs have won multiple international awards and have been featured in National Geographic.",
-      "picture": "1.jpg",
+      "picture": "https://images.pexels.com/photos/4442088/pexels-photo-4442088.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "artworkIds": ["aw201", "aw202", "aw203", "aw205"]
     },
     {
@@ -21,7 +21,7 @@
       "fullName": "Sagie Yosiel",
       "country": "Nigeria",
       "bio": "Sagie Yosiel is a mixed-media artist whose work celebrates African heritage and contemporary social issues. Based in Lagos, her pieces combine traditional Nigerian artistic elements with modern materials. Her installations have been showcased at the Venice Biennale and major African art festivals.",
-      "picture": "2.jpg",
+      "picture": "https://images.pexels.com/photos/1059039/pexels-photo-1059039.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "artworkIds": ["aw301", "aw302", "aw303", "aw304", "aw305"]
     },
     {
@@ -29,7 +29,7 @@
       "fullName": "Aviv Taz",
       "country": "Sweden",
       "bio": "Aviv Taz is a sculptor and installation artist from Stockholm. His work primarily focuses on sustainable art, using recycled materials to create large-scale installations that comment on environmental issues. He has received numerous grants for his innovative approach to eco-conscious art.",
-      "picture": "4.jpg",
+      "picture": "https://images.pexels.com/photos/4587855/pexels-photo-4587855.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "artworkIds": ["aw401", "aw402", "aw403"]
     }
   ]

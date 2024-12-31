@@ -10,7 +10,7 @@ const ArtistComponent = ({ artist, artworks }) => {
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
         <div className="relative h-64 w-full">
           <Image
-            src={`/artists/${artist.picture}`}
+            src={artist.picture}
             alt={artist.fullName}
             fill
             className="object-cover rounded-t-lg"

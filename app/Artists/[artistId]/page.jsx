@@ -30,7 +30,7 @@ export default function ArtistPage({ params }) {
       {/* Hero Section */}
       <div className="relative h-[300px] md:h-[400px] w-full">
         <Image
-          src={`/artists/${artist.picture}`}
+          src={artist.picture}
           alt={artist.fullName}
           fill
           className="object-cover"
