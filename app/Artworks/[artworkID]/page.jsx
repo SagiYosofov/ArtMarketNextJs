@@ -8,7 +8,7 @@ export default async function ArtworkPage({ params }) {
 
   if (!artworkData) {
     return (
-      <div className="pt-20 text-center min-h-screen bg-white dark:bg-black flex flex-col items-center justify-center">
+      <div className="pt-20 text-center min-h-screen bg-white dark:bg-gray-900 flex flex-col items-center justify-center">
         <h1 className="text-3xl font-bold text-red-500 dark:text-red-400">
           Artwork Not Found
         </h1>
@@ -26,7 +26,7 @@ export default async function ArtworkPage({ params }) {
   }
 
   return (
-    <div className="pt-20 min-h-screen bg-white dark:bg-black text-black dark:text-white">
+    <div className="pt-20 min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Artwork Image */}
@@ -74,14 +74,27 @@ export default async function ArtworkPage({ params }) {
               </div>
             </div>
 
-            <div className="mt-12">
-              <Link
-                href="/Artworks"
-                className="px-6 py-3 text-white bg-black hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200 rounded-md text-lg shadow-md transition-transform transform hover:scale-105"
-              >
-                Back to Gallery
-              </Link>
+            <div className="grid sm:grid-cols-2 gap-0 grid-cols-1 justify-center">
+              {/*Buttons */}
+              <div className="mt-12 justify-center">
+                <Link
+                  href="/Artworks"
+                  className="px-6 py-3 text-white bg-black hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200 rounded-md text-lg shadow-md transition-transform transform hover:scale-105"
+                >
+                  Back to Gallery
+                </Link>
+              </div>
+              <div className="mt-12 justify-center">
+                {/*Need to add the artwork in cart code */}
+                <Link
+                  href="/Cart"
+                  className="px-6 py-3 text-white bg-green-500 hover:bg-green-600 dark:bg-white dark:text-black dark:hover:bg-gray-200 rounded-md text-lg shadow-md transition-transform transform hover:scale-105"
+                >
+                  Add to Cart
+                </Link>
+              </div>
             </div>
+            
           </div>
         </div>
       </div>
