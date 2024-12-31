@@ -6,15 +6,15 @@
       "country": "Germany",
       "bio": "Daniel Feldstone is a contemporary artist known for his vibrant abstract expressionism. Born in Berlin, he studied at the Royal Academy of Fine Arts before developing his signature style that combines Mediterranean influences with modern techniques. His work has been exhibited in major galleries across Europe and the Americas.",
       "picture": "https://images.pexels.com/photos/3779014/pexels-photo-3779014.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "artworkIds": ["aw101", "aw102", "aw103", "aw104"]
+      "artworkIds": ["aw101", "aw102", "aw103", "aw104", "aw105", "aw106", "aw107"]
     },
     {
       "id": "art2",
       "fullName": "Arthur Cherry",
       "country": "Canada",
-      "bio": "Vancouver-based artist Arthur Cherry specializes in contemporary photography and digital art. His work explores the intersection of nature and urban landscapes, drawing from his background in environmental science. Chen's photographs have won multiple international awards and have been featured in National Geographic.",
+      "bio": "Vancouver-based artist Arthur Cherry specializes in contemporary photography and digital art. His work explores the intersection of nature and urban landscapes, drawing from his background in environmental science. Cherry's photographs have won multiple international awards and have been featured in National Geographic.",
       "picture": "https://images.pexels.com/photos/4442088/pexels-photo-4442088.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "artworkIds": ["aw201", "aw202", "aw203", "aw205"]
+      "artworkIds": ["aw201", "aw202", "aw203", "aw204", "aw205", "aw206"]
     },
     {
       "id": "art3",
@@ -22,7 +22,7 @@
       "country": "Nigeria",
       "bio": "Sagie Yosiel is a mixed-media artist whose work celebrates African heritage and contemporary social issues. Based in Lagos, her pieces combine traditional Nigerian artistic elements with modern materials. Her installations have been showcased at the Venice Biennale and major African art festivals.",
       "picture": "https://images.pexels.com/photos/1059039/pexels-photo-1059039.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "artworkIds": ["aw301", "aw302", "aw303", "aw304", "aw305"]
+      "artworkIds": ["aw301", "aw302", "aw303", "aw304", "aw305", "aw306", "aw307", "aw308"]
     },
     {
       "id": "art4",
@@ -30,7 +30,55 @@
       "country": "Sweden",
       "bio": "Aviv Taz is a sculptor and installation artist from Stockholm. His work primarily focuses on sustainable art, using recycled materials to create large-scale installations that comment on environmental issues. He has received numerous grants for his innovative approach to eco-conscious art.",
       "picture": "https://images.pexels.com/photos/4587855/pexels-photo-4587855.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "artworkIds": ["aw401", "aw402", "aw403"]
+      "artworkIds": ["aw401", "aw402", "aw403", "aw404", "aw405", "aw406"]
+    },
+    {
+      "id": "art5",
+      "fullName": "Emily Greenfield",
+      "country": "United States",
+      "bio": "Emily Greenfield is an American artist celebrated for her ethereal landscape paintings. Drawing inspiration from the Pacific Northwest, her work conveys a deep connection to nature and tranquility.",
+      "picture": "https://images.pexels.com/photos/2673799/pexels-photo-2673799.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "artworkIds": ["aw501", "aw502", "aw503", "aw504", "aw505", "aw506", "aw507"]
+    },
+    {
+      "id": "art6",
+      "fullName": "Luna Starfield",
+      "country": "Australia",
+      "bio": "Luna Starfield is a digital artist whose work focuses on the mysteries of space and time. Her vibrant and dreamlike pieces reflect her fascination with the cosmos.",
+      "picture": "https://images.pexels.com/photos/374018/pexels-photo-374018.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "artworkIds": ["aw601", "aw602", "aw603", "aw604", "aw605", "aw606", "aw607", "aw608"]
+    },
+    {
+      "id": "art7",
+      "fullName": "Marcus Steel",
+      "country": "United States",
+      "bio": "Marcus Steel is an urban artist who explores themes of industrialization and decay. His mixed-media works reflect his upbringing in Detroit, a city shaped by its industrial past.",
+      "picture": "https://images.pexels.com/photos/3225004/pexels-photo-3225004.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "artworkIds": ["aw701", "aw702", "aw703", "aw704", "aw705", "aw706", "aw707"]
+    },
+    {
+      "id": "art8",
+      "fullName": "Sophia Rayne",
+      "country": "United Kingdom",
+      "bio": "Sophia Rayne is an abstract painter known for her evocative use of color and texture. Her work often explores themes of light and emotion.",
+      "picture": "https://images.pexels.com/photos/2741651/pexels-photo-2741651.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "artworkIds": ["aw801", "aw802", "aw803", "aw804", "aw805", "aw806"]
+    },
+    {
+      "id": "art9",
+      "fullName": "Kai Blue",
+      "country": "Australia",
+      "bio": "Kai Blue is a watercolor artist whose work captures the fluidity and serenity of the ocean. Inspired by the Australian coastline, his paintings resonate with a sense of calm and movement.",
+      "picture": "https://images.pexels.com/photos/678123/pexels-photo-678123.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "artworkIds": ["aw901", "aw902", "aw903", "aw904", "aw905", "aw906", "aw907"]
+    },
+    {
+      "id": "art10",
+      "fullName": "Jared Urban",
+      "country": "Japan",
+      "bio": "Jared Urban is a photographer who captures the dynamic energy of city life. Based in Tokyo, his work highlights the interplay of light and movement in urban spaces.",
+      "picture": "https://images.pexels.com/photos/3586964/pexels-photo-3586964.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "artworkIds": ["aw1001", "aw1002", "aw1003", "aw1004", "aw1005", "aw1006"]
     }
   ]
 }
