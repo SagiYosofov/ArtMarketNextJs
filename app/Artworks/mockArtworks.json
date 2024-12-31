@@ -1,48 +1,48 @@
 {
-    "artworks": [
-      {
-        "id": "aw101",
-        "artistId": "art1",
-        "title": "Urban Reflections",
-        "artistName": "Daniel Feldstone",
-        "description": "A vibrant abstract expressionist piece showcasing the artist's signature Mediterranean-influenced style.",
-        "medium": "Oil and acrylic on canvas",
-        "dimensions": "120 cm × 150 cm",
-        "location": "Berlin Contemporary Art Museum",
-        "picture": "urban-reflections.jpg"
-      },
-      {
-        "id": "aw201",
-        "artistId": "art2",
-        "title": "Pacific Intersection",
-        "artistName": "Arthur Cherry",
-        "description": "A striking photograph capturing the meeting point of Vancouver's urban architecture with its natural surroundings.",
-        "medium": "Digital Photography",
-        "dimensions": "80 cm × 120 cm",
-        "location": "Vancouver Art Gallery",
-        "picture": "pacific-intersection.jpg"
-      },
-      {
-        "id": "aw301",
-        "artistId": "art3",
-        "title": "Heritage Fusion",
-        "artistName": "Sagie Yosiel",
-        "description": "A mixed-media installation combining traditional Nigerian artistic elements with contemporary materials.",
-        "medium": "Mixed Media",
-        "dimensions": "200 cm × 300 cm",
-        "location": "Lagos Museum of Contemporary Art",
-        "picture": "heritage-fusion.jpg"
-      },
-      {
-        "id": "aw401",
-        "artistId": "art4",
-        "title": "Recycled Dreams",
-        "artistName": "Aviv Taz",
-        "description": "A large-scale installation created entirely from recycled materials, commenting on environmental sustainability.",
-        "medium": "Mixed Media Installation",
-        "dimensions": "400 cm × 300 cm × 250 cm",
-        "location": "Stockholm Modern Art Museum",
-        "picture": "recycled-dreams.jpg"
-      }
-    ]
-  }
+  "artworks": [
+    {
+      "id": "aw101",
+      "artistId": "art1",
+      "title": "Urban Reflections",
+      "artistName": "Daniel Feldstone",
+      "description": "A vibrant abstract expressionist piece showcasing the artist's signature Mediterranean-influenced style.",
+      "medium": "Oil and acrylic on canvas",
+      "dimensions": "120 cm × 150 cm",
+      "location": "Berlin Contemporary Art Museum",
+      "picture": "https://images.pexels.com/photos/1293125/pexels-photo-1293125.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    },
+    {
+      "id": "aw201",
+      "artistId": "art2",
+      "title": "Pacific Intersection",
+      "artistName": "Arthur Cherry",
+      "description": "A striking photograph capturing the meeting point of Vancouver's urban architecture with its natural surroundings.",
+      "medium": "Digital Photography",
+      "dimensions": "80 cm × 120 cm",
+      "location": "Vancouver Art Gallery",
+      "picture": "https://example.com/images/pacific-intersection.jpg"
+    },
+    {
+      "id": "aw301",
+      "artistId": "art3",
+      "title": "Heritage Fusion",
+      "artistName": "Sagie Yosiel",
+      "description": "A mixed-media installation combining traditional Nigerian artistic elements with contemporary materials.",
+      "medium": "Mixed Media",
+      "dimensions": "200 cm × 300 cm",
+      "location": "Lagos Museum of Contemporary Art",
+      "picture": "https://example.com/images/heritage-fusion.jpg"
+    },
+    {
+      "id": "aw401",
+      "artistId": "art4",
+      "title": "Recycled Dreams",
+      "artistName": "Aviv Taz",
+      "description": "A large-scale installation created entirely from recycled materials, commenting on environmental sustainability.",
+      "medium": "Mixed Media Installation",
+      "dimensions": "400 cm × 300 cm × 250 cm",
+      "location": "Stockholm Modern Art Museum",
+      "picture": "https://example.com/images/recycled-dreams.jpg"
+    }
+  ]
+}
