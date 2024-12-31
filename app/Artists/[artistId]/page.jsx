@@ -7,7 +7,7 @@ export default async function ArtistPage({ params }) {
   const artistData = { id: artistId, name: `Artist ${artistId}` };
 
   return (
-    <div>
+    <div className="pt-20">
       <h1>Artist ID: {artistData.id}</h1>
       <p>Artist Name: {artistData.name}</p>
     </div>
