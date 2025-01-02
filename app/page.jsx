@@ -4,7 +4,11 @@ import Link from "next/link";
 const HomePage = () => {
   return (
     <div>
-      <h1>Welcome to the Website</h1>
+      <br />
+      <br />
+      <br />
+      <br />
+      <h1>Welcome to</h1>
     </div>
   );
 };
