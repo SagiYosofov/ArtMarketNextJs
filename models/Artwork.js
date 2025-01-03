@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import connectMongo from '../lib/mongodb'
-await connectMongo()
+// import connectMongo from '../lib/mongodb'
+// await connectMongo()
 // Define the Artwork schema
 const ArtworkSchema = new mongoose.Schema(
   {
