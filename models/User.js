@@ -25,7 +25,7 @@ const UserSchema = new mongoose.Schema(
       required: true,
       unique: true,  // Ensure unique emails
     },
-    address: {
+    country: {
       type: String,
     },
     isLoggedIn: {

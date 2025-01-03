@@ -1,12 +1,23 @@
 "use client"
-import React, { useState } from 'react'
-import artistsData from './mockData.json'
-import artworksData from '../Artworks/mockArtworks.json'
+import React, { useState, useEffect } from 'react'
+import mockArtistsData from './mockData.json' // Keep as fallback
+import mockArtworksData from '../Artworks/mockArtworks.json' // Keep as fallback
+import dbArtistsData from './dbData.json'
+import dbArtworksData from '../Artworks/dbArtworks.json'
 import ArtistComponent from './ArtistComponent'
 import Link from 'next/link'
+import { useUser } from '@/context/UserContext'
 
-const ArtistsPage = () => {
+export default function Artists() {
   const [selectedArtist, setSelectedArtist] = useState(null);
+  const [artistsData, setArtistsData] = useState(mockArtistsData);
+  const [artworksData, setArtworksData] = useState(mockArtworksData);
+  const { dbUpdate, setDbUpdate } = useUser();
+
+  useEffect(() => {
+      setArtistsData(dbArtistsData);
+      setArtworksData(dbArtworksData);
+  }, [dbUpdate]);
 
   const handleReset = () => {
     setSelectedArtist(null);
@@ -42,5 +53,3 @@ const ArtistsPage = () => {
     </div>
   )
 }
-
-export default ArtistsPage

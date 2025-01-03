@@ -1,11 +1,22 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import artworksData from "./mockArtworks.json";
+import mockArtworksData from "./mockArtworks.json"; // Keep as fallback
+import dbArtworksData from "./dbArtworks.json";
+import dbArtistsData from '../Artists/dbData.json'
 import Image from "next/image";
+import { useUser } from '@/context/UserContext'
+
 
 const ArtworksPage = () => {
   const router = useRouter();
+  const [artworksData, setArtworksData] = useState(mockArtworksData); // Start with mock data
+  const { dbUpdate } = useUser();
+
+  useEffect(() => {
+    setArtworksData(dbArtworksData);
+}, [dbUpdate]);
+
 
   const handleArtworkClick = (artworkId) => {
     router.push(`/Artworks/${artworkId}`);
