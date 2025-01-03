@@ -3,24 +3,32 @@ import mongoose from "mongoose";
 // Define the Artist schema with a reference to the username from the User collection
 const ArtistSchema = new mongoose.Schema(
   {
+    id: {
+      type: String,
+      required: true,
+      unique: true,
+    },
     username: {
       type: String,
       required: true,
-      unique: true,  // Ensure the artist's username is unique
+      unique: true,
       ref: "User",  // Reference to the User collection by username
     },
-    profile_picture: {
-      type: String,  // Artist's profile picture URL or path
+    picture: {
+      type: String,  // Artist's profile picture URL
     },
     bio: {
-      type: String,  // Short bio of the artist
+      type: String,
     },
+    artworkIds: [{
+      type: String,  // Array of artwork IDs
+    }],
     amountOfSoldArts: {
-      type: Number,  // Number of artworks sold by the artist
+      type: Number,
       default: 0,
     },
     bank_account_number: {
-      type: String,  // Artist's bank account number
+      type: String,
     },
   },
   {
