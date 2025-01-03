@@ -3,25 +3,20 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import mockArtworksData from "./mockArtworks.json"; // Keep as fallback
 import dbArtworksData from "./dbArtworks.json";
+import dbArtistsData from '../Artists/dbData.json'
 import Image from "next/image";
+import { useUser } from '@/context/UserContext'
+
 
 const ArtworksPage = () => {
   const router = useRouter();
   const [artworksData, setArtworksData] = useState(mockArtworksData); // Start with mock data
+  const { dbUpdate } = useUser();
 
   useEffect(() => {
-    // Try to use database data, fallback to mock data if there's an error
-    try {
-      setArtworksData(dbArtworksData);
-    } catch (error) {
-      console.warn('Using mock data as fallback:', error);
-    }
+    setArtworksData(dbArtworksData);
+}, [dbUpdate]);
 
-    fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/getData`)
-      .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(error => console.error('Error fetching data:', error));
-  }, []);
 
   const handleArtworkClick = (artworkId) => {
     router.push(`/Artworks/${artworkId}`);

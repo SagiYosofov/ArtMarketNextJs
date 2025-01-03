@@ -6,26 +6,18 @@ import dbArtistsData from './dbData.json'
 import dbArtworksData from '../Artworks/dbArtworks.json'
 import ArtistComponent from './ArtistComponent'
 import Link from 'next/link'
+import { useUser } from '@/context/UserContext'
 
-const ArtistsPage = () => {
+export default function Artists() {
   const [selectedArtist, setSelectedArtist] = useState(null);
   const [artistsData, setArtistsData] = useState(mockArtistsData);
   const [artworksData, setArtworksData] = useState(mockArtworksData);
+  const { dbUpdate, setDbUpdate } = useUser();
 
   useEffect(() => {
-    // Try to use database data, fallback to mock data if there's an error
-    try {
       setArtistsData(dbArtistsData);
       setArtworksData(dbArtworksData);
-    } catch (error) {
-      console.warn('Using mock data as fallback:', error);
-    }
-
-    fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/getData`)
-      .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(error => console.error('Error fetching data:', error));
-  }, []);
+  }, [dbUpdate]);
 
   const handleReset = () => {
     setSelectedArtist(null);
@@ -61,5 +53,3 @@ const ArtistsPage = () => {
     </div>
   )
 }
-
-export default ArtistsPage
