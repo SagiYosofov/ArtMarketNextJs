@@ -54,3 +54,5 @@ yarn-error.log*
 
 # Vercel
 .vercel
+app/Artists/dbData.json
+app/Artworks/dbArtworks.json
