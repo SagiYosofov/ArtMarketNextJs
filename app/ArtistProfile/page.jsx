@@ -13,22 +13,27 @@ const ArtistProfilePage = () => {
   const [userArtworks, setUserArtworks] = useState([]);
   
   useEffect(() => {
-    // Check if user data is available in localStorage
-    const storedUser = localStorage.getItem("user");
-    
-    if (!storedUser && !user) {
-      router.push('/Login');
-    } else {
-      setIsLoading(false);
-      // Filter artworks that belong to the current user
-      const filteredArtworks = dbArtworks.artworks.filter(artwork => artwork.artistId === user.artistData.id);
-      // console.log('Artworks data:', dbArtworks.artworks);
-      // console.log('Current user:', user);
-      // console.log('Filtered artworks:', filteredArtworks);
-      setUserArtworks(filteredArtworks);
-    }
-  }, [user, router]);
+    const checkAuth = () => {
+      // Move localStorage check inside useEffect
+      const storedUser = localStorage.getItem("user");
+      
+      if (!storedUser && !user) {
+        router.push('/Login');
+      } else {
+        if(user?.artistData){
+          const filteredArtworks = dbArtworks.artworks.filter(
+            artwork => artwork.artistId === user.artistData.id
+          );
+          setUserArtworks(filteredArtworks);
+        }
+        setIsLoading(false);
+      }
+    };
 
+    checkAuth();
+  }, [user, router]); // Add router to dependencies
+
+  // Show loading state during initial render and client-side auth check
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">

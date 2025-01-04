@@ -1,19 +1,10 @@
 import { Artwork } from '@/models/Artwork.js';
-import { connectToDatabase } from '@/lib/mongodb';
-
-
+import mongoose from 'mongoose';
+import connectMongo from '@/lib/mongodb';
 
 export async function PUT(req, { params }) {
-
-
-
-
-
-
-
   try {
     const { id } = await Promise.resolve(params);
-
     console.log("the id is", id);
     const updateData = await req.json();
     console.log("the update data is", updateData);
@@ -25,29 +16,22 @@ export async function PUT(req, { params }) {
       description: updateData.description
     };
 
-    await connectToDatabase();
+    // Connect using Mongoose
+    await connectMongo();
 
-    // Find and delete the existing artwork
-    const existingArtwork = await Artwork.findOne({ artwork_id: id });
+    // Use findOneAndUpdate instead of delete and create
+    const updatedArtwork = await Artwork.findOneAndUpdate(
+      { artwork_id: id },
+      { $set: allowedUpdates },
+      { new: true } // This option returns the updated document
+    );
     
-    if (!existingArtwork) {
+    if (!updatedArtwork) {
       return new Response(JSON.stringify({ error: 'Artwork not found' }), {
         status: 404,
         headers: { 'Content-Type': 'application/json' },
       });
     }
-
-    // Create new artwork document with updated fields
-    const updatedArtwork = {
-      ...existingArtwork.toObject(), // Keep all existing fields
-      ...allowedUpdates, // Override with allowed updates
-    };
-
-    // Delete the old document
-    await Artwork.findOneAndDelete({ artwork_id: id });
-
-    // Create the new document
-    await Artwork.create(updatedArtwork);
 
     return new Response(JSON.stringify(updatedArtwork), {
       status: 200,
@@ -61,5 +45,4 @@ export async function PUT(req, { params }) {
       headers: { 'Content-Type': 'application/json' },
     });
   }
-
 }
