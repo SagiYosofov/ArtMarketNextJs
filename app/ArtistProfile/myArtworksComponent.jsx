@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import dbArtworks from '../Artworks/dbArtworks.json';
 import Image from 'next/image';
+import { useUser } from '@/context/UserContext'
 
 const MyArtworksComponent = ({ artworkID }) => {
+  const { dbUpdate, setDbUpdate } = useUser();
   const [isEditing, setIsEditing] = useState(false);
   const [editedArtwork, setEditedArtwork] = useState(null);
   
@@ -48,6 +50,7 @@ const MyArtworksComponent = ({ artworkID }) => {
       if (response.ok) {
         const updatedArtwork = await response.json();
         setIsEditing(false);
+        setDbUpdate(true);
         // You might want to add a refresh mechanism or update the local state
       } else {
         const errorData = await response.json();

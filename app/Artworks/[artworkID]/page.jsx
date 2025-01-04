@@ -1,4 +1,4 @@
-import data from "../mockArtworks";
+import data from "../dbArtworks.json";
 import Link from "next/link";
 
 export default async function ArtworkPage({ params }) {

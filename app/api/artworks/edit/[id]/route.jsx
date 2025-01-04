@@ -1,9 +1,11 @@
 import { Artwork } from '@/models/Artwork.js';
 import { connectToDatabase } from '@/lib/mongodb';
-import { useUser } from '@/context/UserContext'
+
+
+
 export async function PUT(req, { params }) {
 
-    const { dbUpdate, setDbUpdate } = useUser();
+
 
 
 
@@ -59,9 +61,5 @@ export async function PUT(req, { params }) {
       headers: { 'Content-Type': 'application/json' },
     });
   }
-  finally{
-    setDbUpdate(true);
-    await mongoose.connection.close();
-    
-  }
+
 }
