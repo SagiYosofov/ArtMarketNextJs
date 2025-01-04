@@ -7,9 +7,18 @@ const MyArtworksComponent = ({ artworkID }) => {
   const { dbUpdate, setDbUpdate } = useUser();
   const [isEditing, setIsEditing] = useState(false);
   const [editedArtwork, setEditedArtwork] = useState(null);
+  const [displayedArtwork, setDisplayedArtwork] = useState(null);
   
   // Find the artwork with matching ID
   const artwork = dbArtworks.artworks.find(art => art.id === artworkID);
+
+  // Initialize both edited and displayed artwork
+  React.useEffect(() => {
+    if (artwork) {
+      setDisplayedArtwork(artwork);
+      setEditedArtwork(artwork);
+    }
+  }, [artwork]);
 
   if (!artwork) {
     return <div>Artwork not found</div>;
@@ -32,7 +41,6 @@ const MyArtworksComponent = ({ artworkID }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Only send the editable fields
     const updateData = {
       title: editedArtwork.title,
       price: editedArtwork.price,
@@ -51,7 +59,11 @@ const MyArtworksComponent = ({ artworkID }) => {
         const updatedArtwork = await response.json();
         setIsEditing(false);
         setDbUpdate(true);
-        // You might want to add a refresh mechanism or update the local state
+        // Update the displayed artwork immediately
+        setDisplayedArtwork({
+          ...displayedArtwork,
+          ...updateData
+        });
       } else {
         const errorData = await response.json();
         console.error('Failed to update artwork:', errorData.error);
@@ -136,12 +148,12 @@ const MyArtworksComponent = ({ artworkID }) => {
       </div>
       <div className="space-y-2">
         <div className="flex justify-between items-start">
-          <h3 className="text-lg font-semibold">{artwork.title}</h3>
+          <h3 className="text-lg font-semibold">{displayedArtwork?.title || artwork.title}</h3>
           <span className="text-lg font-semibold text-green-600">
-            ${artwork.price?.toLocaleString()}
+            ${displayedArtwork?.price?.toLocaleString() || artwork.price?.toLocaleString()}
           </span>
         </div>
-        <p className="text-gray-600">{artwork.description}</p>
+        <p className="text-gray-600">{displayedArtwork?.description || artwork.description}</p>
         <div className="flex justify-between items-center mt-4">
           <span className="text-sm text-gray-500">
             {artwork.medium}
