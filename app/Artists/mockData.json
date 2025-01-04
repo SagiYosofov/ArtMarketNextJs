@@ -32,14 +32,8 @@
       "picture": "https://images.pexels.com/photos/4587855/pexels-photo-4587855.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "artworkIds": ["aw401", "aw402", "aw403", "aw404", "aw405", "aw406"]
     },
-    {
-      "id": "art5",
-      "fullName": "Emily Greenfield",
-      "country": "United States",
-      "bio": "Emily Greenfield is an American artist celebrated for her ethereal landscape paintings. Drawing inspiration from the Pacific Northwest, her work conveys a deep connection to nature and tranquility.",
-      "picture": "https://images.pexels.com/photos/2673799/pexels-photo-2673799.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "artworkIds": ["aw501", "aw502", "aw503", "aw504", "aw505", "aw506", "aw507"]
-    },
+    
+
     {
       "id": "art6",
       "fullName": "Luna Starfield",
@@ -63,22 +57,8 @@
       "bio": "Sophia Rayne is an abstract painter known for her evocative use of color and texture. Her work often explores themes of light and emotion.",
       "picture": "https://images.pexels.com/photos/2741651/pexels-photo-2741651.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "artworkIds": ["aw801", "aw802", "aw803", "aw804", "aw805", "aw806"]
-    },
-    {
-      "id": "art9",
-      "fullName": "Kai Blue",
-      "country": "Australia",
-      "bio": "Kai Blue is a watercolor artist whose work captures the fluidity and serenity of the ocean. Inspired by the Australian coastline, his paintings resonate with a sense of calm and movement.",
-      "picture": "https://images.pexels.com/photos/678123/pexels-photo-678123.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "artworkIds": ["aw901", "aw902", "aw903", "aw904", "aw905", "aw906", "aw907"]
-    },
-    {
-      "id": "art10",
-      "fullName": "Jared Urban",
-      "country": "Japan",
-      "bio": "Jared Urban is a photographer who captures the dynamic energy of city life. Based in Tokyo, his work highlights the interplay of light and movement in urban spaces.",
-      "picture": "https://images.pexels.com/photos/3586964/pexels-photo-3586964.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "artworkIds": ["aw1001", "aw1002", "aw1003", "aw1004", "aw1005", "aw1006"]
     }
+    
+
   ]
 }

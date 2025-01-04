@@ -49,6 +49,14 @@ export default async function ArtworkPage({ params }) {
                 {artworkData.artistName}
               </p>
             </Link>
+
+            {/* Add Price Display */}
+            <div className="mt-6">
+              <h2 className="text-3xl font-bold text-blue-600 dark:text-blue-400">
+                ${artworkData.price.toLocaleString()}
+              </h2>
+            </div>
+
             <p className="mt-8 text-gray-800 dark:text-gray-200 text-lg leading-relaxed">
               {artworkData.description}
             </p>
@@ -74,27 +82,25 @@ export default async function ArtworkPage({ params }) {
               </div>
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-0 grid-cols-1 justify-center">
+            <div className="grid sm:grid-cols-2 gap-4 grid-cols-1 justify-center">
               {/*Buttons */}
-              <div className="mt-12 justify-center">
+              <div className="mt-12">
                 <Link
                   href="/Artworks"
-                  className="px-6 py-3 text-white bg-black hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200 rounded-md text-lg shadow-md transition-transform transform hover:scale-105"
+                  className="w-full inline-block text-center px-6 py-3 text-white bg-black hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200 rounded-md text-lg shadow-md transition-transform transform hover:scale-105"
                 >
                   Back to Gallery
                 </Link>
               </div>
-              <div className="mt-12 justify-center">
-                {/*Need to add the artwork in cart code */}
+              <div className="mt-12">
                 <Link
                   href="/Cart"
-                  className="px-6 py-3 text-white bg-green-500 hover:bg-green-600 dark:bg-white dark:text-black dark:hover:bg-gray-200 rounded-md text-lg shadow-md transition-transform transform hover:scale-105"
+                  className="w-full inline-block text-center px-6 py-3 text-white bg-green-500 hover:bg-green-600 dark:bg-white dark:text-black dark:hover:bg-gray-200 rounded-md text-lg shadow-md transition-transform transform hover:scale-105"
                 >
-                  Add to Cart
+                  Add to Cart 
                 </Link>
               </div>
             </div>
-            
           </div>
         </div>
       </div>

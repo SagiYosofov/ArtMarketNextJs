@@ -99,7 +99,8 @@ async function seedDatabase() {
         description: artworkData.description,
         medium: artworkData.medium,
         dimensions: artworkData.dimensions,
-        picture: artworkData.picture
+        picture: artworkData.picture,
+        price: artworkData.price
       });
     }
 

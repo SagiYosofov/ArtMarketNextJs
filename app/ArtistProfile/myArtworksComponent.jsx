@@ -5,6 +5,7 @@ import Image from 'next/image';
 const MyArtworksComponent = ({ artworkID }) => {
   // Find the artwork with matching ID
   const artwork = dbArtworks.artworks.find(art => art.id === artworkID);
+  console.log(artwork);
 
   if (!artwork) {
     return <div>Artwork not found</div>;
@@ -21,7 +22,12 @@ const MyArtworksComponent = ({ artworkID }) => {
         />
       </div>
       <div className="space-y-2">
-        <h3 className="text-lg font-semibold">{artwork.title}</h3>
+        <div className="flex justify-between items-start">
+          <h3 className="text-lg font-semibold">{artwork.title}</h3>
+          <span className="text-lg font-semibold text-green-600">
+            ${artwork.price?.toLocaleString()}
+          </span>
+        </div>
         <p className="text-gray-600">{artwork.description}</p>
         <div className="flex justify-between items-center mt-4">
           <span className="text-sm text-gray-500">

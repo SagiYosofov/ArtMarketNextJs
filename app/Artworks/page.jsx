@@ -54,6 +54,9 @@ const ArtworksPage = () => {
                 <p className="text-gray-700 dark:text-gray-400 line-clamp-3">
                   ℹ️ {artwork.description}
                 </p>
+                <p className="text-lg font-semibold text-blue-600 dark:text-blue-400 mt-3">
+                  💰 ${artwork.price.toLocaleString()}
+                </p>
               </div>
             </div>
           </div>

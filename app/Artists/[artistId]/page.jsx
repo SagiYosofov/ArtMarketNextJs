@@ -87,11 +87,14 @@ export default function ArtistPage({ params }) {
                     <p className="text-gray-600 dark:text-gray-300 text-sm line-clamp-2">
                       {artwork.description}
                     </p>
-                    <div className="mt-4 flex justify-between items-center text-sm">
+                    <div className="mt-4 flex justify-between items-center">
                       <span className="text-gray-500 dark:text-gray-400">{artwork.medium}</span>
-                      <span className="text-blue-500 dark:text-blue-400 group-hover:text-blue-600 dark:group-hover:text-blue-300">
-                        View Details →
+                      <span className="text-blue-600 dark:text-blue-400 font-semibold">
+                        ${artwork.price.toLocaleString()}
                       </span>
+                    </div>
+                    <div className="mt-2 text-blue-500 dark:text-blue-400 group-hover:text-blue-600 dark:group-hover:text-blue-300 text-sm text-right">
+                      View Details →
                     </div>
                   </div>
                 </div>

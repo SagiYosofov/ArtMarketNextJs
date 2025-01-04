@@ -6,6 +6,10 @@ import { Artwork } from "@/models/Artwork";
 import fs from "fs/promises";
 import path from "path";
 
+// look at libs/classes
+
+
+
 export async function GET() {
   try {
     // Connect to MongoDB
@@ -43,7 +47,8 @@ export async function GET() {
         description: artwork.description,
         medium: artwork.medium,
         dimensions: artwork.dimensions,
-        picture: artwork.picture
+        picture: artwork.picture,
+        price: artwork.price
       }))
     };
 

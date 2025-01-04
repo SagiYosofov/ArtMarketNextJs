@@ -37,6 +37,10 @@ const ArtworkSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    price: {
+      type: Number,
+      required: true,
+    },
   },
   {
     timestamps: false,
