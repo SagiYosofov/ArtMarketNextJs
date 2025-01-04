@@ -29,24 +29,34 @@ const MyArtworksComponent = ({ artworkID }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Only send the editable fields
+    const updateData = {
+      title: editedArtwork.title,
+      price: editedArtwork.price,
+      description: editedArtwork.description
+    };
     try {
       const response = await fetch(`/api/artworks/edit/${artworkID}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(editedArtwork),
+        body: JSON.stringify(updateData),
       });
 
       if (response.ok) {
-        // Update successful
+        const updatedArtwork = await response.json();
         setIsEditing(false);
-        // You might want to add a refresh mechanism here
+        // You might want to add a refresh mechanism or update the local state
       } else {
-        console.error('Failed to update artwork');
+        const errorData = await response.json();
+        console.error('Failed to update artwork:', errorData.error);
+        alert('Failed to update artwork. Please try again.');
       }
     } catch (error) {
       console.error('Error updating artwork:', error);
+      alert('An error occurred while updating the artwork.');
     }
   };
 
