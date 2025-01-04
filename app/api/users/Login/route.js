@@ -30,9 +30,9 @@ export async function POST(req) {
     }
 
     // Check if the user is already logged in
-    if (user.isLoggedIn === true) {
-      return new Response(JSON.stringify({ error: "User already logged in!" }), { status: 401 });
-    }
+    // if (user.isLoggedIn === true) {
+    //   return new Response(JSON.stringify({ error: "User already logged in!" }), { status: 401 });
+    // }
 
     // Handle successful login
     user.isLoggedIn = true;

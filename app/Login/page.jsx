@@ -9,7 +9,7 @@ const LoginForm = () => {
   console.log("read server form env file", SERVER_URL);
 
 
-  const { setUser } = useUser(); // Destructure setUser from context to update user state
+  const { user, setUser } = useUser(); // Destructure setUser from context to update user state
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -43,7 +43,7 @@ const LoginForm = () => {
           setUser(data.user); // Update the user state in context
 
           // Print the user data to the console
-          console.log("Logged in user:", data.user);
+          console.log("Logged in user:", user);
           console.log("API response data:", data.user.userType);
 
           // Ensure userType is a string and redirect based on user type
