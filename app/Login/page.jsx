@@ -1,12 +1,13 @@
 "use client";
 import { useState } from "react";
 import { useUser } from "../../context/UserContext";
+import { useRouter } from 'next/navigation';
 
 const LoginForm = () => {
 
   // const SERVER_URL = process.env.SERVER_URL;
   const SERVER_URL = "http://localhost:3000";
-  console.log("read server form env file", SERVER_URL);
+  // console.log("read server form env file", SERVER_URL);
 
 
   const { user, setUser } = useUser(); // Destructure setUser from context to update user state
@@ -16,6 +17,7 @@ const LoginForm = () => {
   });
 
   const [responseMessage, setResponseMessage] = useState("");
+  const router = useRouter();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -38,20 +40,16 @@ const LoginForm = () => {
       if (response.ok) {
         setResponseMessage("Login successful!");
 
-        // Store the user data in the context
         if (data.user) {
-          setUser(data.user); // Update the user state in context
+          // Update the user state and wait for it
+          await setUser(data.user);
 
-          // Print the user data to the console
-          console.log("Logged in user:", user);
-          console.log("API response data:", data.user.userType);
-
-          // Ensure userType is a string and redirect based on user type
-          const userType = String(data.user.userType); // Convert to string
+          // Use router.push instead of window.location
+          const userType = String(data.user.userType);
           if (userType === "ADMIN") {
-            window.location.href = "/AdminProfile"; // Redirect to Admin Profile
+            router.push('/AdminProfile');
           } else if (userType === "ARTIST") {
-            window.location.href = "/ArtistProfile"; // Redirect to Artist Profile
+            router.push('/ArtistProfile');
           }
         }
       } else {
