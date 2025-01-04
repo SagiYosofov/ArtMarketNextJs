@@ -4,11 +4,13 @@ import React, { useEffect, useState } from 'react'
 import { useUser } from '@/context/UserContext'
 import MyArtworksComponent from './myArtworksComponent'
 import { useRouter } from 'next/navigation'
+import dbArtworks from '../Artworks/dbArtworks.json'
 
 const ArtistProfilePage = () => {
   const { user, dbUpdate, setDbUpdate } = useUser();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
+  const [userArtworks, setUserArtworks] = useState([]);
   
   useEffect(() => {
     // Check if user data is available in localStorage
@@ -18,6 +20,12 @@ const ArtistProfilePage = () => {
       router.push('/Login');
     } else {
       setIsLoading(false);
+      // Filter artworks that belong to the current user
+      const filteredArtworks = dbArtworks.artworks.filter(artwork => artwork.artistId === user.artistData.id);
+      // console.log('Artworks data:', dbArtworks.artworks);
+      // console.log('Current user:', user);
+      // console.log('Filtered artworks:', filteredArtworks);
+      setUserArtworks(filteredArtworks);
     }
   }, [user, router]);
 
@@ -39,7 +47,14 @@ const ArtistProfilePage = () => {
       <h1>Welcome, {user.firstName} {user.lastName}!</h1>
       <div className="my-4">
         <h3 className="text-xl mb-4">My Artworks</h3>
-        <MyArtworksComponent artistID={user.id} />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {userArtworks.map(artwork => (
+            <MyArtworksComponent 
+              key={artwork.id}
+              artworkID={artwork.id}
+            />
+          ))}
+        </div>
       </div>
     </div>
   )
