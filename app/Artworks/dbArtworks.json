@@ -1,0 +1,114 @@
+{
+  "artworks": [
+    {
+      "id": "aw101",
+      "artistId": "art1",
+      "title": "Urban Reflections",
+      "artistName": "Daniel Feldstone",
+      "description": "A very123 vibrant abstract expressionist piece showcasing the artist's signature Mediterranean-influenced style.",
+      "medium": "Oil and acrylic on canvas",
+      "dimensions": "120 cm × 150 cm",
+      "picture": "https://images.pexels.com/photos/1293125/pexels-photo-1293125.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "price": 3500
+    },
+    {
+      "id": "aw102",
+      "artistId": "art1",
+      "title": "Echoes of Berlin",
+      "artistName": "Daniel Feldstone",
+      "description": "An abstract piece inspired by the city's vibrant urban life.",
+      "medium": "Oil on canvas",
+      "dimensions": "140 cm × 160 cm",
+      "picture": "https://images.pexels.com/photos/1293125/pexels-photo-1293125.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "price": 4200
+    },
+    {
+      "id": "aw201",
+      "artistId": "art2",
+      "title": "Pacific Intersection",
+      "artistName": "Arthur Cherry",
+      "description": "A striking photograph capturing Vancouver's urban architecture.",
+      "medium": "Digital Photography",
+      "dimensions": "80 cm × 120 cm",
+      "picture": "https://images.pexels.com/photos/1781710/pexels-photo-1781710.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "price": 1800
+    },
+    {
+      "id": "aw202",
+      "artistId": "art2",
+      "title": "Silent Forest",
+      "artistName": "Arthur Cherry",
+      "description": "A serene image capturing the tranquility of an untouched forest.",
+      "medium": "Digital Photography",
+      "dimensions": "100 cm × 120 cm",
+      "picture": "https://images.pexels.com/photos/34950/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "price": 2200
+    },
+    {
+      "id": "aw301",
+      "artistId": "art3",
+      "title": "Heritage Fusion",
+      "artistName": "Sagie Yosiel",
+      "description": "A mixed-media installation combining traditional Nigerian artistic elements.",
+      "medium": "Mixed Media",
+      "dimensions": "200 cm × 300 cm",
+      "picture": "https://images.pexels.com/photos/1569002/pexels-photo-1569002.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "price": 8500
+    },
+    {
+      "id": "aw302",
+      "artistId": "art3",
+      "title": "Cultural Echoes",
+      "artistName": "Sagie Yosiel",
+      "description": "A reflection on Nigerian folklore through modern textures.",
+      "medium": "Canvas and Fabric",
+      "dimensions": "300 cm × 250 cm",
+      "picture": "https://images.pexels.com/photos/4343375/pexels-photo-4343375.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "price": 7800
+    },
+    {
+      "id": "aw401",
+      "artistId": "art4",
+      "title": "Recycled Dreams",
+      "artistName": "Aviv Taz",
+      "description": "A large-scale installation created entirely from recycled materials.",
+      "medium": "Mixed Media Installation",
+      "dimensions": "400 cm × 300 cm × 250 cm",
+      "picture": "https://images.pexels.com/photos/3778179/pexels-photo-3778179.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "price": 12000
+    },
+    {
+      "id": "aw402",
+      "artistId": "art4",
+      "title": "Eco Perspectives",
+      "artistName": "Aviv Taz",
+      "description": "A commentary on consumerism using discarded items.",
+      "medium": "Sculpture",
+      "dimensions": "200 cm × 200 cm",
+      "picture": "https://images.pexels.com/photos/5461645/pexels-photo-5461645.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "price": 9500
+    },
+    {
+      "id": "aw104",
+      "artistId": "art1",
+      "title": "Mediterraneaasd",
+      "artistName": "Daniel Feldstone",
+      "description": "Caasdculture.",
+      "medium": "Mixed Media",
+      "dimensions": "120 cm × 120 cm",
+      "picture": "https://images.pexels.com/photos/1293125/pexels-photo-1293125.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "price": 1213
+    },
+    {
+      "id": "aw103",
+      "artistId": "art1",
+      "title": "Sunlit Street girl",
+      "artistName": "Daniel Feldstone",
+      "description": "A very playful exploration of light and geometry.",
+      "medium": "Acrylic on panel",
+      "dimensions": "130 cm × 130 cm",
+      "picture": "https://images.pexels.com/photos/2059070/pexels-photo-2059070.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "price": 1000
+    }
+  ]
+}
