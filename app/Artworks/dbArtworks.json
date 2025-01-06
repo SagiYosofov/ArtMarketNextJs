@@ -12,17 +12,6 @@
       "price": 3500
     },
     {
-      "id": "aw102",
-      "artistId": "art1",
-      "title": "Echoes of Berlin",
-      "artistName": "Daniel Feldstone",
-      "description": "An abstract piece inspired by the city's vibrant urban life.",
-      "medium": "Oil on canvas",
-      "dimensions": "140 cm × 160 cm",
-      "picture": "https://images.pexels.com/photos/1293125/pexels-photo-1293125.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "price": 4200
-    },
-    {
       "id": "aw201",
       "artistId": "art2",
       "title": "Pacific Intersection",

@@ -5,12 +5,15 @@ import { useUser } from '@/context/UserContext'
 import MyArtworksComponent from './myArtworksComponent'
 import { useRouter } from 'next/navigation'
 import dbArtworks from '../Artworks/dbArtworks.json'
+import Link from 'next/link'
+import CreateNewComponent from './createNewComponent'
 
 const ArtistProfilePage = () => {
   const { user, dbUpdate, setDbUpdate } = useUser();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
   const [userArtworks, setUserArtworks] = useState([]);
+  const [showAddForm, setShowAddForm] = useState(false);
   
   useEffect(() => {
     const checkAuth = () => {
@@ -50,6 +53,9 @@ const ArtistProfilePage = () => {
     <div className="p-6">
       <h2 className="text-2xl font-bold mb-6">Artist Profile Page</h2>
       <h1>Welcome, {user.firstName} {user.lastName}!</h1>
+      <div> 
+
+      </div>
       <div className="my-4">
         <h3 className="text-xl mb-4">My Artworks</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -61,6 +67,13 @@ const ArtistProfilePage = () => {
           ))}
         </div>
       </div>
+      <button
+        onClick={() => setShowAddForm(!showAddForm)}
+        className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 mb-6"
+      >
+        Add New Artwork
+      </button>
+      {showAddForm && <CreateNewComponent />}
     </div>
   )
 }

@@ -16,6 +16,7 @@ export async function POST(request) {
       medium: artworkData.medium,
       dimensions: artworkData.dimensions,
       picture: artworkData.picture,
+      price: artworkData.price
     });
 
     await newArtwork.save();

@@ -1,15 +1,21 @@
 import { useState } from 'react';
+import { useUser } from '@/context/UserContext'
+
+
 
 const CreateNewComponent = () => {
+  const { user, dbUpdate, setDbUpdate } = useUser();
+  console.log("user is", user);
   const [formData, setFormData] = useState({
-    id: '',
-    artistId: '',
+    id: Math.floor(Math.random() * 1000000),
+    artistId: user.artistData.id,
     title: '',
-    artistName: '',
+    artistName: `${user.firstName} ${user.lastName}`,
     description: '',
     medium: '',
     dimensions: '',
-    picture: ''
+    picture: '',
+    price: ''
   });
 
   const handleChange = (e) => {
@@ -44,9 +50,10 @@ const CreateNewComponent = () => {
         description: '',
         medium: '',
         dimensions: '',
-        picture: ''
+        picture: '',
+        price: ''
       });
-
+      setDbUpdate(true);
       alert('Artwork added successfully!');
     } catch (error) {
       console.error('Error adding artwork:', error);
@@ -67,6 +74,7 @@ const CreateNewComponent = () => {
             onChange={handleChange}
             className="w-full p-2 border rounded"
             required
+            disabled
           />
         </div>
 
@@ -79,6 +87,7 @@ const CreateNewComponent = () => {
             onChange={handleChange}
             className="w-full p-2 border rounded"
             required
+            disabled
           />
         </div>
 
@@ -103,6 +112,7 @@ const CreateNewComponent = () => {
             onChange={handleChange}
             className="w-full p-2 border rounded"
             required
+            disabled
           />
         </div>
 
@@ -148,6 +158,18 @@ const CreateNewComponent = () => {
             type="url"
             name="picture"
             value={formData.picture}
+            onChange={handleChange}
+            className="w-full p-2 border rounded"
+            required
+          />
+        </div>
+
+        <div>
+          <label className="block mb-1">Price</label>
+          <input
+            type="number"
+            name="price"
+            value={formData.price}
             onChange={handleChange}
             className="w-full p-2 border rounded"
             required
