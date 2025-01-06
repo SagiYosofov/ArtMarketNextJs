@@ -98,6 +98,17 @@
       "dimensions": "130 cm × 130 cm",
       "picture": "https://images.pexels.com/photos/2059070/pexels-photo-2059070.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "price": 1000
+    },
+    {
+      "id": "68414",
+      "artistId": "art1",
+      "title": "black and white",
+      "artistName": "Daniel Feldstone",
+      "description": "black and white",
+      "medium": "camera",
+      "dimensions": "medium",
+      "picture": "https://images.pexels.com/photos/12236447/pexels-photo-12236447.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "price": 2123
     }
   ]
 }

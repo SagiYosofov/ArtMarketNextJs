@@ -5,7 +5,6 @@ import { useUser } from '@/context/UserContext'
 
 const CreateNewComponent = () => {
   const { user, dbUpdate, setDbUpdate } = useUser();
-  console.log("user is", user);
   const [formData, setFormData] = useState({
     id: Math.floor(Math.random() * 1000000),
     artistId: user.artistData.id,
