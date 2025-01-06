@@ -38,6 +38,37 @@ const MyArtworksComponent = ({ artworkID }) => {
     }));
   };
 
+
+  const handleDeleteClick = async () => {
+    const oldDisplayed = displayedArtwork;
+
+    try {
+      // Immediately remove from display
+      setDisplayedArtwork(null);
+
+      // Trigger API call to remove from the database
+      const response = await fetch('/api/artworks/delete', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ artworkId: artworkID })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to delete artwork');
+      }
+      
+      // Force a fresh load or update of data, if needed
+      setDbUpdate(true);
+    } catch (error) {
+      console.error('Error deleting artwork:', error);
+      // Revert UI change if something goes wrong
+      setDisplayedArtwork(oldDisplayed);
+      alert('Unable to delete artwork. Please try again.');
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -168,6 +199,10 @@ const MyArtworksComponent = ({ artworkID }) => {
         >
           Edit Artwork
         </button>
+
+
+<button onClick={handleDeleteClick} className="mt-4 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 w-full">Delete Artwork</button>
+
       </div>
     </div>
   );
