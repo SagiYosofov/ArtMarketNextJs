@@ -16,9 +16,7 @@ const ArtistComponent = ({ artist, artworks }) => {
             className="object-cover rounded-t-lg"
             priority={true}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            onError={(e) => {
-              e.currentTarget.src = '/placeholder-artist.jpg'
-            }}
+            
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-t-lg" />
           <div className="absolute bottom-0 left-0 right-0 p-4">
