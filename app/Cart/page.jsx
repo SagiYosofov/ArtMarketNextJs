@@ -1,36 +1,31 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
-
-const mockCartData = [
-  {
-    id: 1,
-    name: "Starry Night",
-    artist: "Vincent van Gogh",
-    price: 120,
-    picture: "starry-night.jpg",
-  },
-  {
-    id: 2,
-    name: "Mona Lisa",
-    artist: "Leonardo da Vinci",
-    price: 150,
-    picture: "mona-lisa.jpg",
-  },
-  {
-    id: 3,
-    name: "The Persistence of Memory",
-    artist: "Salvador Dalí",
-    price: 100,
-    picture: "persistence-of-memory.jpg",
-  },
-];
+import data from "../Artworks/dbArtworks.json";
 
 const CartPage = () => {
-  const [cartItems, setCartItems] = useState(mockCartData);
+  const [cartItems, setCartItems] = useState([]);
+
+  useEffect(() => {
+    // Get cart IDs from localStorage
+    const cartIds = JSON.parse(localStorage.getItem('artGalleryCart') || '[]');
+    
+    // Find the full artwork data for each ID in the cart
+    const cartItemsData = cartIds.map(id => 
+      data.artworks.find(artwork => artwork.id === id)
+    ).filter(item => item); // Filter out any undefined items
+
+    setCartItems(cartItemsData);
+  }, []); // Empty dependency array means this runs once on mount
 
   const handleRemoveItem = (itemId) => {
+    // Remove from state
     setCartItems(cartItems.filter((item) => item.id !== itemId));
+    
+    // Remove from localStorage
+    const cartIds = JSON.parse(localStorage.getItem('artGalleryCart') || '[]');
+    const updatedCart = cartIds.filter(id => id !== itemId);
+    localStorage.setItem('artGalleryCart', JSON.stringify(updatedCart));
   };
 
   const getTotalPrice = () => {
@@ -50,20 +45,19 @@ const CartPage = () => {
             >
               <div className="flex flex-col">
                 <div className="w-full h-48 overflow-hidden relative">
-                  <Image
-                    src={`/artworks/${item.picture}`}
-                    alt={item.name}
-                    fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-110"
+                  <img
+                    src={item.picture}
+                    alt={item.title}
+                    className="object-cover w-full h-full"
                   />
                 </div>
                 <div className="p-6 flex-1">
-                  <h3 className="text-xl font-semibold mb-2">{item.name}</h3>
+                  <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
                   <p className="text-gray-600 dark:text-gray-300 mb-2">
-                    🎨 {item.artist}
+                    🎨 {item.artistName}
                   </p>
                   <p className="text-gray-700 dark:text-gray-400 mb-4">
-                    💵 ${item.price.toFixed(2)}
+                    💵 ${item.price.toLocaleString()}
                   </p>
                   <button
                     onClick={() => handleRemoveItem(item.id)}

@@ -1,8 +1,13 @@
+'use client';
 import data from "../dbArtworks.json";
 import Link from "next/link";
+import { useState, use } from 'react';
 
-export default async function ArtworkPage({ params }) {
-  const { artworkID } = await Promise.resolve(params);
+export default function ArtworkPage({ params }) {
+  const [addedToCart, setAddedToCart] = useState(false);
+  
+  // Use React.use() to unwrap the params promise
+  const { artworkID } = use(params);
 
   const artworkData = data.artworks.find((item) => item.id === artworkID);
 
@@ -24,6 +29,27 @@ export default async function ArtworkPage({ params }) {
       </div>
     );
   }
+
+  const addToCart = (artworkId) => {
+    // Get existing cart or initialize empty array
+    const existingCart = JSON.parse(localStorage.getItem('artGalleryCart') || '[]');
+    
+    // Check if artwork is already in cart
+    if (!existingCart.includes(artworkId)) {
+      // Add new artwork ID to cart
+      const updatedCart = [...existingCart, artworkId];
+      // Save back to localStorage
+      localStorage.setItem('artGalleryCart', JSON.stringify(updatedCart));
+      
+      // Show success feedback
+      setAddedToCart(true);
+      
+      // Reset feedback after 2 seconds
+      setTimeout(() => {
+        setAddedToCart(false);
+      }, 2000);
+    }
+  };
 
   return (
     <div className="pt-20 min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white">
@@ -93,12 +119,15 @@ export default async function ArtworkPage({ params }) {
                 </Link>
               </div>
               <div className="mt-12">
-                <Link
-                  href="/Cart"
-                  className="w-full inline-block text-center px-6 py-3 text-white bg-green-500 hover:bg-green-600 dark:bg-white dark:text-black dark:hover:bg-gray-200 rounded-md text-lg shadow-md transition-transform transform hover:scale-105"
+                <button
+                  onClick={() => addToCart(artworkID)}
+                  className={`w-full px-6 py-3 text-white rounded-md text-lg shadow-md transition-all transform hover:scale-105 
+                    ${addedToCart 
+                      ? 'bg-green-500 hover:bg-green-600' 
+                      : 'bg-blue-600 hover:bg-blue-700'}`}
                 >
-                  Add to Cart 
-                </Link>
+                  {addedToCart ? 'Added to Cart! ✓' : 'Add to Cart'}
+                </button>
               </div>
             </div>
           </div>
