@@ -9,7 +9,7 @@ import ItemComponent from "./ItemComponent";
 
 const ArtworksPage = () => {
   const router = useRouter();
-  const [artworksData, setArtworksData] = useState(mockArtworksData); // Start with mock data
+  const [artworksData, setArtworksData] = useState(dbArtworksData); 
   const { dbUpdate } = useUser();
 
   useEffect(() => {
