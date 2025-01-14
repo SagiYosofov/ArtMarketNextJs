@@ -9,11 +9,12 @@ import ItemComponent from "./ItemComponent";
 
 const ArtworksPage = () => {
   const router = useRouter();
-  const [artworksData, setArtworksData] = useState(dbArtworksData); 
+  const [artworksData, setArtworksData] = useState(dbArtworksData.artworks); // Initialize as empty array
   const { dbUpdate } = useUser();
 
   useEffect(() => {
-    setArtworksData(dbArtworksData);
+    console.log('dbArtworksData:', dbArtworksData.artworks);
+    setArtworksData(dbArtworksData.artworks);
   }, [dbUpdate]);
 
   const handleArtworkClick = (artworkId) => {
@@ -26,8 +27,8 @@ const ArtworksPage = () => {
         <h2 className="text-3xl font-bold">🖼️ Featured Artworks</h2>
       </div>
       <ItemComponent 
-        artworksData={artworksData} 
-        handleArtworkClick={handleArtworkClick} 
+        artworksData={artworksData}
+        handleArtworkClick={handleArtworkClick}
       />
     </div>
   );

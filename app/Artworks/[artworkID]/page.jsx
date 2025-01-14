@@ -33,13 +33,20 @@ export default function ArtworkPage({ params }) {
   const addToCart = (artworkId) => {
     // Get existing cart or initialize empty array
     const existingCart = JSON.parse(localStorage.getItem('artGalleryCart') || '[]');
+    console.log('Current cart:', existingCart);
     
-    // Check if artwork is already in cart
-    if (!existingCart.includes(artworkId)) {
-      // Add new artwork ID to cart
-      const updatedCart = [...existingCart, artworkId];
+    // Check if artwork is already in cart by checking IDs
+    if (!existingCart.some(item => item.id === artworkId)) {
+      // Get the full artwork data
+      const artworkToAdd = data.artworks.find(item => item.id === artworkId);
+      console.log('Adding artwork to cart:', artworkToAdd);
+      
+      // Add complete artwork object to cart
+      const updatedCart = [...existingCart, artworkToAdd];
       // Save back to localStorage
       localStorage.setItem('artGalleryCart', JSON.stringify(updatedCart));
+      
+      console.log('Updated cart:', updatedCart);
       
       // Show success feedback
       setAddedToCart(true);
@@ -48,6 +55,8 @@ export default function ArtworkPage({ params }) {
       setTimeout(() => {
         setAddedToCart(false);
       }, 2000);
+    } else {
+      console.log('Artwork already in cart:', artworkId);
     }
   };
 

@@ -1,9 +1,10 @@
 import Image from "next/image";
 
 const ItemComponent = ({ artworksData, handleArtworkClick }) => {
+  console.log('Component received artworksData:', artworksData);
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {artworksData.artworks.map((artwork) => (
+      {artworksData && artworksData.map((artwork) => (
         <div
           key={artwork.id}
           className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden 
