@@ -10,14 +10,12 @@ const CartPage = () => {
 
   useEffect(() => {
     // Get cart IDs from localStorage
-    console.log('Loaded from localStorage:', localStorage.getItem('artGalleryCart'));
 
     const cartData = JSON.parse(localStorage.getItem('artGalleryCart') || '[]');
 
     const artworkData = [];
     for (let i = 0; i < cartData.length; i++) {
       const artId = cartData[i].id;
-      // console.log('Art ID:', artId);
       for (let j = 0; j < data.artworks.length; j++) {
         if (data.artworks[j].id === artId) {
           artworkData.push(data.artworks[j]);
@@ -30,12 +28,16 @@ const CartPage = () => {
 
   const handleRemoveItem = (itemId) => {
     // Remove from state
-
-    
     // Remove from localStorage
     const cartIds = JSON.parse(localStorage.getItem('artGalleryCart') || '[]');
-    const updatedCart = cartIds.filter(id => id !== itemId);
-    localStorage.setItem('artGalleryCart', JSON.stringify(updatedCart));
+    // const updatedCart = cartIds.filter(id => id !== itemId);
+    for (let i = 0; i < cartIds.length; i++) {
+      if (cartIds[i].id === itemId) {
+        cartIds.splice(i, 1);
+        break;
+      }
+    }
+    localStorage.setItem('artGalleryCart', JSON.stringify(cartIds));
   };
 
 

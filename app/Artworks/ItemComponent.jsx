@@ -1,7 +1,6 @@
 import Image from "next/image";
 
 const ItemComponent = ({ artworksData, handleArtworkClick }) => {
-  console.log('Component received artworksData:', artworksData);
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {artworksData && artworksData.map((artwork) => (
