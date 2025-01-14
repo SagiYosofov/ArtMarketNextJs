@@ -1,7 +1,7 @@
 "use client"; 
 import logo from "../public/assets/ArtMarket-Logo.png"
 import darkLogo from "../public/assets/ArtMarket-Logo-Dark.png"
-import DarkLightSwitch from "/components/DarkLighSwitch"
+import DarkLightSwitch from "./DarkLightSwitch.jsx"
 import Link from "next/link";
 import { useUser } from "../context/UserContext";
 import { useEffect, useState } from "react";
@@ -37,13 +37,14 @@ const Nav = () => {
   return (
     <div className="fixed top-0 left-0 right-0 bg-white dark:bg-slate-800 shadow-md z-50 w-full">
       <div className="flex items-center justify-between w-full drop-shadow-xl">
-        <Link href="/" className="inline mx-2 my-2">
+        <Link href="/" className="inline mx-2 my-2" onClick={(e) => e.stopPropagation()}>
           <Image 
             className="dark:hidden"
             width={75}
             height={75}
             src={logo}
             alt="ArtMarket Logo"
+            priority
           />
           <Image
             className="hidden dark:block"
@@ -51,6 +52,7 @@ const Nav = () => {
             height={75}
             src={darkLogo}
             alt="ArtMarket Logo"
+            priority
           />
         </Link>
 
