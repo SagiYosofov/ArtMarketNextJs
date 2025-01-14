@@ -27,7 +27,7 @@ const HomePage = () => {
       <div className="relative bg-gray-100 dark:bg-gray-800 h-[70vh] flex items-center justify-center text-center">
         <div className="bg-gradient-to-r from-black/70 via-black/30 to-black/70 p-10 rounded-lg text-white shadow-lg">
           <h1 className="text-6xl font-extrabold mb-6 drop-shadow-lg">Welcome to the Art Market</h1>
-          <p className="text-xl mb-8 drop-shadow-md">Discover unique artworks and support talented artists worldwide.</p>
+          <p className="text-xl mb-8 drop-shadow-md">Discover artworks and support artists worldwide.</p>
           <Link href="/Artworks">
             <button className="bg-blue-600 hover:bg-blue-700 px-8 py-4 text-white font-bold rounded-full transition-transform transform hover:scale-105 shadow-lg">
               Explore Artworks
@@ -90,6 +90,12 @@ const HomePage = () => {
         <Link href="/SignUp">
           <button className="bg-white text-blue-500 px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 transition">
             Sign Up Now
+          </button>
+        </Link>
+        <br />
+        <Link href="/SignIn">
+          <button className=" text-white-500 px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 transition">
+            Or Sign In Here
           </button>
         </Link>
       </div>
