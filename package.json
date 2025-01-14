@@ -11,6 +11,7 @@
     "seed": "node -r dotenv/config scripts/seedDatabase.js"
   },
   "dependencies": {
+    "@paypal/react-paypal-js": "^8.7.0",
     "dotenv": "^16.4.7",
     "mongodb": "^6.12.0",
     "mongoose": "^8.9.3",
