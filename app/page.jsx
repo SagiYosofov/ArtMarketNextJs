@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Nav from '../components/Nav';
-import ArtistComponent from './Artists/artistComponent';
+import { ArtistComponent } from './Artists/ArtistComponent';
 import Card from '../components/Card';
 import mockArtistsData from './Artists/dbData.json';
 import mockArtworksData from './Artworks/dbArtworks.json';

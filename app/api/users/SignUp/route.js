@@ -1,4 +1,4 @@
-import { User } from "../../../../models/User";
+import { User } from '../../../../models/User'
 import { Artist } from "../../../../models/Artist";
 import connectMongo from "../../../../lib/mongodb";  // Assuming this is your MongoDB connection helper
 

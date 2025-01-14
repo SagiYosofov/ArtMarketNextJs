@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-const ArtistComponent = ({ artist, artworks }) => {
+export function ArtistComponent({ artist, artworks }) {
   // Filter artworks for this artist
   const artistArtworks = artworks?.filter(artwork => artwork.artistId === artist.id) || []
 
@@ -72,5 +72,3 @@ const ArtistComponent = ({ artist, artworks }) => {
     </Link>
   )
 }
-
-export default ArtistComponent
