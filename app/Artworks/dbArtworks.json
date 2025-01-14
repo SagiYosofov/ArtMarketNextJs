@@ -80,13 +80,13 @@
     {
       "id": "aw104",
       "artistId": "art1",
-      "title": "Mediterraneaasd",
+      "title": "Mediterran",
       "artistName": "Daniel Feldstone",
-      "description": "Caasdculture.",
+      "description": "Italian art",
       "medium": "Mixed Media",
       "dimensions": "120 cm × 120 cm",
       "picture": "https://images.pexels.com/photos/1293125/pexels-photo-1293125.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "price": 1213
+      "price": 1200
     },
     {
       "id": "aw103",
