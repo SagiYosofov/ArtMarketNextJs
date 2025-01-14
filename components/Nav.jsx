@@ -34,6 +34,11 @@ const Nav = () => {
     localStorage.removeItem("user"); // Remove user data from localStorage
   };
 
+  // Add this new function to handle mobile menu clicks
+  const handleMobileMenuClick = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <div className="fixed top-0 left-0 right-0 bg-white dark:bg-slate-800 shadow-md z-50 w-full">
       <div className="flex items-center justify-between w-full drop-shadow-xl">
@@ -146,31 +151,31 @@ const Nav = () => {
       {/* Mobile Menu */}
       <div className={`md:hidden ${isMobileMenuOpen ? 'block' : 'hidden'} bg-white dark:bg-gray-900 pb-4`}>
         <div className="flex flex-col space-y-4 px-4">
-          <Link href="/" className="hover:underline focus:outline-none text-gray-800 dark:text-white">
+          <Link href="/" className="hover:underline focus:outline-none text-gray-800 dark:text-white" onClick={handleMobileMenuClick}>
             Home
           </Link>
-          <Link href="/Artists" className="hover:underline focus:outline-none text-gray-800 dark:text-white">
+          <Link href="/Artists" className="hover:underline focus:outline-none text-gray-800 dark:text-white" onClick={handleMobileMenuClick}>
             Artists
           </Link>
-          <Link href="/Artworks" className="hover:underline focus:outline-none text-gray-800 dark:text-white">
+          <Link href="/Artworks" className="hover:underline focus:outline-none text-gray-800 dark:text-white" onClick={handleMobileMenuClick}>
             Artworks
           </Link>
-          <Link href="/About" className="hover:underline focus:outline-none text-gray-800 dark:text-white">
+          <Link href="/About" className="hover:underline focus:outline-none text-gray-800 dark:text-white" onClick={handleMobileMenuClick}>
             About
           </Link>
-          <Link href="/Cart" className="hover:underline focus:outline-none text-gray-800 dark:text-white">
+          <Link href="/Cart" className="hover:underline focus:outline-none text-gray-800 dark:text-white" onClick={handleMobileMenuClick}>
             Cart
           </Link>
           
           <div className="flex flex-col space-y-2">
             {!isLoggedIn ? (
               <>
-                <Link href="/Login" className="w-full">
+                <Link href="/Login" className="w-full" onClick={handleMobileMenuClick}>
                   <button className="w-full rounded-full font-semibold hover:bg-red-700 text-white shadow-2xl bg-red-500 p-3">
                     Log in
                   </button>
                 </Link>
-                <Link href="/SignUp" className="w-full">
+                <Link href="/SignUp" className="w-full" onClick={handleMobileMenuClick}>
                   <button className="w-full rounded-full shadow-2xl font-semibold hover:bg-blue-950 text-white bg-blue-800 p-3">
                     Sign up
                   </button>
@@ -178,20 +183,20 @@ const Nav = () => {
               </>
             ) : (
               <>
-                <Link href="/" onClick={handleLogout} className="w-full">
+                <Link href="/" onClick={(e) => { handleLogout(); handleMobileMenuClick(); }} className="w-full">
                   <button className="w-full rounded-full font-semibold hover:bg-red-700 text-white shadow-2xl bg-red-500 p-3">
                     Logout
                   </button>
                 </Link>
                 {user?.userType === "ARTIST" && (
-                  <Link href="/ArtistProfile" className="w-full">
+                  <Link href="/ArtistProfile" className="w-full" onClick={handleMobileMenuClick}>
                     <button className="w-full rounded-full font-semibold hover:bg-green-700 text-white shadow-2xl bg-green-500 p-3">
                       Artist Profile
                     </button>
                   </Link>
                 )}
                 {user?.userType === "ADMIN" && (
-                  <Link href="/AdminProfile" className="w-full">
+                  <Link href="/AdminProfile" className="w-full" onClick={handleMobileMenuClick}>
                     <button className="w-full rounded-full font-semibold hover:bg-blue-700 text-white shadow-2xl bg-blue-500 p-3">
                       Admin Profile
                     </button>
