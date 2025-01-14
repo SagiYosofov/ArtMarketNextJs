@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import Nav from '../components/Nav';
 import ArtistComponent from './Artists/artistComponent';
 import Card from '../components/Card';
-import mockArtistsData from './Artists/mockData.json';
+import mockArtistsData from './Artists/dbData.json';
 import mockArtworksData from './Artworks/dbArtworks.json';
 
 const HomePage = () => {
