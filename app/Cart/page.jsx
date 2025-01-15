@@ -8,37 +8,75 @@ const CartPage = () => {
   const [cartItems, setCartItems] = useState([]);
   const [totalSum, setTotalSum] = useState(0);
   const router = useRouter();
-  const { artworksData } = useData();
+  const { artworksData, isLoading, error } = useData();
 
   useEffect(() => {
-    // Get saved art from localStorage
-    const cartData = JSON.parse(localStorage.getItem('artGalleryCart') || '[]');
+    if (!artworksData.artworks) return;
 
-    // Match cart items with artwork data
-    const cartArtworks = cartData.map(cartItem => 
-      artworksData.artworks.find(artwork => artwork.id === cartItem.id)
-    ).filter(Boolean);
+    try {
+      // Get saved art from localStorage
+      const cartData = JSON.parse(localStorage.getItem('artGalleryCart') || '[]');
 
-    setCartItems(cartArtworks);
+      // Match cart items with artwork data
+      const cartArtworks = cartData.map(cartItem => 
+        artworksData.artworks.find(artwork => artwork.id === cartItem.id)
+      ).filter(Boolean);
 
-    // Calculate total sum
-    const total = cartArtworks.reduce((sum, item) => sum + parseFloat(item.price), 0);
-    setTotalSum(total);
+      setCartItems(cartArtworks);
+
+      // Calculate total sum
+      const total = cartArtworks.reduce((sum, item) => sum + parseFloat(item.price), 0);
+      setTotalSum(total);
+    } catch (err) {
+      console.error('Error loading cart:', err);
+      // Clear potentially corrupted cart data
+      localStorage.removeItem('artGalleryCart');
+      setCartItems([]);
+      setTotalSum(0);
+    }
   }, [artworksData]);
 
   const handleRemoveItem = (itemId) => {
-    // Remove locally first to give visual feedback
-    setCartItems(cartItems.filter(item => item.id !== itemId));
+    try {
+      // Remove locally first to give visual feedback
+      setCartItems(cartItems.filter(item => item.id !== itemId));
 
-    // Remove from localStorage
-    const cartData = JSON.parse(localStorage.getItem('artGalleryCart') || '[]');
-    const updatedCart = cartData.filter(item => item.id !== itemId);
-    localStorage.setItem('artGalleryCart', JSON.stringify(updatedCart));
+      // Remove from localStorage
+      const cartData = JSON.parse(localStorage.getItem('artGalleryCart') || '[]');
+      const updatedCart = cartData.filter(item => item.id !== itemId);
+      localStorage.setItem('artGalleryCart', JSON.stringify(updatedCart));
+
+      // Update total sum
+      const newTotal = cartItems
+        .filter(item => item.id !== itemId)
+        .reduce((sum, item) => sum + parseFloat(item.price), 0);
+      setTotalSum(newTotal);
+    } catch (err) {
+      console.error('Error removing item from cart:', err);
+    }
   };
 
   const handleCheckout = () => {
     router.push('/Payment');
   };
+
+  if (isLoading) {
+    return (
+      <div className="mt-20 container mx-auto px-4 text-center">
+        <h2 className="text-3xl font-bold mb-8">🛒 Your Cart</h2>
+        <p>Loading cart items...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="mt-20 container mx-auto px-4 text-center">
+        <h2 className="text-3xl font-bold mb-8">🛒 Your Cart</h2>
+        <p className="text-red-500">Error loading cart: {error}</p>
+      </div>
+    );
+  }
 
   return (
     <div className="mt-20 container mx-auto px-4 relative z-0">

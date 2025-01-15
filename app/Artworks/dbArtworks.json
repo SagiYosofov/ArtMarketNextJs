@@ -4,11 +4,11 @@
     "artistId": "art1",
     "title": "Urban Reflections",
     "artistName": "Daniel Feldstone",
-    "description": "A very123 vibrant abstract expressionist piece showcasing the artist's signature Mediterranean-influenced style.",
+    "description": "A very vibrant abstract expressionist piece showcasing the artist's signature Mediterranean-influenced style.",
     "medium": "Oil and acrylic on canvas",
     "dimensions": "120 cm × 150 cm",
     "picture": "https://images.pexels.com/photos/1293125/pexels-photo-1293125.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    "price": 3500
+    "price": 300
   },
   {
     "id": "aw201",

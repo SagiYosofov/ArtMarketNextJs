@@ -1,15 +1,33 @@
 'use client';
-import data from "../dbArtworks.json";
 import Link from "next/link";
 import { useState, use } from 'react';
+import { useData } from '@/context/DataContext';
 
 export default function ArtworkPage({ params }) {
   const [addedToCart, setAddedToCart] = useState(false);
+  const { artworksData, isLoading, error } = useData();
   
-  // Use React.use() to unwrap the params promise
-  const { artworkID } = use(params);
+  // Unwrap the params promise using React.use()
+  const unwrappedParams = use(params);
+  const artworkID = unwrappedParams.artworkID;
+  
+  const artworkData = artworksData.artworks.find((item) => item.id === artworkID);
 
-  const artworkData = data.artworks.find((item) => item.id === artworkID);
+  if (isLoading) {
+    return (
+      <div className="pt-20 text-center min-h-screen bg-white dark:bg-gray-900 flex flex-col items-center justify-center">
+        <h1 className="text-2xl">Loading...</h1>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="pt-20 text-center min-h-screen bg-white dark:bg-gray-900 flex flex-col items-center justify-center">
+        <h1 className="text-2xl text-red-500">Error: {error}</h1>
+      </div>
+    );
+  }
 
   if (!artworkData) {
     return (
@@ -33,30 +51,20 @@ export default function ArtworkPage({ params }) {
   const addToCart = (artworkId) => {
     // Get existing cart or initialize empty array
     const existingCart = JSON.parse(localStorage.getItem('artGalleryCart') || '[]');
-    console.log('Current cart:', existingCart);
     
     // Check if artwork is already in cart by checking IDs
     if (!existingCart.some(item => item.id === artworkId)) {
-      // Get the full artwork data
-      const artworkToAdd = data.artworks.find(item => item.id === artworkId);
-      console.log('Adding artwork to cart:', artworkToAdd);
+      // Get the full artwork data from context instead of static data
+      const artworkToAdd = artworksData.artworks.find(item => item.id === artworkId);
       
       // Add complete artwork object to cart
       const updatedCart = [...existingCart, artworkToAdd];
-      // Save back to localStorage
       localStorage.setItem('artGalleryCart', JSON.stringify(updatedCart));
       
-      console.log('Updated cart:', updatedCart);
-      
-      // Show success feedback
       setAddedToCart(true);
-      
-      // Reset feedback after 2 seconds
       setTimeout(() => {
         setAddedToCart(false);
       }, 2000);
-    } else {
-      console.log('Artwork already in cart:', artworkId);
     }
   };
 

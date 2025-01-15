@@ -5,8 +5,8 @@ import { useUser } from '@/context/UserContext'
 import { useData } from '@/context/DataContext'
 
 const MyArtworksComponent = ({ artworkID }) => {
-  const { dbUpdate, setDbUpdate } = useUser();
-  const { artworksData } = useData();
+  const { user } = useUser();
+  const { artworksData, dbUpdate, setDbUpdate } = useData();
   const [isEditing, setIsEditing] = useState(false);
   const [editedArtwork, setEditedArtwork] = useState(null);
   const [displayedArtwork, setDisplayedArtwork] = useState(null);

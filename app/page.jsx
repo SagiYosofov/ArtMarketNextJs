@@ -6,12 +6,10 @@ import { useRouter } from 'next/navigation';
 import Nav from '../components/Nav';
 import { ArtistComponent } from './Artists/artistComponent.jsx';
 import Card from '../components/Card';
-import mockArtistsData from './Artists/dbData.json';
-import mockArtworksData from './Artworks/dbArtworks.json';
+import { useData } from '../context/DataContext';
 
 const HomePage = () => {
-  const [artists] = useState(mockArtistsData.artists);
-  const [artworks] = useState(mockArtworksData.artworks);
+  const { artistsData, artworksData, isLoading, error } = useData();
   const router = useRouter();
 
   const handleArtworkClick = (artworkId) => {
@@ -39,22 +37,28 @@ const HomePage = () => {
       {/* Featured Artworks */}
       <div className="max-w-6xl mx-auto py-16 px-4">
         <h2 className="text-3xl font-bold mb-8">🖼️ Featured Artworks</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {artworks.slice(0, 6).map((artwork) => (
-            <div
-              key={artwork.id}
-              className="cursor-pointer"
-              onClick={() => handleArtworkClick(artwork.id)}
-            >
-              <Card
-                imgSrc={artwork.picture}
-                title={artwork.title}
-                artist={artwork.artistName}
-                price={artwork.price}
-              />
-            </div>
-          ))}
-        </div>
+        {isLoading ? (
+          <div className="text-center">Loading...</div>
+        ) : error ? (
+          <div className="text-red-500 text-center">{error}</div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {artworksData.artworks.slice(0, 6).map((artwork) => (
+              <div
+                key={artwork.id}
+                className="cursor-pointer"
+                onClick={() => handleArtworkClick(artwork.id)}
+              >
+                <Card
+                  imgSrc={artwork.picture}
+                  title={artwork.title}
+                  artist={artwork.artistName}
+                  price={artwork.price}
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Section Divider */}
@@ -86,11 +90,21 @@ const HomePage = () => {
       {/* Featured Artists */}
       <div className="max-w-6xl mx-auto py-16 px-4">
         <h2 className="text-3xl font-bold mb-8">🎨 Featured Artists</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {artists.slice(0, 3).map((artist) => (
-            <ArtistComponent key={artist.id} artist={artist} artworks={artworks} />
-          ))}
-        </div>
+        {isLoading ? (
+          <div className="text-center">Loading...</div>
+        ) : error ? (
+          <div className="text-red-500 text-center">{error}</div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {artistsData.artists.slice(0, 3).map((artist) => (
+              <ArtistComponent 
+                key={artist.id} 
+                artist={artist} 
+                artworks={artworksData.artworks} 
+              />
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Call to Action */}
