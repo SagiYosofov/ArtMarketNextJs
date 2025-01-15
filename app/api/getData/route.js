@@ -3,12 +3,6 @@ import mongoose from "mongoose";
 import { User } from "@/models/User";
 import { Artist } from "@/models/Artist";
 import { Artwork } from "@/models/Artwork";
-import fs from "fs/promises";
-import path from "path";
-
-// look at libs/classes
-
-
 
 export async function GET() {
   try {
@@ -24,7 +18,7 @@ export async function GET() {
     const artists = await Artist.find({});
     const artworks = await Artwork.find({});
 
-    // Prepare data in the same format as mock files
+    // Prepare data
     const artistsData = artists.map(artist => ({
       id: artist.id,
       fullName: `${users.find(u => u.username === artist.username)?.firstName} ${
@@ -47,14 +41,6 @@ export async function GET() {
       picture: artwork.picture,
       price: artwork.price
     }));
-
-    // Define file paths
-    const artistsFilePath = path.join(process.cwd(), 'app', 'Artists', 'dbData.json');
-    const artworksFilePath = path.join(process.cwd(), 'app', 'Artworks', 'dbArtworks.json');
-
-    // Write files
-    await fs.writeFile(artistsFilePath, JSON.stringify(artistsData, null, 2));
-    await fs.writeFile(artworksFilePath, JSON.stringify(artworksData, null, 2));
 
     return NextResponse.json({ 
       artists: artistsData,

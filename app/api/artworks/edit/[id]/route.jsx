@@ -5,9 +5,9 @@ import connectMongo from '@/lib/mongodb';
 export async function PUT(req, { params }) {
   try {
     const { id } = await Promise.resolve(params);
-    console.log("the id is", id);
+    // console.log("the id is", id);
     const updateData = await req.json();
-    console.log("the update data is", updateData);
+    // console.log("the update data is", updateData);
 
     // Only allow updating these specific fields
     const allowedUpdates = {
