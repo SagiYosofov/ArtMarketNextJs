@@ -3,7 +3,7 @@ import { useState } from "react";
 
 const RegisterForm = () => {
 
-const SERVER_URL = process.env.SERVER_URL;
+const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
 console.log("read server form env file", SERVER_URL);
 
 
@@ -41,7 +41,7 @@ console.log("read server form env file", SERVER_URL);
 
     try {
       // Sending form data to the server using a POST request
-      const response = await fetch("http://localhost:3000/api/users/SignUp", {
+      const response = await fetch(`${SERVER_URL}/api/users/SignUp`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

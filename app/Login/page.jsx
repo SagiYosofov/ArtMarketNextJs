@@ -5,8 +5,8 @@ import { useRouter } from 'next/navigation';
 
 const LoginForm = () => {
 
-  // const SERVER_URL = process.env.SERVER_URL;
-  const SERVER_URL = "http://localhost:3000";
+  const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
+  // const SERVER_URL = "http://localhost:3000";
   // console.log("read server form env file", SERVER_URL);
 
 
