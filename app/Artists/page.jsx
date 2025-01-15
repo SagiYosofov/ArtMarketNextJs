@@ -4,7 +4,7 @@ import mockArtistsData from './mockData.json' // Keep as fallback
 import mockArtworksData from '../Artworks/mockArtworks.json' // Keep as fallback
 import dbArtistsData from './dbData.json'
 import dbArtworksData from '../Artworks/dbArtworks.json'
-import { ArtistComponent } from './ArtistComponent'
+import { ArtistComponent } from './artistComponent.jsx'
 import Link from 'next/link'
 import { useUser } from '@/context/UserContext'
 
