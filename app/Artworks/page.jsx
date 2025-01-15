@@ -1,25 +1,20 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import mockArtworksData from "./mockArtworks.json"; // Keep as fallback
-import dbArtworksData from "./dbArtworks.json";
-import dbArtistsData from '../Artists/dbData.json'
-import { useUser } from '@/context/UserContext'
+import { useData } from '@/context/DataContext'
 import ItemComponent from "./ItemComponent";
 
 const ArtworksPage = () => {
   const router = useRouter();
-  const [artworksData, setArtworksData] = useState(dbArtworksData.artworks); // Initialize as empty array
-  const { dbUpdate } = useUser();
-
-  useEffect(() => {
-    console.log('dbArtworksData:', dbArtworksData.artworks);
-    setArtworksData(dbArtworksData.artworks);
-  }, [dbUpdate]);
+  const { artworksData, isLoading } = useData();
 
   const handleArtworkClick = (artworkId) => {
     router.push(`/Artworks/${artworkId}`);
   };
+
+  if (isLoading) {
+    return <div className="mt-20 container mx-auto px-4">Loading...</div>;
+  }
 
   return (
     <div className="mt-20 container mx-auto px-4 relative z-0">
@@ -27,7 +22,7 @@ const ArtworksPage = () => {
         <h2 className="text-3xl font-bold">🖼️ Featured Artworks</h2>
       </div>
       <ItemComponent 
-        artworksData={artworksData}
+        artworksData={artworksData.artworks}
         handleArtworkClick={handleArtworkClick}
       />
     </div>

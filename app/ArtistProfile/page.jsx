@@ -4,12 +4,13 @@ import React, { useEffect, useState } from 'react'
 import { useUser } from '@/context/UserContext'
 import MyArtworksComponent from './myArtworksComponent'
 import { useRouter } from 'next/navigation'
-import dbArtworks from '../Artworks/dbArtworks.json'
 import Link from 'next/link'
 import CreateNewComponent from './createNewComponent'
+import { useData } from '@/context/DataContext'
 
 const ArtistProfilePage = () => {
-  const { user, dbUpdate, setDbUpdate } = useUser();
+  const { user } = useUser();
+  const { artworksData } = useData();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
   const [userArtworks, setUserArtworks] = useState([]);
@@ -24,7 +25,7 @@ const ArtistProfilePage = () => {
         router.push('/Login');
       } else {
         if(user?.artistData){
-          const filteredArtworks = dbArtworks.artworks.filter(
+          const filteredArtworks = artworksData.artworks.filter(
             artwork => artwork.artistId === user.artistData.id
           );
           setUserArtworks(filteredArtworks);
@@ -34,7 +35,7 @@ const ArtistProfilePage = () => {
     };
 
     checkAuth();
-  }, [user, router]); // Add router to dependencies
+  }, [user, router, artworksData]);
 
   // Show loading state during initial render and client-side auth check
   if (isLoading) {

@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import dbArtworks from '../Artworks/dbArtworks.json';
 import Image from 'next/image';
 import { useUser } from '@/context/UserContext'
+import { useData } from '@/context/DataContext'
 
 const MyArtworksComponent = ({ artworkID }) => {
   const { dbUpdate, setDbUpdate } = useUser();
+  const { artworksData } = useData();
   const [isEditing, setIsEditing] = useState(false);
   const [editedArtwork, setEditedArtwork] = useState(null);
   const [displayedArtwork, setDisplayedArtwork] = useState(null);
   
   // Find the artwork with matching ID
-  const artwork = dbArtworks.artworks.find(art => art.id === artworkID);
+  const artwork = artworksData.artworks.find(art => art.id === artworkID);
 
   // Initialize both edited and displayed artwork
   React.useEffect(() => {

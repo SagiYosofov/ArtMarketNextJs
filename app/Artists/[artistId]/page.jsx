@@ -2,16 +2,20 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import artistsData from '../dbData.json'
-import artworksData from '../../Artworks/dbArtworks.json'
+import { useData } from '@/context/DataContext'
 import HisWorks from './hisWorks'
 
 export default function ArtistPage({ params }) {
   const unwrappedParams = React.use(params)
   const { artistId } = unwrappedParams
+  const { artistsData, artworksData, isLoading } = useData();
   
   const artist = artistsData.artists.find(a => a.id === artistId)
   const artistArtworks = artworksData.artworks.filter(artwork => artwork.artistId === artistId)
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   if (!artist) {
     return (

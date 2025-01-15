@@ -1,27 +1,28 @@
 "use client"
 import React, { useState, useEffect } from 'react'
-import mockArtistsData from './mockData.json' // Keep as fallback
-import mockArtworksData from '../Artworks/mockArtworks.json' // Keep as fallback
-import dbArtistsData from './dbData.json'
-import dbArtworksData from '../Artworks/dbArtworks.json'
 import { ArtistComponent } from './artistComponent.jsx'
 import Link from 'next/link'
-import { useUser } from '@/context/UserContext'
+import { useData } from '@/context/DataContext'
 
 export default function Artists() {
   const [selectedArtist, setSelectedArtist] = useState(null);
-  const [artistsData, setArtistsData] = useState(mockArtistsData);
-  const [artworksData, setArtworksData] = useState(mockArtworksData);
-  const { dbUpdate, setDbUpdate } = useUser();
-
-  useEffect(() => {
-      setArtistsData(dbArtistsData);
-      setArtworksData(dbArtworksData);
-  }, [dbUpdate]);
+  const { artistsData, artworksData, isLoading, error } = useData();
 
   const handleReset = () => {
     setSelectedArtist(null);
   };
+  useEffect(() => {
+    console.log('Artists Page Artists data:', artistsData);
+    console.log('Artists Page Artworks data:', artworksData);
+  }, [artistsData, artworksData]);
+
+  if (isLoading) {
+    return <div className="mt-20 container mx-auto px-4">Loading...</div>;
+  }
+
+  if (error) {
+    return <div className="mt-20 container mx-auto px-4">Error: {error}</div>;
+  }
 
   return (
     <div className='mt-20 container mx-auto px-4 relative z-0'>
