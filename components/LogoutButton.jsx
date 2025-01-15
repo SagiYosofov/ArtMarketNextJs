@@ -1,9 +1,11 @@
 "use client"; // Required for client-side functionality
 
 const LogoutButton = ({ username }) => {
+
+  const ServerURL = process.env.NEXT_PUBLIC_SERVER_URL;
   const handleLogout = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/users/Logout", {
+      const response = await fetch(`${ServerURL}/api/users/Logout`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

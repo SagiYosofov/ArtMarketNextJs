@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import dbArtworks from '../Artworks/dbArtworks.json';
 import Image from 'next/image';
 import { useUser } from '@/context/UserContext'
 import { useData } from '@/context/DataContext'
