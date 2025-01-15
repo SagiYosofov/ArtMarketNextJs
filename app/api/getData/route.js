@@ -6,12 +6,18 @@ import { Artwork } from "@/models/Artwork";
 
 export async function GET() {
   try {
-    // Connect to MongoDB
+    // Connect to MongoDB with connection pooling for production
     if (!process.env.MONGODB_URI) {
       throw new Error("MONGODB_URI is not defined in environment variables");
     }
     
-    await mongoose.connect(process.env.MONGODB_URI);
+    if (mongoose.connection.readyState !== 1) {
+      await mongoose.connect(process.env.MONGODB_URI, {
+        maxPoolSize: 10, // Optimize for production
+        serverSelectionTimeoutMS: 5000,
+        socketTimeoutMS: 45000,
+      });
+    }
 
     // Fetch data from all collections
     const users = await User.find({});
@@ -51,10 +57,7 @@ export async function GET() {
   } catch (error) {
     console.error('Error:', error);
     return NextResponse.json({ error: error.message }, { status: 500 });
-  } finally {
-    // Close the MongoDB connection
-    if (mongoose.connection.readyState === 1) {
-      await mongoose.disconnect();
-    }
   }
+  // Remove the disconnect in production as it can cause performance issues
+  // Let Node.js connection pooling handle it
 }
