@@ -170,14 +170,20 @@ const CreateNewComponent = ({ onClose }) => {
 
         <div>
           <label className="block mb-1">Dimensions</label>
-          <input
-            type="text"
+          <select
             name="dimensions"
             value={formData.dimensions}
             onChange={handleChange}
             className="w-full p-2 border rounded dark:bg-gray-700 dark:text-white dark:border-gray-600"
             required
-          />
+          >
+            <option value="">Select dimensions</option>
+            <option value="Small (up to 12x12 inches)">Small (up to 12x12 inches)</option>
+            <option value="Medium (13x13 to 24x24 inches)">Medium (13x13 to 24x24 inches)</option>
+            <option value="Large (25x25 to 36x36 inches)">Large (25x25 to 36x36 inches)</option>
+            <option value="Extra Large (37x37 to 48x48 inches)">Extra Large (37x37 to 48x48 inches)</option>
+            <option value="Oversized (larger than 48x48 inches)">Oversized (larger than 48x48 inches)</option>
+          </select>
         </div>
 
         <div>
