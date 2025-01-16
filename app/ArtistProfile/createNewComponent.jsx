@@ -18,8 +18,28 @@ const CreateNewComponent = ({ onClose }) => {
     price: ''
   });
 
+  const isImageUrl = (url) => {
+    const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp'];
+    return imageExtensions.some(ext => url.toLowerCase().endsWith(ext));
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
+    
+    // Special validation for picture URL
+    if (name === 'picture' && value !== '') {
+      try {
+        const url = new URL(value);
+        if (!isImageUrl(url.pathname)) {
+          alert('Please enter a valid image URL. URL must end with .jpg, .jpeg, .png, .gif, or .webp');
+          return;
+        }
+      } catch (error) {
+        alert('Please enter a valid URL');
+        return;
+      }
+    }
+
     setFormData(prevState => ({
       ...prevState,
       [name]: value
@@ -170,6 +190,9 @@ const CreateNewComponent = ({ onClose }) => {
             className="w-full p-2 border rounded dark:bg-gray-700 dark:text-white dark:border-gray-600"
             required
           />
+          <p className="text-sm text-gray-500 mt-1">
+            Please enter a direct image URL (must end with .jpg, .jpeg, .png, .gif, or .webp)
+          </p>
         </div>
 
         <div>
