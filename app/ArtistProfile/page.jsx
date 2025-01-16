@@ -74,7 +74,7 @@ const ArtistProfilePage = () => {
       >
         Add New Artwork
       </button>
-      {showAddForm && <CreateNewComponent />}
+      {showAddForm && <CreateNewComponent onClose={() => setShowAddForm(false)} />}
     </div>
   )
 }

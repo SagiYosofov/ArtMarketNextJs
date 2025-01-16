@@ -10,6 +10,14 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'images.pexels.com'
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost'
+      },
+      {
+        protocol: 'https',
+        hostname: 'art-market-next-js.vercel.app'
       }
     ]
   },

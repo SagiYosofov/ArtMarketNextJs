@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { useUser } from '@/context/UserContext'
+import { useData } from '@/context/DataContext'
 
 
-
-const CreateNewComponent = () => {
-  const { user, dbUpdate, setDbUpdate } = useUser();
+const CreateNewComponent = ({ onClose }) => {
+  const { user } = useUser();
+  const { setDbUpdate } = useData();
   const [formData, setFormData] = useState({
     id: Math.floor(Math.random() * 1000000),
     artistId: user.artistData.id,
@@ -54,6 +55,8 @@ const CreateNewComponent = () => {
       });
       setDbUpdate(true);
       alert('Artwork added successfully!');
+      // Close the form after successful submission
+      onClose();
     } catch (error) {
       console.error('Error adding artwork:', error);
       alert('Failed to add artwork');
@@ -71,7 +74,7 @@ const CreateNewComponent = () => {
             name="id"
             value={formData.id}
             onChange={handleChange}
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border rounded dark:bg-gray-700 dark:text-white dark:border-gray-600"
             required
             disabled
           />
@@ -84,7 +87,7 @@ const CreateNewComponent = () => {
             name="artistId"
             value={formData.artistId}
             onChange={handleChange}
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border rounded dark:bg-gray-700 dark:text-white dark:border-gray-600"
             required
             disabled
           />
@@ -97,7 +100,7 @@ const CreateNewComponent = () => {
             name="title"
             value={formData.title}
             onChange={handleChange}
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border rounded dark:bg-gray-700 dark:text-white dark:border-gray-600"
             required
           />
         </div>
@@ -109,7 +112,7 @@ const CreateNewComponent = () => {
             name="artistName"
             value={formData.artistName}
             onChange={handleChange}
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border rounded dark:bg-gray-700 dark:text-white dark:border-gray-600"
             required
             disabled
           />
@@ -121,7 +124,7 @@ const CreateNewComponent = () => {
             name="description"
             value={formData.description}
             onChange={handleChange}
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border rounded dark:bg-gray-700 dark:text-white dark:border-gray-600"
             rows="3"
             required
           />
@@ -129,14 +132,20 @@ const CreateNewComponent = () => {
 
         <div>
           <label className="block mb-1">Medium</label>
-          <input
-            type="text"
+          <select
             name="medium"
             value={formData.medium}
             onChange={handleChange}
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border rounded dark:bg-gray-700 dark:text-white dark:border-gray-600"
             required
-          />
+          >
+            <option value="">Select a medium</option>
+            <option value="Canvas and Fabric">Canvas and Fabric</option>
+            <option value="Mixed Media">Mixed Media</option>
+            <option value="Digital Photography">Digital Photography</option>
+            <option value="NFT">NFT</option>
+            <option value="Oil and acrylic on canvas">Oil and acrylic on canvas</option>
+          </select>
         </div>
 
         <div>
@@ -146,7 +155,7 @@ const CreateNewComponent = () => {
             name="dimensions"
             value={formData.dimensions}
             onChange={handleChange}
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border rounded dark:bg-gray-700 dark:text-white dark:border-gray-600"
             required
           />
         </div>
@@ -158,7 +167,7 @@ const CreateNewComponent = () => {
             name="picture"
             value={formData.picture}
             onChange={handleChange}
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border rounded dark:bg-gray-700 dark:text-white dark:border-gray-600"
             required
           />
         </div>
@@ -170,7 +179,7 @@ const CreateNewComponent = () => {
             name="price"
             value={formData.price}
             onChange={handleChange}
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border rounded dark:bg-gray-700 dark:text-white dark:border-gray-600"
             required
           />
         </div>

@@ -22,6 +22,7 @@ export async function POST(request) {
     await newArtwork.save();
     return NextResponse.json({ message: 'Artwork added successfully' });
   } catch (error) {
+    console.error('Error adding artwork:', error);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
