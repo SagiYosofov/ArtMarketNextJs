@@ -13,8 +13,11 @@ function App() {
     <div style={{ 
       display: 'flex', 
       justifyContent: 'center', 
-      alignItems: 'center', 
-      minHeight: '80vh' 
+      alignItems: 'center',
+      minHeight: '100vh',
+      paddingTop: '120px',
+      position: 'relative',
+      zIndex: 0
     }}>
       <PayPalScriptProvider options={initialOptions}>
         <div style={{ 
@@ -24,6 +27,9 @@ function App() {
           padding: "20px"
         }}>
           <PayPalButtons
+            style={{
+              zIndex: 1
+            }}
             createOrder={(data, actions) => {
               return actions.order.create({
                 purchase_units: [
