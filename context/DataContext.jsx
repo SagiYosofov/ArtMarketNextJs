@@ -16,7 +16,7 @@ export const DataProvider = ({ children }) => {
       setIsLoading(true);
       setError(null);
       
-      console.log('Attempting to fetch from:', `${process.env.NEXT_PUBLIC_SERVER_URL}/api/getData`);
+      // console.log('Attempting to fetch from:', `${process.env.NEXT_PUBLIC_SERVER_URL}/api/getData`);
       
       const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/getData`);
       
@@ -27,17 +27,17 @@ export const DataProvider = ({ children }) => {
       }
       
       const data = await response.json();
-      console.log('Received data:', data);
+      // console.log('Received data:', data);
       
       if (data.artists && data.artworks) {
         setArtistsData({ artists: data.artists });
         setArtworksData({ artworks: data.artworks });
-        console.log('DataContext Artists data:', data.artists);
-        console.log('DataContext Artworks data:', data.artworks);
+        // console.log('DataContext Artists data:', data.artists);
+        // console.log('DataContext Artworks data:', data.artworks);
         setDbUpdate(false);
       } else if (data.message) {
         // If we get a message but no data, the data might still be loading on the server
-        console.log('Server message:', data.message);
+        // console.log('Server message:', data.message);
         // Optionally retry after a short delay
         setTimeout(() => setDbUpdate(true), 2000);
       } else {

@@ -55,26 +55,26 @@ const AdminProfilePage = () => {
   if (error) return <div className="mt-40">Error: {error}</div>;
 
   return (
-    <div className="mt-40 p-6">
-      <h2 className="text-2xl font-bold mb-6">User Management</h2>
+    <div className="mt-40 p-6 dark:bg-slate-800">
+      <h2 className="text-2xl font-bold mb-6 dark:text-white">User Management</h2>
       <div className="overflow-x-auto">
-        <table className="min-w-full bg-white shadow-md rounded-lg">
-          <thead className="bg-gray-100">
+        <table className="min-w-full bg-white dark:bg-slate-700 shadow-md rounded-lg">
+          <thead className="bg-gray-100 dark:bg-slate-600">
             <tr>
-              <th className="px-4 py-2">Username</th>
-              <th className="px-4 py-2">Email</th>
-              <th className="px-4 py-2">User Type</th>
-              <th className="px-4 py-2">Verified</th>
-              <th className="px-4 py-2">Actions</th>
+              <th className="px-4 py-2 dark:text-gray-200">Username</th>
+              <th className="px-4 py-2 dark:text-gray-200">Email</th>
+              <th className="px-4 py-2 dark:text-gray-200">User Type</th>
+              <th className="px-4 py-2 dark:text-gray-200">Verified</th>
+              <th className="px-4 py-2 dark:text-gray-200">Actions</th>
             </tr>
           </thead>
           <tbody>
             {users.map((user) => (
-              <tr key={user._id} className="border-b">
-                <td className="px-4 py-2">{user.username}</td>
-                <td className="px-4 py-2">{user.email}</td>
-                <td className="px-4 py-2">{user.userType}</td>
-                <td className="px-4 py-2">
+              <tr key={user._id} className="border-b dark:border-slate-600">
+                <td className="px-4 py-2 dark:text-gray-200">{user.username}</td>
+                <td className="px-4 py-2 dark:text-gray-200">{user.email}</td>
+                <td className="px-4 py-2 dark:text-gray-200">{user.userType}</td>
+                <td className="px-4 py-2 dark:text-gray-200">
                   {user.isVerified ? 'Yes' : 'No'}
                 </td>
                 <td className="px-4 py-2">

@@ -12,8 +12,8 @@ export default function Artists() {
     setSelectedArtist(null);
   };
   useEffect(() => {
-    console.log('Artists Page Artists data:', artistsData);
-    console.log('Artists Page Artworks data:', artworksData);
+    // console.log('Artists Page Artists data:', artistsData);
+    // console.log('Artists Page Artworks data:', artworksData);
   }, [artistsData, artworksData]);
 
   if (isLoading) {
