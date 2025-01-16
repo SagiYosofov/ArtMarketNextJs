@@ -1,5 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
+import TeamLineUp from './TeamLineUp'
+import Image from 'next/image'
+import TechStack from './techStack'
 
 const AboutPage = () => {
   return (
@@ -12,44 +15,42 @@ const AboutPage = () => {
         </p>
       </div>
 
-      {/* Features grid */}
-      <div className="grid md:grid-cols-3 gap-8 mb-16">
-        {/* Unique Artwork Card */}
-        <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-          <div className="h-14 w-14 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-purple-600 dark:text-purple-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-          </div>
-          <h3 className="text-xl font-semibold mb-3 text-gray-800 dark:text-gray-100">Unique Artworks</h3>
-          <p className="text-gray-600 dark:text-gray-300">Each piece is crafted by independent artists, ensuring originality and authenticity in every creation.</p>
-        </div>
+      {/* How We Built It Section */}
+      <div className="mb-16">
+        <h2 className="text-3xl font-bold mb-8 text-center text-gray-800 dark:text-gray-100">How We Built It</h2>
+        <div className="space-y-6 text-gray-600 dark:text-gray-300">
+          <p className="leading-relaxed">
+            Our platform is built with modern web technologies to ensure a smooth experience.
 
-        {/* Direct Support Card */}
-        <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-          <div className="h-14 w-14 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-blue-600 dark:text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-            </svg>
-          </div>
-          <h3 className="text-xl font-semibold mb-3 text-gray-800 dark:text-gray-100">Direct Support</h3>
-          <p className="text-gray-600 dark:text-gray-300">Connect and purchase directly from artists, ensuring they receive fair compensation for their work.</p>
-        </div>
+          </p>
+          <p className="leading-relaxed">
+          We picked Next.js because it has strong tools for server-side rendering and dynamic routing, which help us manage our growing number of artwork pages easily.
+          </p>
+          
+          
+          <p className="leading-relaxed">
+          We use MongoDB as our database because it’s flexible and lets us store detailed artwork and user data in a document format.
+          </p>
 
-        {/* Community Card */}
-        <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-          <div className="h-14 w-14 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-green-600 dark:text-green-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-            </svg>
-          </div>
-          <h3 className="text-xl font-semibold mb-3 text-gray-800 dark:text-gray-100">Join Our Community</h3>
-          <p className="text-gray-600 dark:text-gray-300">Become part of a vibrant community of artists and art lovers sharing passion for creativity.</p>
+          <p className="leading-relaxed">
+          JavaScript for everything! from frontend interactions to backend logic, smooth and consistent development. 
+          </p>
+
+
+          <p className="leading-relaxed">
+          and GitHub has helped us manage our code with version control, allowing for parallel development.
+          </p>
         </div>
       </div>
 
+      {/* Team Section */}
+      <TeamLineUp />
+
+      {/* Tech Stack Section - replaced with component */}
+      <TechStack />
+
       {/* Call to Action */}
-      <div className="text-center">
+      <div className="text-center mt-16">
         <Link href="/Artworks">
           <button className="bg-purple-600 text-white px-8 py-3 rounded-full hover:bg-purple-700 dark:bg-purple-700 dark:hover:bg-purple-800 transition-colors text-lg font-semibold">
             Start Exploring
