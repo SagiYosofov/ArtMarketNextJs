@@ -4,7 +4,7 @@ import darkLogo from "../public/assets/ArtMarket-Logo-Dark.png"
 import DarkLightSwitch from "./DarkLightSwitch.jsx"
 import Link from "next/link";
 import { useUser } from "../context/UserContext";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Image from 'next/image'
 import { useCart } from "../context/CartContext";
 
@@ -13,6 +13,8 @@ const Nav = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login status
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // Add this state
   const { hasCartItems } = useCart();
+  const mobileMenuRef = useRef(null); // Add this ref for height calculations
+  const [menuHeight, setMenuHeight] = useState("0px"); // Add this state
 
   // Update the login status based on the user data
   useEffect(() => {
@@ -41,7 +43,15 @@ const Nav = () => {
   // Add this new function to handle mobile menu clicks
   const handleMobileMenuClick = () => {
     setIsMobileMenuOpen(false);
+    setMenuHeight("0px");
   };
+
+  // Add this effect to handle height animations
+  useEffect(() => {
+    if (mobileMenuRef.current) {
+      setMenuHeight(isMobileMenuOpen ? `${mobileMenuRef.current.scrollHeight}px` : "0px");
+    }
+  }, [isMobileMenuOpen]);
 
   return (
     <div className="fixed top-0 left-0 right-0 bg-white dark:bg-slate-800 shadow-md z-50 w-full">
@@ -166,8 +176,16 @@ const Nav = () => {
       </div>
 
       {/* Mobile Menu */}
-      <div className={`md:hidden ${isMobileMenuOpen ? 'block' : 'hidden'} bg-white dark:bg-gray-900 pb-4`}>
-        <div className="flex flex-col space-y-4 px-4">
+      <div 
+        className={`md:hidden overflow-hidden transition-[height,opacity] duration-300 ease-in-out bg-white dark:bg-gray-900`}
+        style={{ height: menuHeight }}
+      >
+        <div 
+          ref={mobileMenuRef}
+          className={`flex flex-col space-y-4 px-4 py-4 transform transition-transform duration-300 ease-in-out ${
+            isMobileMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'
+          }`}
+        >
           <Link href="/Artists" className="hover:underline focus:outline-none text-gray-800 dark:text-white" onClick={handleMobileMenuClick}>
             Artists
           </Link>
