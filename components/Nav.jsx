@@ -34,6 +34,8 @@ const Nav = () => {
   const handleLogout = () => {
     setUser(null); // Clear user data from context
     localStorage.removeItem("user"); // Remove user data from localStorage
+    localStorage.removeItem("artGalleryCart"); // Also clear the cart
+    window.dispatchEvent(new Event('cartUpdate')); // Trigger cart update
   };
 
   // Add this new function to handle mobile menu clicks
@@ -44,7 +46,14 @@ const Nav = () => {
   return (
     <div className="fixed top-0 left-0 right-0 bg-white dark:bg-slate-800 shadow-md z-50 w-full">
       <div className="flex items-center justify-between w-full drop-shadow-xl">
-        <Link href="/" className="inline mx-2 my-2" onClick={(e) => e.stopPropagation()}>
+        <Link 
+          href="/" 
+          className="inline mx-2 my-2" 
+          onClick={(e) => {
+            e.stopPropagation();
+            handleMobileMenuClick();
+          }}
+        >
           <Image 
             className="dark:hidden"
             width={75}
@@ -65,9 +74,6 @@ const Nav = () => {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center flex-grow">
-          <Link href="/" className="hover:underline mx-2 focus:outline-none text-gray-800 dark:text-white">
-            Home
-          </Link>
           <Link href="/Artists" className="hover:underline mx-2 focus:outline-none text-gray-800 dark:text-white">
             Artists
           </Link>
@@ -122,7 +128,7 @@ const Nav = () => {
             {!isLoggedIn ? (
               <>
                 <Link href="/Login" className="hover:underline mx-2 focus:outline-none">
-                  <button className="rounded-full font-semibold hover:bg-red-700 text-white shadow-2xl bg-red-500 p-3">
+                  <button className="rounded-full font-semibold hover:bg-blue-700 text-white shadow-2xl bg-blue-600 p-3">
                     Log in
                   </button>
                 </Link>
@@ -141,7 +147,7 @@ const Nav = () => {
                 </Link>
                 {user?.userType === "ARTIST" && (
                   <Link href="/ArtistProfile" className="hover:underline mx-2 focus:outline-none">
-                    <button className="rounded-full font-semibold hover:bg-green-700 text-white shadow-2xl bg-green-500 p-3">
+                    <button className="rounded-full font-semibold hover:bg-blue-700 text-white shadow-2xl bg-blue-600 p-3">
                       Artist Profile
                     </button>
                   </Link>
@@ -162,9 +168,6 @@ const Nav = () => {
       {/* Mobile Menu */}
       <div className={`md:hidden ${isMobileMenuOpen ? 'block' : 'hidden'} bg-white dark:bg-gray-900 pb-4`}>
         <div className="flex flex-col space-y-4 px-4">
-          <Link href="/" className="hover:underline focus:outline-none text-gray-800 dark:text-white" onClick={handleMobileMenuClick}>
-            Home
-          </Link>
           <Link href="/Artists" className="hover:underline focus:outline-none text-gray-800 dark:text-white" onClick={handleMobileMenuClick}>
             Artists
           </Link>
@@ -179,7 +182,7 @@ const Nav = () => {
             {!isLoggedIn ? (
               <>
                 <Link href="/Login" className="w-full" onClick={handleMobileMenuClick}>
-                  <button className="w-full rounded-full font-semibold hover:bg-red-700 text-white shadow-2xl bg-red-500 p-3">
+                  <button className="w-full rounded-full font-semibold hover:bg-blue-700 text-white shadow-2xl bg-blue-600 p-3">
                     Log in
                   </button>
                 </Link>
@@ -198,7 +201,7 @@ const Nav = () => {
                 </Link>
                 {user?.userType === "ARTIST" && (
                   <Link href="/ArtistProfile" className="w-full" onClick={handleMobileMenuClick}>
-                    <button className="w-full rounded-full font-semibold hover:bg-green-700 text-white shadow-2xl bg-green-500 p-3">
+                    <button className="w-full rounded-full font-semibold hover:bg-blue-700 text-white shadow-2xl bg-blue-600 p-3">
                       Artist Profile
                     </button>
                   </Link>
