@@ -60,7 +60,7 @@ const CartPage = () => {
   };
 
   const handleCheckout = () => {
-    router.push('/Payment');
+    router.push(`/Payment?total=${totalSum.toFixed(2)}`);
   };
 
   if (isLoading) {
