@@ -6,6 +6,7 @@ import { useData } from '@/context/DataContext'
 const CreateNewComponent = ({ onClose }) => {
   const { user } = useUser();
   const { setDbUpdate } = useData();
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     id: Math.floor(Math.random() * 1000000),
     artistId: user.artistData.id,
@@ -48,6 +49,7 @@ const CreateNewComponent = ({ onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const response = await fetch('/api/artworks/add', {
         method: 'POST',
@@ -75,11 +77,12 @@ const CreateNewComponent = ({ onClose }) => {
       });
       setDbUpdate(true);
       alert('Artwork added successfully!');
-      // Close the form after successful submission
       onClose();
     } catch (error) {
       console.error('Error adding artwork:', error);
       alert('Failed to add artwork');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -215,9 +218,10 @@ const CreateNewComponent = ({ onClose }) => {
 
         <button
           type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+          disabled={isLoading}
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 disabled:bg-blue-300 disabled:cursor-not-allowed"
         >
-          Add Artwork
+          {isLoading ? 'Adding Artwork...' : 'Add Artwork'}
         </button>
       </form>
     </div>
