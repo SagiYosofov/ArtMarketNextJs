@@ -1,103 +1,58 @@
-"use client"; 
-import logo from "../public/assets/ArtMarket-Logo.png"
-import darkLogo from "../public/assets/ArtMarket-Logo-Dark.png"
-import DarkLightSwitch from "./DarkLightSwitch.jsx"
-import Link from "next/link";
+"use client";
 import { useUser } from "../context/UserContext";
 import { useEffect, useState, useRef } from "react";
-import Image from 'next/image'
 import { useCart } from "../context/CartContext";
+import DarkLightSwitch from "./DarkLightSwitch";
+import Link from "next/link";
+import { NavLogo } from "./navigation/NavLogo";
+import { DesktopNav } from "./navigation/DesktopNav";
+import { AuthButtons } from "./navigation/AuthButtons";
+import { MobileMenu } from "./navigation/MobileMenu";
 
 const Nav = () => {
-  const { user, setUser } = useUser(); // Access the user context
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login status
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // Add this state
+  const { user, setUser } = useUser();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { hasCartItems } = useCart();
-  const mobileMenuRef = useRef(null); // Add this ref for height calculations
-  const [menuHeight, setMenuHeight] = useState("0px"); // Add this state
+  const mobileMenuRef = useRef(null);
+  const [menuHeight, setMenuHeight] = useState("0px");
 
-  // Update the login status based on the user data
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
-      setUser(JSON.parse(storedUser)); // Parse and set the user from localStorage
+      setUser(JSON.parse(storedUser));
     }
-  }, []); // Run only on initial mount
+  }, []);
 
   useEffect(() => {
-    if (user) {
-      setIsLoggedIn(true); // User is logged in
-    } else {
-      setIsLoggedIn(false); // No user logged in
-    }
+    setIsLoggedIn(!!user);
   }, [user]);
 
-  // Handle logout functionality
-  const handleLogout = () => {
-    setUser(null); // Clear user data from context
-    localStorage.removeItem("user"); // Remove user data from localStorage
-    localStorage.removeItem("artGalleryCart"); // Also clear the cart
-    window.dispatchEvent(new Event('cartUpdate')); // Trigger cart update
-  };
-
-  // Add this new function to handle mobile menu clicks
-  const handleMobileMenuClick = () => {
-    setIsMobileMenuOpen(false);
-    setMenuHeight("0px");
-  };
-
-  // Add this effect to handle height animations
   useEffect(() => {
     if (mobileMenuRef.current) {
       setMenuHeight(isMobileMenuOpen ? `${mobileMenuRef.current.scrollHeight}px` : "0px");
     }
   }, [isMobileMenuOpen]);
 
+  const handleLogout = () => {
+    setUser(null);
+    localStorage.removeItem("user");
+    localStorage.removeItem("artGalleryCart");
+    window.dispatchEvent(new Event('cartUpdate'));
+  };
+
+  const handleMobileMenuClick = () => {
+    setIsMobileMenuOpen(false);
+    setMenuHeight("0px");
+  };
+
   return (
     <div className="fixed top-0 left-0 right-0 bg-white dark:bg-slate-800 shadow-md z-50 w-full">
       <div className="flex items-center justify-between w-full drop-shadow-xl">
-        <Link 
-          href="/" 
-          className="inline mx-2 my-2" 
-          onClick={(e) => {
-            e.stopPropagation();
-            handleMobileMenuClick();
-          }}
-        >
-          <Image 
-            className="dark:hidden"
-            width={75}
-            height={75}
-            src={logo}
-            alt="ArtMarket Logo"
-            priority
-          />
-          <Image
-            className="hidden dark:block"
-            width={75}
-            height={75}
-            src={darkLogo}
-            alt="ArtMarket Logo"
-            priority
-          />
-        </Link>
-
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center flex-grow">
-          <Link href="/Artists" className="hover:underline mx-2 focus:outline-none text-gray-800 dark:text-white">
-            Artists
-          </Link>
-          <Link href="/Artworks" className="hover:underline mx-2 focus:outline-none text-gray-800 dark:text-white">
-            Artworks
-          </Link>
-          <Link href="/About" className="hover:underline mx-2 focus:outline-none text-gray-800 dark:text-white">
-            About
-          </Link>
-        </div>
-
-        {/* Mobile & Desktop Controls */}
+        <NavLogo onMobileClick={handleMobileMenuClick} />
+        <DesktopNav />
+        
         <div className="flex items-center space-x-4">
-          {/* Cart Icon - Visible on both mobile and desktop */}
           <Link 
             href="/Cart" 
             className={`p-2 rounded-full transition-colors ${
@@ -111,7 +66,6 @@ const Nav = () => {
           
           <DarkLightSwitch />
           
-          {/* Hamburger Menu Button */}
           <button
             className="md:hidden p-4"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -133,109 +87,25 @@ const Nav = () => {
             </svg>
           </button>
 
-          {/* Desktop Auth Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            {!isLoggedIn ? (
-              <>
-                <Link href="/Login" className="hover:underline mx-2 focus:outline-none">
-                  <button className="rounded-full font-semibold hover:bg-blue-700 text-white shadow-2xl bg-blue-600 p-3">
-                    Log in
-                  </button>
-                </Link>
-                <Link href="/SignUp" className="hover:underline mx-2 focus:outline-none">
-                  <button className="rounded-full shadow-2xl font-semibold hover:bg-blue-950 text-white bg-blue-800 p-3">
-                    Sign up
-                  </button>
-                </Link>
-              </>
-            ) : (
-              <>
-                <Link href="/" onClick={handleLogout} className="hover:underline mx-2 focus:outline-none">
-                  <button className="rounded-full font-semibold hover:bg-red-700 text-white shadow-2xl bg-red-500 p-3">
-                    Logout
-                  </button>
-                </Link>
-                {user?.userType === "ARTIST" && (
-                  <Link href="/ArtistProfile" className="hover:underline mx-2 focus:outline-none">
-                    <button className="rounded-full font-semibold hover:bg-blue-700 text-white shadow-2xl bg-blue-600 p-3">
-                      Artist Profile
-                    </button>
-                  </Link>
-                )}
-                {user?.userType === "ADMIN" && (
-                  <Link href="/AdminProfile" className="hover:underline mx-2 focus:outline-none">
-                    <button className="rounded-full font-semibold hover:bg-blue-700 text-white shadow-2xl bg-blue-500 p-3">
-                      Admin Profile
-                    </button>
-                  </Link>
-                )}
-              </>
-            )}
+            <AuthButtons 
+              isLoggedIn={isLoggedIn}
+              user={user}
+              onLogout={handleLogout}
+            />
           </div>
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      <div 
-        className={`md:hidden overflow-hidden transition-[height,opacity] duration-300 ease-in-out bg-white dark:bg-gray-900`}
-        style={{ height: menuHeight }}
-      >
-        <div 
-          ref={mobileMenuRef}
-          className={`flex flex-col space-y-4 px-4 py-4 transform transition-transform duration-300 ease-in-out ${
-            isMobileMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'
-          }`}
-        >
-          <Link href="/Artists" className="hover:underline focus:outline-none text-gray-800 dark:text-white" onClick={handleMobileMenuClick}>
-            Artists
-          </Link>
-          <Link href="/Artworks" className="hover:underline focus:outline-none text-gray-800 dark:text-white" onClick={handleMobileMenuClick}>
-            Artworks
-          </Link>
-          <Link href="/About" className="hover:underline focus:outline-none text-gray-800 dark:text-white" onClick={handleMobileMenuClick}>
-            About
-          </Link>
-          
-          <div className="flex flex-col space-y-2">
-            {!isLoggedIn ? (
-              <>
-                <Link href="/Login" className="w-full" onClick={handleMobileMenuClick}>
-                  <button className="w-full rounded-full font-semibold hover:bg-blue-700 text-white shadow-2xl bg-blue-600 p-3">
-                    Log in
-                  </button>
-                </Link>
-                <Link href="/SignUp" className="w-full" onClick={handleMobileMenuClick}>
-                  <button className="w-full rounded-full shadow-2xl font-semibold hover:bg-blue-950 text-white bg-blue-800 p-3">
-                    Sign up
-                  </button>
-                </Link>
-              </>
-            ) : (
-              <>
-                <Link href="/" onClick={(e) => { handleLogout(); handleMobileMenuClick(); }} className="w-full">
-                  <button className="w-full rounded-full font-semibold hover:bg-red-700 text-white shadow-2xl bg-red-500 p-3">
-                    Logout
-                  </button>
-                </Link>
-                {user?.userType === "ARTIST" && (
-                  <Link href="/ArtistProfile" className="w-full" onClick={handleMobileMenuClick}>
-                    <button className="w-full rounded-full font-semibold hover:bg-blue-700 text-white shadow-2xl bg-blue-600 p-3">
-                      Artist Profile
-                    </button>
-                  </Link>
-                )}
-                {user?.userType === "ADMIN" && (
-                  <Link href="/AdminProfile" className="w-full" onClick={handleMobileMenuClick}>
-                    <button className="w-full rounded-full font-semibold hover:bg-blue-700 text-white shadow-2xl bg-blue-500 p-3">
-                      Admin Profile
-                    </button>
-                  </Link>
-                )}
-              </>
-            )}
-          </div>
-        </div>
-      </div>
+      <MobileMenu 
+        isOpen={isMobileMenuOpen}
+        menuHeight={menuHeight}
+        mobileMenuRef={mobileMenuRef}
+        onMenuClick={handleMobileMenuClick}
+        isLoggedIn={isLoggedIn}
+        user={user}
+        onLogout={handleLogout}
+      />
     </div>
   );
 };
