@@ -43,7 +43,7 @@ const HomePage = () => {
           <div className="text-red-500 text-center">{error}</div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {artworksData.artworks.slice(0, 2).map((artwork) => (
+            {artworksData.artworks.slice(0, 1).map((artwork) => (
               <div
                 key={artwork.id}
                 className="cursor-pointer"
@@ -108,7 +108,7 @@ const HomePage = () => {
           <div className="text-red-500 text-center">{error}</div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {artistsData.artists.slice(0, 2).map((artist) => (
+            {artistsData.artists.slice(0, 1).map((artist) => (
               <ArtistComponent 
                 key={artist.id} 
                 artist={artist} 
