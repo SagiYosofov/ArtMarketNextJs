@@ -38,7 +38,7 @@ const AboutPage = () => {
 
 
           <p className="leading-relaxed">
-          and GitHub has helped us manage our code with version control, allowing for parallel development.
+          and GitHub has helped us manage our code with version control, and also allowed convieninent for parallel development.
           </p>
         </div>
       </div>

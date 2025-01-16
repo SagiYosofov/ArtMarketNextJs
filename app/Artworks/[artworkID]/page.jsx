@@ -60,6 +60,8 @@ export default function ArtworkPage({ params }) {
       // Add complete artwork object to cart
       const updatedCart = [...existingCart, artworkToAdd];
       localStorage.setItem('artGalleryCart', JSON.stringify(updatedCart));
+      window.dispatchEvent(new Event('cartUpdate'));
+
       
       setAddedToCart(true);
       setTimeout(() => {

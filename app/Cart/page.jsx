@@ -51,6 +51,9 @@ const CartPage = () => {
         .filter(item => item.id !== itemId)
         .reduce((sum, item) => sum + parseFloat(item.price), 0);
       setTotalSum(newTotal);
+
+      // Dispatch custom event to notify of cart update
+      window.dispatchEvent(new Event('cartUpdate'));
     } catch (err) {
       console.error('Error removing item from cart:', err);
     }

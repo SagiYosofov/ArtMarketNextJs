@@ -6,11 +6,13 @@ import Link from "next/link";
 import { useUser } from "../context/UserContext";
 import { useEffect, useState } from "react";
 import Image from 'next/image'
+import { useCart } from "../context/CartContext";
 
 const Nav = () => {
   const { user, setUser } = useUser(); // Access the user context
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login status
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // Add this state
+  const { hasCartItems } = useCart();
 
   // Update the login status based on the user data
   useEffect(() => {
@@ -75,13 +77,22 @@ const Nav = () => {
           <Link href="/About" className="hover:underline mx-2 focus:outline-none text-gray-800 dark:text-white">
             About
           </Link>
-          <Link href="/Cart" className="hover:underline mx-2 focus:outline-none text-gray-800 dark:text-white">
-            Cart
-          </Link>
         </div>
 
         {/* Mobile & Desktop Controls */}
         <div className="flex items-center space-x-4">
+          {/* Cart Icon - Visible on both mobile and desktop */}
+          <Link 
+            href="/Cart" 
+            className={`p-2 rounded-full transition-colors ${
+              hasCartItems 
+                ? 'bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700' 
+                : 'bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600'
+            }`}
+          >
+            <span className="text-xl" role="img" aria-label="Shopping Cart">🛒</span>
+          </Link>
+          
           <DarkLightSwitch />
           
           {/* Hamburger Menu Button */}
@@ -162,9 +173,6 @@ const Nav = () => {
           </Link>
           <Link href="/About" className="hover:underline focus:outline-none text-gray-800 dark:text-white" onClick={handleMobileMenuClick}>
             About
-          </Link>
-          <Link href="/Cart" className="hover:underline focus:outline-none text-gray-800 dark:text-white" onClick={handleMobileMenuClick}>
-            Cart
           </Link>
           
           <div className="flex flex-col space-y-2">
