@@ -5,26 +5,26 @@ import Link from 'next/link'
 const TeamLineUp = () => {
   const teamMembers = [
     {
-      name: "Arthur",
-      role: "Full Stack Developer",
+      name: "Arthur Cherniy",
+      role: "",
       image: "/about/dev team/arthur.png",
       linkedin: "https://www.linkedin.com/in/arthur-cherniy-267946241/"
     },
     {
-      name: "Sagi",
-      role: "Full Stack Developer",
+      name: "Sagie Yosofov",
+      role: "",
       image: "/about/dev team/sagi.jpg",
       linkedin: "https://www.linkedin.com/in/sagieyosofov/"
     },
     {
-      name: "Daniel",
-      role: "Full Stack Developer",
+      name: "Daniel Feldman",
+      role: "",
       image: "/about/dev team/daniel.png",
       linkedin: "https://www.linkedin.com/in/dany-feldman/"
     },
     {
-      name: "Aviv",
-      role: "Full Stack Developer",
+      name: "Aviv Raz",
+      role: "",
       image: "/about/dev team/aviv.png",
       linkedin: "https://www.linkedin.com/in/aviv-raz-59a541b8/"
     }
