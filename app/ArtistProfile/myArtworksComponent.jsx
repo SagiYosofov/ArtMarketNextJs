@@ -120,32 +120,32 @@ const MyArtworksComponent = ({ artworkID }) => {
         </div>
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700">Title</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">Title</label>
             <input
               type="text"
               name="title"
               value={editedArtwork.title}
               onChange={handleInputChange}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-800 dark:text-white dark:border-gray-600"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Price</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">Price</label>
             <input
               type="number"
               name="price"
               value={editedArtwork.price}
               onChange={handleInputChange}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-800 dark:text-white dark:border-gray-600"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Description</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">Description</label>
             <textarea
               name="description"
               value={editedArtwork.description}
               onChange={handleInputChange}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-800 dark:text-white dark:border-gray-600"
             />
           </div>
           <div className="flex gap-4">
@@ -169,7 +169,7 @@ const MyArtworksComponent = ({ artworkID }) => {
   }
 
   return (
-    <div className="border rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow">
+    <div className="border rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow dark:border-gray-700">
       <div className="relative w-full h-48 mb-4">
         <Image
           src={artwork.picture}
