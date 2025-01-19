@@ -43,14 +43,48 @@ function PaymentContent() {
     }
   };
 
+  const handleDemoPayment = async () => {
+    try {
+      await deletePurchasedArtworks();
+      localStorage.removeItem('artGalleryCart');
+      window.dispatchEvent(new Event('cartUpdate'));
+      alert("Demo purchase successful! Total amount: $" + total);
+    } catch (error) {
+      console.error('Error processing demo purchase:', error);
+      alert("Demo purchase failed. Please try again.");
+    }
+  };
+
   return (
-    <PayPalScriptProvider options={initialOptions}>
-      <div style={{ 
-        maxWidth: "750px", 
-        minHeight: "200px",
-        width: "100%",
-        padding: "20px"
-      }}>
+    <div style={{ 
+      maxWidth: "750px", 
+      minHeight: "200px",
+      width: "100%",
+      padding: "20px",
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '20px'
+    }}>
+      {/* Demo Purchase Button */}
+      <button
+        onClick={handleDemoPayment}
+        style={{
+          padding: '15px 25px',
+          fontSize: '16px',
+          backgroundColor: '#4CAF50',
+          color: 'white',
+          border: 'none',
+          borderRadius: '5px',
+          cursor: 'pointer',
+          transition: 'background-color 0.3s'
+        }}
+        onMouseOver={(e) => e.target.style.backgroundColor = '#45a049'}
+        onMouseOut={(e) => e.target.style.backgroundColor = '#4CAF50'}
+      >
+        Demo Purchase (Test Only)
+      </button>
+
+      <PayPalScriptProvider options={initialOptions}>
         <PayPalButtons
           style={{
             zIndex: 1
@@ -80,8 +114,8 @@ function PaymentContent() {
             });
           }}
         />
-      </div>
-    </PayPalScriptProvider>
+      </PayPalScriptProvider>
+    </div>
   );
 }
 
