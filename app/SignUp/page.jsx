@@ -4,7 +4,7 @@ import { useState } from "react";
 const RegisterForm = () => {
 
 const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
-console.log("read server form env file", SERVER_URL);
+
 
 
 
@@ -16,10 +16,8 @@ console.log("read server form env file", SERVER_URL);
     lastName: "",
     email: "",
     address: "",
-    userType: "ADMIN", // Default user type set to ARTIST
-    profile_picture: "",
-    bio: "",
-    bank_account_number: "",
+    userType: "ARTIST", // Default user type set to ARTIST
+    bio: "I'm an artist",
   });
 
    // State to store the response message and its type (success or error)
@@ -65,10 +63,8 @@ console.log("read server form env file", SERVER_URL);
           lastName: "",
           email: "",
           address: "",
-          userType: "ADMIN", // Resetting userType to default ADMIN
-          profile_picture: "",
+          userType: "ARTIST", 
           bio: "",
-          bank_account_number: "",
         });
       } else {
        // If the response is not successful, show the error message returned from the server
@@ -208,21 +204,6 @@ console.log("read server form env file", SERVER_URL);
           {/* Conditional fields for ARTIST user type */}
           {formData.userType === "ARTIST" && (
             <>
-              {/* Profile Picture URL */}
-              <div className="mb-4">
-                <label htmlFor="profile_picture" className="block text-sm font-medium text-gray-600 dark:text-gray-300">
-                  Profile Picture URL
-                </label>
-                <input
-                  type="text"
-                  name="profile_picture"
-                  id="profile_picture"
-                  value={formData.profile_picture}
-                  onChange={handleChange}
-                  className="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-gray-100 transition-colors duration-300"
-                />
-              </div>
-
               {/* Artist Bio */}
               <div className="mb-4">
                 <label htmlFor="bio" className="block text-sm font-medium text-gray-600 dark:text-gray-300">
@@ -232,21 +213,6 @@ console.log("read server form env file", SERVER_URL);
                   name="bio"
                   id="bio"
                   value={formData.bio}
-                  onChange={handleChange}
-                  className="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-gray-100 transition-colors duration-300"
-                />
-              </div>
-
-              {/* Bank Account Number */}
-              <div className="mb-4">
-                <label htmlFor="bank_account_number" className="block text-sm font-medium text-gray-600 dark:text-gray-300">
-                  Bank Account Number
-                </label>
-                <input
-                  type="text"
-                  name="bank_account_number"
-                  id="bank_account_number"
-                  value={formData.bank_account_number}
                   onChange={handleChange}
                   className="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-gray-100 transition-colors duration-300"
                 />

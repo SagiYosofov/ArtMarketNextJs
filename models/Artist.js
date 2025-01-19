@@ -15,10 +15,12 @@ const ArtistSchema = new mongoose.Schema(
       ref: "User",  // Reference to the User collection by username
     },
     picture: {
-      type: String,  // Artist's profile picture URL
+      type: String,
+      default: "https://images.pexels.com/photos/6373497/pexels-photo-6373497.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
     },
     bio: {
       type: String,
+      default: "I am an artist"
     },
     artworkIds: [{
       type: String,  // Array of artwork IDs
@@ -29,6 +31,7 @@ const ArtistSchema = new mongoose.Schema(
     },
     bank_account_number: {
       type: String,
+      default: "123456789"
     },
   },
   {
