@@ -33,6 +33,30 @@ const DIMENSION_OPTIONS = [
 
 const VALID_IMAGE_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.gif', '.webp'];
 
+// Add this constant after other constants
+const ALLOWED_HOSTS = [
+  'example.com',
+  'images.pexels.com',
+  'www.pexels.com',
+  'localhost',
+  'art-market-next-js.vercel.app',
+  'imgur.com',
+  'i.imgur.com',
+  'googleusercontent.com',
+  'drive.google.com',
+  'dropbox.com',
+  'dropboxusercontent.com',
+  'amazonaws.com'
+];
+
+const ALLOWED_HOSTS_MESSAGE = "Allowed image hosting providers:\n" +
+  "• Imgur (imgur.com)\n" +
+  "• Pexels (pexels.com)\n" +
+  "• Google Drive (drive.google.com)\n" +
+  "• Dropbox (dropbox.com)\n" +
+  "• Amazon S3 (amazonaws.com)\n" +
+  "Image must end with: .jpg, .jpeg, .png, .gif, or .webp";
+
 // Form Field Component
 const FormField = ({ label, children, hint }) => (
   <div>
@@ -74,12 +98,24 @@ const CreateNewComponent = ({ onClose }) => {
   const validateImageUrl = (url) => {
     try {
       const parsedUrl = new URL(url);
+      
+      // Check file extension
       if (!VALID_IMAGE_EXTENSIONS.some(ext => parsedUrl.pathname.toLowerCase().endsWith(ext))) {
-        throw new Error('Invalid image extension');
+        return { isValid: false, message: 'Invalid image format. URL must end with .jpg, .jpeg, .png, .gif, or .webp' };
       }
-      return true;
+
+      // Check if hostname is allowed
+      const isAllowedHost = ALLOWED_HOSTS.some(host => 
+        parsedUrl.hostname === host || parsedUrl.hostname.endsWith(`.${host}`)
+      );
+
+      if (!isAllowedHost) {
+        return { isValid: false, message: 'Invalid image host. Please use one of the allowed hosting providers.' };
+      }
+
+      return { isValid: true };
     } catch (error) {
-      return false;
+      return { isValid: false, message: 'Invalid URL format' };
     }
   };
 
@@ -87,8 +123,9 @@ const CreateNewComponent = ({ onClose }) => {
     const { name, value } = e.target;
     
     if (name === 'picture' && value !== '') {
-      if (!validateImageUrl(value)) {
-        alert('Please enter a valid image URL. URL must end with .jpg, .jpeg, .png, .gif, or .webp');
+      const validation = validateImageUrl(value);
+      if (!validation.isValid) {
+        alert(validation.message + '\n\n' + ALLOWED_HOSTS_MESSAGE);
         return;
       }
     }
@@ -98,6 +135,14 @@ const CreateNewComponent = ({ onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Validate image URL before submission
+    const validation = validateImageUrl(formData.picture);
+    if (!validation.isValid) {
+      alert(validation.message + '\n\n' + ALLOWED_HOSTS_MESSAGE);
+      return;
+    }
+
     setIsLoading(true);
 
     try {
@@ -197,7 +242,7 @@ const CreateNewComponent = ({ onClose }) => {
 
         <FormField 
           label="Picture URL"
-          hint="Please enter a direct image URL (must end with .jpg, .jpeg, .png, .gif, or .webp)"
+          hint={ALLOWED_HOSTS_MESSAGE.replace(/\n/g, ' | ')}
         >
           <input
             type="url"

@@ -20,9 +20,7 @@ export function ArtistComponent({ artist, artworks }) {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-t-lg" />
           <div className="absolute bottom-0 left-0 right-0 p-4">
-            <span className="inline-block px-2 py-1 bg-white/20 rounded-full text-white text-sm mb-2">
-              🌍 {artist.country}
-            </span>
+            {/* Removed the country span element */}
           </div>
         </div>
 

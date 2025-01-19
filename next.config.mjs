@@ -22,6 +22,38 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'art-market-next-js.vercel.app'
+      },
+      {
+        protocol: 'https',
+        hostname: 'imgur.com'
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.imgur.com'
+      },
+      {
+        protocol: 'https',
+        hostname: '*.googleusercontent.com'
+      },
+      {
+        protocol: 'https',
+        hostname: 'drive.google.com'
+      },
+      {
+        protocol: 'https',
+        hostname: 'dropbox.com'
+      },
+      {
+        protocol: 'https',
+        hostname: '*.dropbox.com'
+      },
+      {
+        protocol: 'https',
+        hostname: 'dl.dropboxusercontent.com'
+      },
+      {
+        protocol: 'https',
+        hostname: '*.amazonaws.com'
       }
     ]
   },
