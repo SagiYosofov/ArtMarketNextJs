@@ -25,7 +25,7 @@ export async function POST(req) {
       return new Response(JSON.stringify({ error: "Invalid password" }), { status: 401 });
     }
 
-    if (user.isVerified === false) {
+    if (user.userType === "ADMIN" && user.isVerified === false) {
       return new Response(JSON.stringify({ error: "User not verified yet" }), { status: 401 });
     }
 
