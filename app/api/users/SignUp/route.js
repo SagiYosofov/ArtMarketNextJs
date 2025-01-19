@@ -73,7 +73,7 @@ export async function POST(req) {
         id: username, // Using username as id
         username,
         picture: "https://images.pexels.com/photos/6373497/pexels-photo-6373497.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        bio: "I am an artist",
+        bio,
         bank_account_number: "123456789"
       });
 

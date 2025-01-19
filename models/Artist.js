@@ -20,7 +20,6 @@ const ArtistSchema = new mongoose.Schema(
     },
     bio: {
       type: String,
-      default: "I am an artist"
     },
     artworkIds: [{
       type: String,  // Array of artwork IDs

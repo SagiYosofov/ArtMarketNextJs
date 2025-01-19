@@ -29,8 +29,16 @@ const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
   // Function to handle changes in form fields
   const handleChange = (e) => {
     const { name, value } = e.target;
-    // Update the formData state with the new value for the specific field
-    setFormData({ ...formData, [name]: value });
+    
+    if (name === 'username') {
+      // Remove spaces from username and show warning if spaces were attempted
+      const cleanUsername = value.replace(/\s+/g, '');
+
+      setFormData({ ...formData, [name]: cleanUsername });
+    } else {
+      // Handle other fields normally
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
   // Function to handle form submission asynchronously
