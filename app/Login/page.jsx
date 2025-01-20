@@ -1,65 +1,8 @@
 "use client";
-import { useState } from "react";
-import { useUser } from "../../context/UserContext";
-import { useRouter } from 'next/navigation';
+import { useLogin } from "../../components/hooks/useLogin";
 
 const LoginForm = () => {
-
-  const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
-  // const SERVER_URL = "http://localhost:3000";
-  // console.log("read server form env file", SERVER_URL);
-
-
-  const { user, setUser } = useUser(); // Destructure setUser from context to update user state
-  const [formData, setFormData] = useState({
-    username: "",
-    password: "",
-  });
-
-  const [responseMessage, setResponseMessage] = useState("");
-  const router = useRouter();
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      const response = await fetch(SERVER_URL + "/api/users/Login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
-      if (response.ok) {
-        setResponseMessage("Login successful!");
-
-        if (data.user) {
-          // Update the user state and wait for it
-          await setUser(data.user);
-
-          // Use router.push instead of window.location
-          const userType = String(data.user.userType);
-          if (userType === "ADMIN") {
-            router.push('/AdminProfile');
-          } else if (userType === "ARTIST") {
-            router.push('/ArtistProfile');
-          }
-        }
-      } else {
-        setResponseMessage(data.error || "Invalid credentials.");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      setResponseMessage("Failed to log in.");
-    }
-  };
+  const { formData, responseMessage, handleChange, handleSubmit } = useLogin();
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 p-6 transition-colors duration-300">
