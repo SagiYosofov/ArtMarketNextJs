@@ -2,8 +2,8 @@
 
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { useSearchParams } from 'next/navigation';
-import { useData } from '@/context/DataContext';
 import { Suspense } from 'react';
+import { usePayment } from '@/components/hooks/usePayment';
 
 const initialOptions = {
   "client-id": process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID,
@@ -14,40 +14,12 @@ const initialOptions = {
 // Component that uses useSearchParams
 function PaymentContent() {
   const searchParams = useSearchParams();
-  const { setDbUpdate } = useData();
+  const { handleSuccessfulPurchase } = usePayment();
   const total = searchParams.get('total') || '0.00';
-
-  const deletePurchasedArtworks = async () => {
-    try {
-      const cartData = JSON.parse(localStorage.getItem('artGalleryCart') || '[]');
-      const artworkIds = cartData.map(item => item.id);
-
-      if (artworkIds.length > 0) {
-        const response = await fetch('/api/artworks/deletePurchased', {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ artworkIds }),
-        });
-
-        if (!response.ok) {
-          throw new Error('Failed to delete purchased artworks');
-        }
-
-        setDbUpdate(true);
-      }
-    } catch (error) {
-      console.error('Error deleting purchased artworks:', error);
-      throw error;
-    }
-  };
 
   const handleDemoPayment = async () => {
     try {
-      await deletePurchasedArtworks();
-      localStorage.removeItem('artGalleryCart');
-      window.dispatchEvent(new Event('cartUpdate'));
+      await handleSuccessfulPurchase();
       alert("Demo purchase successful! Total amount: $" + total);
     } catch (error) {
       console.error('Error processing demo purchase:', error);
@@ -103,9 +75,7 @@ function PaymentContent() {
           onApprove={(data, actions) => {
             return actions.order.capture().then(async (details) => {
               try {
-                await deletePurchasedArtworks();
-                localStorage.removeItem('artGalleryCart');
-                window.dispatchEvent(new Event('cartUpdate'));
+                await handleSuccessfulPurchase();
                 alert("Transaction completed by " + details.payer.name.given_name);
               } catch (error) {
                 console.error('Error processing purchase:', error);
