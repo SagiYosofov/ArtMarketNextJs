@@ -3,7 +3,7 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useData } from '@/context/DataContext'
-import HisWorks from './hisWorks'
+import HisWorks from '../../../components/hisWorks'
 
 export default function ArtistPage({ params }) {
   const unwrappedParams = React.use(params)

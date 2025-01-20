@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import ItemComponent from "../Artworks/ItemComponent";
+import ItemComponent from "../../components/ItemComponent";
 import { useData } from '@/context/DataContext';
 import { useRouter } from 'next/navigation';
 

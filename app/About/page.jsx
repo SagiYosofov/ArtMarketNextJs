@@ -1,8 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
-import TeamLineUp from './TeamLineUp'
+import TeamLineUp from '../../components/TeamLineUp'
 import Image from 'next/image'
-import TechStack from './techStack'
+import TechStack from '../../components/techStack'
 
 const AboutPage = () => {
   return (

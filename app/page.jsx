@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Nav from '../components/Nav';
-import { ArtistComponent } from './Artists/artistComponent.jsx';
+import { ArtistComponent } from '../components/artistComponent.jsx';
 import Card from '../components/Card';
 import { useData } from '../context/DataContext';
 
