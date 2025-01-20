@@ -1,67 +1,17 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import ItemComponent from "../../components/ItemComponent";
-import { useData } from '@/context/DataContext';
-import { useRouter } from 'next/navigation';
+import { useCart } from '@/components/hooks/useCart';
 
-const CartPage = () => { 
-  const [cartItems, setCartItems] = useState([]);
-  const [totalSum, setTotalSum] = useState(0);
-  const router = useRouter();
-  const { artworksData, isLoading, error } = useData();
-
-  useEffect(() => {
-    if (!artworksData.artworks) return;
-
-    try {
-      // Get saved art from localStorage
-      const cartData = JSON.parse(localStorage.getItem('artGalleryCart') || '[]');
-
-      // Match cart items with artwork data
-      const cartArtworks = cartData.map(cartItem => 
-        artworksData.artworks.find(artwork => artwork.id === cartItem.id)
-      ).filter(Boolean);
-
-      setCartItems(cartArtworks);
-
-      // Calculate total sum
-      const total = cartArtworks.reduce((sum, item) => sum + parseFloat(item.price), 0);
-      setTotalSum(total);
-    } catch (err) {
-      console.error('Error loading cart:', err);
-      // Clear potentially corrupted cart data
-      localStorage.removeItem('artGalleryCart');
-      setCartItems([]);
-      setTotalSum(0);
-    }
-  }, [artworksData]);
-
-  const handleRemoveItem = (itemId) => {
-    try {
-      // Remove locally first to give visual feedback
-      setCartItems(cartItems.filter(item => item.id !== itemId));
-
-      // Remove from localStorage
-      const cartData = JSON.parse(localStorage.getItem('artGalleryCart') || '[]');
-      const updatedCart = cartData.filter(item => item.id !== itemId);
-      localStorage.setItem('artGalleryCart', JSON.stringify(updatedCart));
-
-      // Update total sum
-      const newTotal = cartItems
-        .filter(item => item.id !== itemId)
-        .reduce((sum, item) => sum + parseFloat(item.price), 0);
-      setTotalSum(newTotal);
-
-      // Dispatch custom event to notify of cart update
-      window.dispatchEvent(new Event('cartUpdate'));
-    } catch (err) {
-      console.error('Error removing item from cart:', err);
-    }
-  };
-
-  const handleCheckout = () => {
-    router.push(`/Payment?total=${totalSum.toFixed(2)}`);
-  };
+const CartPage = () => {
+  const {
+    cartItems,
+    totalSum,
+    isLoading,
+    error,
+    handleRemoveItem,
+    handleCheckout
+  } = useCart();
 
   if (isLoading) {
     return (
