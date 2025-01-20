@@ -1,11 +1,12 @@
 'use client';
 import Link from "next/link";
-import { useState, use } from 'react';
+import { use } from 'react';
 import { useData } from '@/context/DataContext';
+import { useArtworkCart } from '@/components/hooks/useArtworkCart';
 
 export default function ArtworkPage({ params }) {
-  const [addedToCart, setAddedToCart] = useState(false);
   const { artworksData, isLoading, error } = useData();
+  const { addToCart, addedToCart } = useArtworkCart();
   
   // Unwrap the params promise using React.use()
   const unwrappedParams = use(params);
@@ -47,28 +48,6 @@ export default function ArtworkPage({ params }) {
       </div>
     );
   }
-
-  const addToCart = (artworkId) => {
-    // Get existing cart or initialize empty array
-    const existingCart = JSON.parse(localStorage.getItem('artGalleryCart') || '[]');
-    
-    // Check if artwork is already in cart by checking IDs
-    if (!existingCart.some(item => item.id === artworkId)) {
-      // Get the full artwork data from context instead of static data
-      const artworkToAdd = artworksData.artworks.find(item => item.id === artworkId);
-      
-      // Add complete artwork object to cart
-      const updatedCart = [...existingCart, artworkToAdd];
-      localStorage.setItem('artGalleryCart', JSON.stringify(updatedCart));
-      window.dispatchEvent(new Event('cartUpdate'));
-
-      
-      setAddedToCart(true);
-      setTimeout(() => {
-        setAddedToCart(false);
-      }, 2000);
-    }
-  };
 
   return (
     <div className="pt-20 min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white">
@@ -139,7 +118,7 @@ export default function ArtworkPage({ params }) {
               </div>
               <div className="mt-12">
                 <button
-                  onClick={() => addToCart(artworkID)}
+                  onClick={() => addToCart(artworkData)}
                   className={`w-full px-6 py-3 text-white rounded-md text-lg shadow-md transition-all transform hover:scale-105 
                     ${addedToCart 
                       ? 'bg-green-500 hover:bg-green-600' 
