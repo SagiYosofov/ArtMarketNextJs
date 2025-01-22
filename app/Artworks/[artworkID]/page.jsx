@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { use } from 'react';
 import { useData } from '@/context/DataContext';
-import { useArtworkCart } from '@/components/hooks/useArtworkCart';
+import { useArtworkCart } from '@/hooks/useArtworkCart';
 
 export default function ArtworkPage({ params }) {
   const { artworksData, isLoading, error } = useData();

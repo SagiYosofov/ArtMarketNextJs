@@ -3,7 +3,7 @@
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
-import { usePayment } from '@/components/hooks/usePayment';
+import { usePayment } from '@/hooks/usePayment';
 
 const initialOptions = {
   "client-id": process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID,

@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import ItemComponent from "../../components/ItemComponent";
-import { useCart } from '@/components/hooks/useCart';
+import { useCart } from '@/hooks/useCart';
 
 const CartPage = () => {
   const {

@@ -1,5 +1,5 @@
 "use client";
-import { useLogin } from "../../components/hooks/useLogin";
+import { useLogin } from "../../hooks/useLogin";
 
 const LoginForm = () => {
   const { formData, responseMessage, handleChange, handleSubmit } = useLogin();
