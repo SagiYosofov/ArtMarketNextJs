@@ -1,6 +1,10 @@
 import { useState } from 'react';
 
 export function useArtworkCart() {
+
+
+  // adds artwork ID to the local storage.
+
   const [addedToCart, setAddedToCart] = useState(false);
 
   const addToCart = (artwork) => {

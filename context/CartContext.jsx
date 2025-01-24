@@ -4,6 +4,17 @@ import { createContext, useContext, useState, useEffect } from "react";
 
 const CartContext = createContext();
 
+
+
+
+
+
+// cartData is the array state of artwork ID for purchasing
+// hasCartItems used for the green background around cart button
+
+
+
+
 export const CartProvider = ({ children }) => {
   const [hasCartItems, setHasCartItems] = useState(false);
 

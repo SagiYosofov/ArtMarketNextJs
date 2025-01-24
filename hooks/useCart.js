@@ -3,6 +3,12 @@ import { useRouter } from 'next/navigation';
 import { useData } from '@/context/DataContext';
 
 export const useCart = () => {
+
+
+// Unload cart items from local storage
+// Set total price
+// loading state
+
   const [cartItems, setCartItems] = useState([]);
   const [totalSum, setTotalSum] = useState(0);
   const router = useRouter();
