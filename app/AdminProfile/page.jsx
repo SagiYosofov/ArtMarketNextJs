@@ -1,18 +1,28 @@
 'use client';
 import React, { useState, useEffect } from 'react';
+import { useUser } from '@/context/UserContext';
 
 const AdminProfilePage = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { user: currentUser } = useUser();
 
   // Fetch users
   const fetchUsers = async () => {
     try {
+      console.log(JSON.parse(localStorage.getItem("user")));
+      const currentUser = JSON.parse(localStorage.getItem("user")).username;
+      const currrentuserID = JSON.parse(localStorage.getItem("user"))._id;
+      console.log(currentUser);
       const response = await fetch('/api/AdminRoutes/userManager');
       if (!response.ok) throw new Error('Failed to fetch users');
       const data = await response.json();
-      setUsers(data.users);
+      console.log(data.users);
+      
+
+      const filteredUsers = data.users.filter(user => user.username !== currentUser);
+      setUsers(filteredUsers);
     } catch (err) {
       setError(err.message);
     } finally {
