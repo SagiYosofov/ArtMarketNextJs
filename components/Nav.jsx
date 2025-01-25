@@ -34,11 +34,30 @@ const Nav = () => {
     }
   }, [isMobileMenuOpen]);
 
-  const handleLogout = () => {
-    setUser(null);
-    localStorage.removeItem("user");
-    localStorage.removeItem("artGalleryCart");
-    window.dispatchEvent(new Event('cartUpdate'));
+  const handleLogout = async () => {
+    try {
+      // Call the logout API endpoint
+      const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/Logout`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username: user.username }),
+      });
+
+      if (response.ok) {
+        // Clear local storage and state only after successful logout
+        setUser(null);
+        localStorage.removeItem("user");
+        localStorage.removeItem("artGalleryCart");
+        window.dispatchEvent(new Event('cartUpdate'));
+      } else {
+        const data = await response.json();
+        console.error("Logout failed:", data.error);
+      }
+    } catch (error) {
+      console.error("Error during logout:", error);
+    }
   };
 
   const handleMobileMenuClick = () => {

@@ -1,33 +1,17 @@
 "use client"; // Required for client-side functionality
 
-const LogoutButton = ({ username }) => {
-
-  const ServerURL = process.env.NEXT_PUBLIC_SERVER_URL;
-  const handleLogout = async () => {
-    try {
-      const response = await fetch(`${ServerURL}/api/users/Logout`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username }),
-      });
-
-      const data = await response.json();
-      if (response.ok) {
-        alert("Logout successful!");
-        // Handle logout logic here, e.g., redirect to login page
-      } else {
-        alert(data.error || "Failed to log out.");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      alert("An error occurred during logout.");
+const LogoutButton = ({ username, onLogout, className }) => {
+  const handleClick = async () => {
+    if (typeof onLogout === 'function') {
+      await onLogout();
     }
   };
 
   return (
-    <button onClick={handleLogout} style={{ marginTop: "1rem" }}>
+    <button 
+      onClick={handleClick} 
+      className={`px-4 py-2 text-white bg-red-500 hover:bg-red-600 rounded transition-colors ${className || ''}`}
+    >
       Logout
     </button>
   );

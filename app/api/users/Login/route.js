@@ -25,14 +25,18 @@ export async function POST(req) {
       return new Response(JSON.stringify({ error: "Invalid password" }), { status: 401 });
     }
 
-    if (user.userType === "ADMIN" && user.isVerified === false) {
+    // if (user.userType === "ADMIN" && user.isVerified === false) {
+    //   return new Response(JSON.stringify({ error: "User not verified yet" }), { status: 401 });
+    // }
+
+    if (user.isVerified === false) {
       return new Response(JSON.stringify({ error: "User not verified yet" }), { status: 401 });
     }
 
     // Check if the user is already logged in
-    // if (user.isLoggedIn === true) {
-    //   return new Response(JSON.stringify({ error: "User already logged in!" }), { status: 401 });
-    // }
+    if (user.isLoggedIn === true) {
+      return new Response(JSON.stringify({ error: "User already logged in!" }), { status: 401 });
+    }
 
     // Handle successful login
     user.isLoggedIn = true;
