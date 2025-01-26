@@ -98,12 +98,7 @@ export default function ArtworkPage({ params }) {
                   {artworkData.dimensions}
                 </p>
               </div>
-              <div className="border-t border-gray-300 dark:border-gray-700 pt-6">
-                <h3 className="text-lg font-medium">Location</h3>
-                <p className="mt-1 text-gray-700 dark:text-gray-300">
-                  {artworkData.location}
-                </p>
-              </div>
+
             </div>
 
             <div className="grid sm:grid-cols-2 gap-4 grid-cols-1 justify-center">
