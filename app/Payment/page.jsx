@@ -5,18 +5,21 @@ import { useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
 import { usePayment } from '@/hooks/usePayment';
 
+// PayPal configuration options
 const initialOptions = {
   "client-id": process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID,
   currency: "USD",
   intent: "capture",
 };
 
-// Component that uses useSearchParams
+// PaymentContent component handles the payment logic and UI
 function PaymentContent() {
+  // Get total amount from URL parameters
   const searchParams = useSearchParams();
   const { handleSuccessfulPurchase } = usePayment();
   const total = searchParams.get('total') || '0.00';
 
+  // Demo payment handler for testing purposes
   const handleDemoPayment = async () => {
     try {
       await handleSuccessfulPurchase();
@@ -37,7 +40,7 @@ function PaymentContent() {
       flexDirection: 'column',
       gap: '20px'
     }}>
-      {/* Demo Purchase Button */}
+      {/* Demo Purchase Button for testing */}
       <button
         onClick={handleDemoPayment}
         style={{
@@ -56,11 +59,13 @@ function PaymentContent() {
         Demo Purchase (Test Only)
       </button>
 
+      {/* PayPal payment integration */}
       <PayPalScriptProvider options={initialOptions}>
         <PayPalButtons
           style={{
             zIndex: 1
           }}
+          // Create PayPal order with the total amount
           createOrder={(data, actions) => {
             return actions.order.create({
               purchase_units: [
@@ -72,6 +77,7 @@ function PaymentContent() {
               ],
             });
           }}
+          // Handle successful payment approval
           onApprove={(data, actions) => {
             return actions.order.capture().then(async (details) => {
               try {
@@ -89,12 +95,12 @@ function PaymentContent() {
   );
 }
 
-// Loading component
+// Loading component displayed while payment content is loading
 function LoadingPayment() {
   return <div>Loading payment details...</div>;
 }
 
-// Main component
+// Main Payment page component with layout wrapper
 export default function Payment() {
   return (
     <div style={{ 
@@ -106,6 +112,7 @@ export default function Payment() {
       position: 'relative',
       zIndex: 0
     }}>
+      {/* Wrap PaymentContent with Suspense for loading state */}
       <Suspense fallback={<LoadingPayment />}>
         <PaymentContent />
       </Suspense>
