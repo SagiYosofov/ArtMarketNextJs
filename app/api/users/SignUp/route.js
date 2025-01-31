@@ -1,10 +1,10 @@
 import { User } from '../../../../models/User';
 import { Artist } from "../../../../models/Artist";
 import connectMongo from "../../../../lib/mongodb"; 
+// Creates a new user in the database with the given data and approved status of false
 export async function POST(req) {
   try {
     // Connect to MongoDB
-    // console.log("later moving this to the server");
     await connectMongo();
 
     // Destructure the request body
@@ -79,9 +79,9 @@ export async function POST(req) {
 
       await newArtist.save();
     }
-
+    // Return response accordingly
     return new Response(JSON.stringify({ success: true, message: "User created successfully!" }), { status: 201 });
-
+    // Handle errors
   } catch (error) {
     console.error("Error creating user:", error);
     return new Response(JSON.stringify({ success: false, message: "Failed to create user" }), { status: 500 });

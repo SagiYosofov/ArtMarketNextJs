@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import { User } from "@/models/User";
 import { Artist } from "@/models/Artist";
 import { Artwork } from "@/models/Artwork";
-
+// Fetches all required data from the database (users, artists & artworks)
 export async function GET() {
   try {
     // Connect to MongoDB with connection pooling for production
@@ -35,7 +35,7 @@ export async function GET() {
       picture: artist.picture,
       artworkIds: artist.artworkIds
     }));
-
+    // Create artworksData array
     const artworksData = artworks.map(artwork => ({
       id: artwork.artwork_id,
       artistId: artwork.artist_id,
@@ -47,7 +47,7 @@ export async function GET() {
       picture: artwork.picture,
       price: artwork.price
     }));
-
+    // Return the data to the sender
     return NextResponse.json({ 
       artists: artistsData,
       artworks: artworksData,

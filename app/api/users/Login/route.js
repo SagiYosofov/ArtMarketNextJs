@@ -1,7 +1,7 @@
 import { User } from '../../../../models/User';
 import { Artist } from "../../../../models/Artist";
 import connectMongo from "../../../../lib/mongodb";
-
+// Handles logging in the given user and returning their data to the sender
 export async function POST(req) {
   try {
     await connectMongo();
@@ -71,6 +71,7 @@ export async function POST(req) {
       }),
       { status: 200 }
     );
+    // Handle errors
   } catch (error) {
     console.error("Error logging in:", error);
     return new Response(JSON.stringify({ error: "Internal server error" }), { status: 500 });

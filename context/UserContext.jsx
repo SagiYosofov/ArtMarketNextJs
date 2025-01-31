@@ -25,7 +25,7 @@ export const UserProvider = ({ children }) => {
       localStorage.removeItem("user"); // Remove user from localStorage when logged out
     }
   }, [user]);
-
+  // Provide context values to children components
   return (
     <UserContext.Provider value={{ user, setUser }}>
       {children}
