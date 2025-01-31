@@ -2,7 +2,7 @@ import connectMongo from "../../../../lib/mongodb";
 
 
 import { User } from '../../../../models/User';
-
+// Updates the given user’s logged in status in the database to false 
 export async function POST(req) {
   try {
     // Connect to mongoDB
