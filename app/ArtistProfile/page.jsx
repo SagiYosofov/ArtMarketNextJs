@@ -2,10 +2,10 @@
 
 import React, { useEffect, useState } from 'react'
 import { useUser } from '@/context/UserContext'
-import MyArtworksComponent from '../../components/myArtworksComponent'
+import MyArtworksComponent from '../../components/ArtistEditComponents/myArtworksComponent'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import CreateNewComponent from '../../components/createNewComponent'
+import CreateNewComponent from '../../components/ArtistEditComponents/createNewComponent'
 import { useData } from '@/context/DataContext'
 
 const ArtistProfilePage = () => {

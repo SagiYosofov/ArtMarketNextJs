@@ -1,108 +1,63 @@
 'use client';
-import React, { useState, useEffect } from 'react';
-import { useUser } from '@/context/UserContext';
+import React from 'react';
+import useAdmin from '../../hooks/useAdmin';
 
 const AdminProfilePage = () => {
-  const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const { user: currentUser } = useUser();
+  const { users, loading, error, toggleVerification } = useAdmin();
 
-  // Fetch users
-  const fetchUsers = async () => {
-    try {
-      console.log(JSON.parse(localStorage.getItem("user")));
-      const currentUser = JSON.parse(localStorage.getItem("user")).username;
-      const currrentuserID = JSON.parse(localStorage.getItem("user"))._id;
-      console.log(currentUser);
-      const response = await fetch('/api/AdminRoutes/userManager');
-      if (!response.ok) throw new Error('Failed to fetch users');
-      const data = await response.json();
-      console.log(data.users);
-      
-
-      const filteredUsers = data.users.filter(user => user.username !== currentUser);
-      setUsers(filteredUsers);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // Toggle verification status
-  const toggleVerification = async (userId, currentStatus) => {
-    try {
-      const response = await fetch('/api/AdminRoutes/userManager', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          userId,
-          isVerified: !currentStatus,
-        }),
-      });
-
-      if (!response.ok) throw new Error('Failed to update user');
-      
-      // Update local state
-      setUsers(users.map(user => 
-        user._id === userId 
-          ? { ...user, isVerified: !user.isVerified }
-          : user
-      ));
-    } catch (err) {
-      setError(err.message);
-    }
-  };
-
-  useEffect(() => {
-    fetchUsers();
-  }, []);
-
-  if (loading) return <div className="mt-40">Loading...</div>;
-  if (error) return <div className="mt-40">Error: {error}</div>;
+  if (loading) return <div className="mt-40 text-center">Loading...</div>;
+  if (error) return <div className="mt-40 text-center text-red-500">Error: {error}</div>;
 
   return (
-    <div className="mt-40 p-6 dark:bg-slate-800">
-      <h2 className="text-2xl font-bold mb-6 dark:text-white">User Management</h2>
-      <div className="overflow-x-auto">
-        <table className="min-w-full bg-white dark:bg-slate-700 shadow-md rounded-lg">
-          <thead className="bg-gray-100 dark:bg-slate-600">
-            <tr>
-              <th className="px-4 py-2 dark:text-gray-200">Username</th>
-              <th className="px-4 py-2 dark:text-gray-200">Email</th>
-              <th className="px-4 py-2 dark:text-gray-200">User Type</th>
-              <th className="px-4 py-2 dark:text-gray-200">Verified</th>
-              <th className="px-4 py-2 dark:text-gray-200">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((user) => (
-              <tr key={user._id} className="border-b dark:border-slate-600">
-                <td className="px-4 py-2 dark:text-gray-200">{user.username}</td>
-                <td className="px-4 py-2 dark:text-gray-200">{user.email}</td>
-                <td className="px-4 py-2 dark:text-gray-200">{user.userType}</td>
-                <td className="px-4 py-2 dark:text-gray-200">
-                  {user.isVerified ? 'Yes' : 'No'}
-                </td>
-                <td className="px-4 py-2">
-                  <button
-                    onClick={() => toggleVerification(user._id, user.isVerified)}
-                    className={`px-4 py-1 rounded ${
-                      user.isVerified 
-                        ? 'bg-red-500 hover:bg-red-600' 
-                        : 'bg-green-500 hover:bg-green-600'
-                    } text-white`}
-                  >
-                    {user.isVerified ? 'Revoke' : 'Verify'}
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+    <div className="mt-20 p-4 sm:p-6 dark:bg-slate-800">
+      <h2 className="text-xl sm:text-2xl font-bold mb-6 dark:text-white text-center">
+        User Management
+      </h2>
+
+      {/* Scrollable container for user cards */}
+      <div className="max-h-[600px] overflow-y-auto space-y-4 px-2">
+        {users.map((user) => (
+          <div 
+            key={user._id} 
+            className="bg-white dark:bg-slate-700 shadow-md rounded-lg p-6 sm:p-8 
+            flex flex-col sm:flex-row items-center sm:justify-between transition-all 
+            duration-300 ease-in-out hover:shadow-lg"
+          >
+            <div className="flex flex-col sm:flex-row items-center sm:items-start w-full">
+              <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
+                <h3 className="text-lg sm:text-xl font-semibold dark:text-white">
+                  {user.username}
+                </h3>
+                <p className="text-sm sm:text-base text-gray-500 dark:text-gray-300">
+                  {user.email}
+                </p>
+                <p className="text-sm sm:text-base text-gray-500 dark:text-gray-300">
+                  {user.userType}
+                </p>
+                <p className="text-sm sm:text-base mt-2 dark:text-gray-200">
+                  Verified: <span className={user.isVerified ? "text-green-500" : "text-red-500"}>
+                    {user.isVerified ? 'Yes' : 'No'}
+                  </span>
+                </p>
+              </div>
+            </div>
+
+            {/* Action buttons */}
+            <div className="mt-4 sm:mt-0">
+              <button
+                onClick={() => toggleVerification(user._id, user.isVerified)}
+                className={`w-full sm:w-auto px-6 py-2 sm:px-4 sm:py-1 rounded text-white 
+                text-lg sm:text-sm transition-all duration-300 ${
+                  user.isVerified 
+                    ? 'bg-red-500 hover:bg-red-600' 
+                    : 'bg-green-500 hover:bg-green-600'
+                }`}
+              >
+                {user.isVerified ? 'Revoke' : 'Verify'}
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

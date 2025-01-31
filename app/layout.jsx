@@ -2,7 +2,7 @@ import React from 'react';
 import "../styles/globals.css";
 import { UserProvider } from "../context/UserContext";
 import { DataProvider } from '@/context/DataContext';
-import Nav from '@/components/Nav';
+import Nav from '@/components/navigation/Nav';
 import { CartProvider } from "../context/CartContext";
 
 export default function RootLayout({ children }) {

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Card from '../Card';
+import Card from '../BrowseArtComponents/Card';
 
 const FeaturedArtworks = ({ artworksData, isLoading, error, onArtworkClick }) => {
   return (

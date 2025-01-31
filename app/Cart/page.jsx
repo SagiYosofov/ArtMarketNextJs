@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import ItemComponent from "../../components/ItemComponent";
+import ItemComponent from "../../components/BrowseArtComponents/ItemComponent";
 import { useCart } from '@/hooks/useCart';
 
 const CartPage = () => {

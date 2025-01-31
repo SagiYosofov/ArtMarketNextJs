@@ -2,8 +2,8 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import Nav from '../components/Nav';
-import { ArtistComponent } from '../components/artistComponent.jsx';
+import Nav from '../components/navigation/Nav';
+import { ArtistComponent } from '../components/BrowseArtistsComponents/artistComponent.jsx';
 import { useData } from '../context/DataContext';
 import HeroSection from '../components/home/HeroSection';
 import FeaturedArtworks from '../components/home/FeaturedArtworks';
@@ -21,7 +21,6 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen text-gray-800 dark:text-gray-100">
-      <Nav />
       <HeroSection />
       <FeaturedArtworks 
         artworksData={artworksData}
@@ -76,7 +75,7 @@ const HomePage = () => {
       <CallToAction />
 
       {/* Footer */}
-      <footer className="bg-gray-800 text-gray-400 py-6 text-center">
+      <footer className="bg-slate-50 dark:bg-gray-800 text-gray-950 dark:text-gray-400 py-6 text-center">
         <p>© {new Date().getFullYear()} Art Market. All rights reserved.</p>
       </footer>
     </div>

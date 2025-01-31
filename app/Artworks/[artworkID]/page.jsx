@@ -3,7 +3,7 @@ import Link from "next/link";
 import { use } from 'react';
 import { useData } from '@/context/DataContext';
 import { useArtworkCart } from '@/hooks/useArtworkCart';
-import ArtworkComponent from "../../../components/artworkComponent";
+import ArtworkComponent from "../../../components/BrowseArtComponents/artworkComponent";
 
 export default function ArtworkPage({ params }) {
   const { artworksData, isLoading, error } = useData();

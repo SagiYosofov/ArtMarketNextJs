@@ -1,6 +1,6 @@
 "use client"
 import React, { useState, useEffect } from 'react'
-import { ArtistComponent } from '../../components/artistComponent.jsx'
+import { ArtistComponent } from '../../components/BrowseArtistsComponents/artistComponent.jsx'
 import Link from 'next/link'
 import { useData } from '@/context/DataContext'
 

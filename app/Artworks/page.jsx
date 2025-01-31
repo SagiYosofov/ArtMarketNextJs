@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useData } from '@/context/DataContext'
-import ItemComponent from "../../components/ItemComponent";
+import ItemComponent from "../../components/BrowseArtComponents/ItemComponent";
 
 const ArtworksPage = () => {
   const router = useRouter();

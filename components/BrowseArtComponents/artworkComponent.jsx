@@ -36,12 +36,6 @@ const ArtworkComponent = ({artworkData}) => {
                   {artworkData.dimensions}
                 </p>
               </div>
-              <div className="border-t border-gray-300 dark:border-gray-700 pt-6">
-                <h3 className="text-lg font-medium">Location</h3>
-                <p className="mt-1 text-gray-700 dark:text-gray-300">
-                  {artworkData.location}
-                </p>
-              </div>
             </div>
         </div>
     );
