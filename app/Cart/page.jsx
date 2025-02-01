@@ -17,7 +17,7 @@ const CartPage = () => {
   // Show loading state while cart data is being fetched
   if (isLoading) {
     return (
-      <div className="mt-20 container mx-auto px-4 text-center">
+      <div className="min-h-screen mt-20 container mx-auto px-4 text-center">
         <h2 className="text-3xl font-bold mb-8">🛒 Your Cart</h2>
         <p>Loading cart items...</p>
       </div>
@@ -27,7 +27,7 @@ const CartPage = () => {
   // Show error message if cart data fetch failed
   if (error) {
     return (
-      <div className="mt-20 container mx-auto px-4 text-center">
+      <div className="min-h-screen mt-20 container mx-auto px-4 text-center">
         <h2 className="text-3xl font-bold mb-8">🛒 Your Cart</h2>
         <p className="text-red-500">Error loading cart: {error}</p>
       </div>
@@ -35,7 +35,7 @@ const CartPage = () => {
   }
 
   return (
-    <div className="mt-20 container mx-auto px-4 relative z-0">
+    <div className="min-h-screen mt-20 container mx-auto px-4 relative z-0">
       <h2 className="text-3xl font-bold mb-8">🛒 Your Cart</h2>
       {/* Instructions for removing items */}
       <p className="text-gray-600 dark:text-gray-300 text-center mb-4">

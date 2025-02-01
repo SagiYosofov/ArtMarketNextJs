@@ -79,8 +79,8 @@ const ArtistProfilePage = () => {
       <div className="my-8">
         <h3 className="text-2xl font-semibold mb-6">My Artworks</h3>
         {userArtworks.length === 0 ? (
-          <div className="text-center py-12 bg-gray-50 rounded-lg">
-            <p className="text-gray-600 mb-4">You haven't added any artworks yet</p>
+          <div className="dark:bg-slate-700 text-center py-12 bg-gray-50 rounded-lg">
+            <p className="dark:text-gray-300 text-gray-600 mb-4">You haven't added any artworks yet</p>
             <button
               onClick={() => setShowAddForm(true)}
               className="text-blue-600 hover:text-blue-700 font-medium"

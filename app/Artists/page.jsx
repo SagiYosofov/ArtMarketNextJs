@@ -17,15 +17,15 @@ export default function Artists() {
   }, [artistsData, artworksData]);
 
   if (isLoading) {
-    return <div className="mt-20 container mx-auto px-4">Loading...</div>;
+    return <div className="min-h-screen mt-20 container mx-auto px-4">Loading...</div>;
   }
 
   if (error) {
-    return <div className="mt-20 container mx-auto px-4">Error: {error}</div>;
+    return <div className="min-h-screen mt-20 container mx-auto px-4">Error: {error}</div>;
   }
 
   return (
-    <div className='mt-20 container mx-auto px-4 relative z-0'>
+    <div className='min-h-screen mt-20 container mx-auto px-4 relative z-0'>
       <div className='flex justify-between items-center mb-8'>
         <h2 className='text-3xl font-bold'>
           🎨 Our Featured Artists

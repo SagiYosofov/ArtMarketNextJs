@@ -5,11 +5,11 @@ import useAdmin from '../../hooks/useAdmin';
 const AdminProfilePage = () => {
   const { users, loading, error, toggleVerification } = useAdmin();
 
-  if (loading) return <div className="mt-40 text-center">Loading...</div>;
-  if (error) return <div className="mt-40 text-center text-red-500">Error: {error}</div>;
+  if (loading) return <div className="min-h-screen mt-40 text-center">Loading...</div>;
+  if (error) return <div className="min-h-screen mt-40 text-center text-red-500">Error: {error}</div>;
 
   return (
-    <div className="mt-20 p-4 sm:p-6 dark:bg-slate-800">
+    <div className="min-h-screen mt-20 p-4 sm:p-6 dark:bg-slate-800">
       <h2 className="text-xl sm:text-2xl font-bold mb-6 dark:text-white text-center">
         User Management
       </h2>
