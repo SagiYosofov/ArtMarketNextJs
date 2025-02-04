@@ -66,7 +66,7 @@ export const useNav = () => {
         handleLogout,
         menuHeight,
         mobileMenuRef,
-        hasCartItems
+        hasCartItems,
     }
 }
 export default useNav

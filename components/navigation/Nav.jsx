@@ -18,7 +18,7 @@ const Nav = () => {
         handleLogout,
         menuHeight,
         mobileMenuRef,
-        hasCartItems
+        hasCartItems,
     } = useNav()
     return (
         <div className="fixed top-0 left-0 right-0 bg-white dark:bg-slate-800 shadow-md z-50 w-full">

@@ -9,7 +9,7 @@ const TeamLineUp = () => {
         <div className="my-20">
             <h2 className="text-3xl font-bold text-center mb-12 text-gray-800 dark:text-gray-100">Meet Our Team</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-               {/* Create card for each team member*/}
+                {/* Create card for each team member*/}
                 {teamMembers.map((member, index) => (
                     <Link
                         href={member.linkedin}
