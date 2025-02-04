@@ -33,7 +33,7 @@ export default function RootLayout({ children }) {
                             <main className="container mx-auto px-4 py-8">{children}</main>
                             {/* Footer */}
                             <footer className="bottom-0 left-0 right-0 bg-slate-50 dark:bg-gray-800 text-gray-950 dark:text-gray-400 py-6 text-center">
-                                <p>© {new Date().getFullYear()} Art Market. All rights reserved.</p>
+                                <p>© 2025 Art Market. All rights reserved.</p>
                             </footer>
                         </UserProvider>
                     </DataProvider>
