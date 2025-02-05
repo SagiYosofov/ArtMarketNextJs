@@ -1,3 +1,14 @@
+/**
+ * MainFeatures component displays the three main value propositions of the platform
+ * in a responsive grid layout. Each feature is presented in a card with hover effects.
+ * 
+ * Features highlighted:
+ * - Zero Platform Fees
+ * - Secure Transactions
+ * - Exclusive Ownership
+ * 
+ * @returns {JSX.Element} A grid of three feature cards with titles and descriptions
+ */
 const MainFeatures = () => {
     return (
         <div className="max-w-6xl mx-auto py-20 px-6 grid grid-cols-1 md:grid-cols-3 gap-12">

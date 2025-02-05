@@ -1,3 +1,4 @@
+// Import form field components and custom hook
 import { FormField, SelectField } from "./EditFields"
 import useCreateNewArt from "../../hooks/useCreateNewArt"
 
@@ -8,7 +9,9 @@ const CreateNewComponent = ({ onClose }) => {
     return (
         <div className="max-w-2xl mx-auto p-4">
             <h2 className="text-2xl font-bold mb-4">Create New Artwork</h2>
+            {/* Form with auto-generated fields and editable input fields */}
             <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Auto-generated fields (disabled) */}
                 <FormField label="Artwork ID">
                     <input
                         type="text"
@@ -29,6 +32,7 @@ const CreateNewComponent = ({ onClose }) => {
                     />
                 </FormField>
 
+                {/* User input fields */}
                 <FormField label="Title">
                     <input
                         type="text"
@@ -40,6 +44,7 @@ const CreateNewComponent = ({ onClose }) => {
                     />
                 </FormField>
 
+                {/* Artist name is auto-populated and readonly */}
                 <FormField label="Artist Name">
                     <input
                         type="text"
@@ -50,6 +55,7 @@ const CreateNewComponent = ({ onClose }) => {
                     />
                 </FormField>
 
+                {/* Artwork details input fields */}
                 <FormField label="Description">
                     <textarea
                         name="description"
@@ -61,6 +67,7 @@ const CreateNewComponent = ({ onClose }) => {
                     />
                 </FormField>
 
+                {/* Dropdown selections for medium and dimensions */}
                 <SelectField
                     label="Medium"
                     name="medium"
@@ -79,6 +86,7 @@ const CreateNewComponent = ({ onClose }) => {
                     required
                 />
 
+                {/* URL input for artwork image with allowed hosts hint */}
                 <FormField label="Picture URL" hint={ALLOWED_HOSTS_MESSAGE.replace(/\n/g, " | ")}>
                     <input
                         type="url"
@@ -90,6 +98,7 @@ const CreateNewComponent = ({ onClose }) => {
                     />
                 </FormField>
 
+                {/* Numeric input for artwork price */}
                 <FormField label="Price">
                     <input
                         type="number"
@@ -101,6 +110,7 @@ const CreateNewComponent = ({ onClose }) => {
                     />
                 </FormField>
 
+                {/* Submit button with loading state */}
                 <button
                     type="submit"
                     disabled={isLoading}
