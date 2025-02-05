@@ -6,15 +6,18 @@ import { useArtworkCart } from '@/hooks/useArtworkCart';
 import ArtworkComponent from "../../../components/BrowseArtComponents/artworkComponent";
 
 export default function ArtworkPage({ params }) {
+  // Get artwork data and cart functionality from custom hooks
   const { artworksData, isLoading, error } = useData();
   const { addToCart, addedToCart } = useArtworkCart();
   
-  // Unwrap the params promise using React.use()
+  // Extract artwork ID from URL parameters
   const unwrappedParams = use(params);
   const artworkID = unwrappedParams.artworkID;
   
+  // Find the specific artwork data based on the ID
   const artworkData = artworksData.artworks.find((item) => item.id === artworkID);
 
+  // Loading state handler
   if (isLoading) {
     return (
       <div className="pt-20 text-center min-h-screen bg-white dark:bg-gray-900 flex flex-col items-center justify-center">
@@ -23,6 +26,7 @@ export default function ArtworkPage({ params }) {
     );
   }
 
+  // Error state handler
   if (error) {
     return (
       <div className="pt-20 text-center min-h-screen bg-white dark:bg-gray-900 flex flex-col items-center justify-center">
@@ -31,6 +35,7 @@ export default function ArtworkPage({ params }) {
     );
   }
 
+  // Handle case when artwork is not found
   if (!artworkData) {
     return (
       <div className="pt-20 text-center min-h-screen bg-white dark:bg-gray-900 flex flex-col items-center justify-center">
@@ -53,8 +58,9 @@ export default function ArtworkPage({ params }) {
   return (
     <div className="pt-20 min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white">
       <div className="container mx-auto px-4 lg:px-8">
+        {/* Two-column grid layout for desktop */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          {/* Artwork Image */}
+          {/* Left column - Artwork Image */}
           <div className="aspect-square w-full max-w-lg mx-auto lg:mx-0">
             <img
               src={artworkData.picture}
@@ -63,11 +69,14 @@ export default function ArtworkPage({ params }) {
             />
           </div>
 
-          {/* Artwork Details */}
+          {/* Right column - Artwork Details */}
           <div>
+            {/* Reusable component for displaying artwork information */}
             <ArtworkComponent artworkData={artworkData}/>
+            
+            {/* Action buttons container */}
             <div className="grid sm:grid-cols-2 gap-4 grid-cols-1 justify-center">
-              {/*Buttons */}
+              {/* Navigation button to return to gallery */}
               <div className="mt-12">
                 <Link
                   href="/Artworks"
@@ -76,6 +85,8 @@ export default function ArtworkPage({ params }) {
                   Back to Gallery
                 </Link>
               </div>
+              
+              {/* Add to cart button with dynamic styling based on cart state */}
               <div className="mt-12">
                 <button
                   onClick={() => addToCart(artworkData)}

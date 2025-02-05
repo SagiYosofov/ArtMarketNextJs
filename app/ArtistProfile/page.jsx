@@ -18,12 +18,14 @@ const ArtistProfilePage = () => {
   
   useEffect(() => {
     const checkAuth = () => {
-      // Move localStorage check inside useEffect
+      // Check if user is logged in by verifying localStorage and user context
       const storedUser = localStorage.getItem("user");
       
       if (!storedUser && !user) {
+        // Redirect to login if no user found
         router.push('/Login');
       } else {
+        // Filter artworks to only show ones belonging to current artist
         if(user?.artistData){
           const filteredArtworks = artworksData.artworks.filter(
             artwork => artwork.artistId === user.artistData.id
@@ -37,7 +39,7 @@ const ArtistProfilePage = () => {
     checkAuth();
   }, [user, router, artworksData]);
 
-  // Show loading state during initial render and client-side auth check
+  // Show loading spinner while checking authentication
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -46,6 +48,7 @@ const ArtistProfilePage = () => {
     );
   }
 
+  // Don't render anything if no user (prevents flash of content)
   if (!user) {
     return null;
   }

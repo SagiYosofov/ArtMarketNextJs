@@ -2,8 +2,11 @@ import Image from "next/image";
 
 const ItemComponent = ({ artworksData, handleArtworkClick }) => {
   return (
+    // Responsive grid layout: 1 column on mobile, 2 on tablet, 3 on desktop
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* Map through artwork data if it exists */}
       {artworksData && artworksData.map((artwork) => (
+        // Individual artwork card with hover effects and click handler
         <div
           key={artwork.id}
           className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden 
@@ -12,6 +15,7 @@ const ItemComponent = ({ artworksData, handleArtworkClick }) => {
           onClick={() => handleArtworkClick(artwork.id)}
         >
           <div className="flex flex-col">
+            {/* Image container with fixed height and responsive behavior */}
             <div className="w-full h-48 overflow-hidden relative">
               <Image
                 src={artwork.picture}
@@ -20,14 +24,19 @@ const ItemComponent = ({ artworksData, handleArtworkClick }) => {
                 className="object-cover transition-transform duration-300 group-hover:scale-110"
               />
             </div>
+            {/* Artwork details section */}
             <div className="p-6">
+              {/* Artwork title */}
               <h3 className="text-xl font-semibold mb-2">{artwork.title}</h3>
+              {/* Artist name with emoji */}
               <p className="text-gray-600 dark:text-gray-300 mb-2">
                 🎨 {artwork.artistName}
               </p>
+              {/* Description with line clamping (3 lines max) */}
               <p className="text-gray-700 dark:text-gray-400 line-clamp-3">
                 ℹ️ {artwork.description}
               </p>
+              {/* Price display with formatting */}
               <p className="text-lg font-semibold text-blue-600 dark:text-blue-400 mt-3">
                 💰 ${artwork.price.toLocaleString()}
               </p>

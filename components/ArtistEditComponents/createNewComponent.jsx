@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useUser } from '@/context/UserContext'
 import { useData } from '@/context/DataContext'
 
-// Constants
+// Initial state for the artwork form with empty values
 const INITIAL_FORM_STATE = {
   id: '',
   artistId: '',
@@ -15,6 +15,7 @@ const INITIAL_FORM_STATE = {
   price: ''
 };
 
+// Predefined options for artwork medium selection
 const MEDIUM_OPTIONS = [
   { value: "Canvas and Fabric", label: "Canvas and Fabric" },
   { value: "Mixed Media", label: "Mixed Media" },
@@ -23,6 +24,7 @@ const MEDIUM_OPTIONS = [
   { value: "Oil and acrylic on canvas", label: "Oil and acrylic on canvas" }
 ];
 
+// Predefined options for artwork dimensions selection
 const DIMENSION_OPTIONS = [
   { value: "Small (up to 12x12 inches)", label: "Small (up to 12x12 inches)" },
   { value: "Medium (13x13 to 24x24 inches)", label: "Medium (13x13 to 24x24 inches)" },
@@ -31,9 +33,10 @@ const DIMENSION_OPTIONS = [
   { value: "Oversized (larger than 48x48 inches)", label: "Oversized (larger than 48x48 inches)" }
 ];
 
+// Allowed image file extensions for artwork pictures
 const VALID_IMAGE_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.gif', '.webp'];
 
-// Add this constant after other constants
+// List of approved image hosting domains for security
 const ALLOWED_HOSTS = [
   'example.com',
   'images.pexels.com',
@@ -57,7 +60,7 @@ const ALLOWED_HOSTS_MESSAGE = "Allowed image hosting providers:\n" +
   "• Amazon S3 (amazonaws.com)\n" +
   "Image must end with: .jpg, .jpeg, .png, .gif, or .webp";
 
-// Form Field Component
+// Reusable form field component for consistent styling and layout
 const FormField = ({ label, children, hint }) => (
   <div>
     <label className="block mb-1">{label}</label>
@@ -66,7 +69,7 @@ const FormField = ({ label, children, hint }) => (
   </div>
 );
 
-// Select Field Component
+// Reusable select field component for dropdown menus
 const SelectField = ({ label, name, value, onChange, options, required = false }) => (
   <FormField label={label}>
     <select
@@ -85,9 +88,14 @@ const SelectField = ({ label, name, value, onChange, options, required = false }
 );
 
 const CreateNewComponent = ({ onClose }) => {
+  // Access user context and database update function
   const { user } = useUser();
   const { setDbUpdate } = useData();
+  
+  // Loading state for form submission
   const [isLoading, setIsLoading] = useState(false);
+  
+  // Initialize form data with default values and user information
   const [formData, setFormData] = useState({
     ...INITIAL_FORM_STATE,
     id: Math.floor(Math.random() * 1000000),
@@ -95,6 +103,7 @@ const CreateNewComponent = ({ onClose }) => {
     artistName: `${user.firstName} ${user.lastName}`
   });
 
+  // Validate image URL for security and format compliance
   const validateImageUrl = (url) => {
     try {
       const parsedUrl = new URL(url);
@@ -119,6 +128,7 @@ const CreateNewComponent = ({ onClose }) => {
     }
   };
 
+  // Handle form field changes and validate image URLs
   const handleChange = (e) => {
     const { name, value } = e.target;
     
@@ -133,6 +143,7 @@ const CreateNewComponent = ({ onClose }) => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  // Handle form submission and API call
   const handleSubmit = async (e) => {
     e.preventDefault();
     
