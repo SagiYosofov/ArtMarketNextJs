@@ -11,9 +11,9 @@ password: 123
 
 ### Admin
 
-user: prime
+user: sagi
 
-password: $2b$10$kGyWTm0adYaHI423NVyspOmku6WIEbyhKy0ATNufmtRl3rr3clUXS
+password: sagi
 
 ----
 PP
