@@ -1,7 +1,8 @@
 "use client"
 import React, { useState, useEffect } from "react"
-
+// DarkLightSwitch component toggles between dark and light modes
 const DarkLightSwitch = () => {
+    // isDarkMode holds the current theme state (true for dark mode, false for light mode)
     const [isDarkMode, setIsDarkMode] = useState(false)
 
     useEffect(() => {
@@ -17,15 +18,16 @@ const DarkLightSwitch = () => {
             document.documentElement.classList.toggle("dark", prefersDark)
             localStorage.setItem("theme", prefersDark ? "dark" : "light")
         }
-    }, [])
+    }, []) // Empty dependency array ensures this effect runs only once when the component mounts
 
+     // toggleTheme function switches the theme between dark and light modes
     const toggleTheme = () => {
         const newTheme = !isDarkMode
         setIsDarkMode(newTheme)
         document.documentElement.classList.toggle("dark", newTheme)
         localStorage.setItem("theme", newTheme ? "dark" : "light")
     }
-
+    // Render a button that toggles the theme when clicked
     return (
         <button
             onClick={toggleTheme}

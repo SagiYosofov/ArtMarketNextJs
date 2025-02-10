@@ -1,7 +1,7 @@
 import { useUser } from "@/context/UserContext"
 import { useData } from "@/context/DataContext"
 import { useState, useEffect } from "react"
-
+// Custom hook for handling artist profile page artwork logic
 export const useMyArtworks = ({ artworkID }) => {
     const { user } = useUser()
     const { artworksData, dbUpdate, setDbUpdate } = useData()
@@ -33,7 +33,7 @@ export const useMyArtworks = ({ artworkID }) => {
             [name]: name === "price" ? parseFloat(value) : value,
         }))
     }
-
+    // Handles deleting a selected artwork
     const handleDeleteClick = async () => {
         const oldDisplayed = displayedArtwork
 
@@ -63,7 +63,7 @@ export const useMyArtworks = ({ artworkID }) => {
             alert("Unable to delete artwork. Please try again.")
         }
     }
-
+    // Uploads the given data to the database, creating a new artwork.
     const handleSubmit = async (e) => {
         e.preventDefault()
 
@@ -72,6 +72,7 @@ export const useMyArtworks = ({ artworkID }) => {
             price: editedArtwork.price,
             description: editedArtwork.description,
         }
+        // use api to update the database.
         try {
             const response = await fetch(`/api/artworks/edit/${artworkID}`, {
                 method: "PUT",

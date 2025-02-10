@@ -2,7 +2,7 @@ import { NextResponse } from "next/server"
 import connectMongo from "@/lib/mongodb"
 import { User } from "@/models/User"
 
-// GET all users
+// GET all users - fetches all users from the database without their passwords
 export async function GET() {
     try {
         await connectMongo()

@@ -1,7 +1,10 @@
 "use client"
+// A component for a sign up form containing username, password, firstname, 
+// lastname, email, address, usertype, artist bio & submit button
 export const SignUpForm = ({ formData, handleSubmit, handleChange }) => {
     return (
         <div>
+            {/* Form Heading */}
             <h2 className="text-2xl font-semibold text-center text-gray-800 dark:text-gray-100 mb-6">Sign Up</h2>
             <form onSubmit={handleSubmit}>
                 {/* Username field */}

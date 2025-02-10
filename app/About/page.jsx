@@ -1,9 +1,9 @@
 import React from "react"
 import Link from "next/link"
 import TeamLineUp from "../../components/AboutPageComponents/TeamLineUp"
-import Image from "next/image"
 import TechStack from "../../components/AboutPageComponents/techStack"
 
+// About Page
 const AboutPage = () => {
     return (
         <div className="mt-40 max-w-6xl mx-auto px-4">

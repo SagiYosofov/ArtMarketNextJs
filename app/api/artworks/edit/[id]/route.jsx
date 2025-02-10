@@ -1,5 +1,4 @@
 import { Artwork } from "@/models/Artwork.js"
-import mongoose from "mongoose"
 import connectMongo from "@/lib/mongodb"
 // Updates a given artwork's data in the database
 export async function PUT(req, { params }) {

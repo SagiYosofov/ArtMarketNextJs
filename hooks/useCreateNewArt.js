@@ -2,7 +2,9 @@ import { useState } from "react"
 import { useUser } from "@/context/UserContext"
 import { useData } from "@/context/DataContext"
 import createNewConstants from "../constants/createNewConstants"
+// Custom hook for create new art functionality on artist profile page.
 export const useCreateNewArt = ({ onClose }) => {
+    // Retrieve constants
     const {
         INITIAL_FORM_STATE,
         MEDIUM_OPTIONS,
@@ -13,6 +15,7 @@ export const useCreateNewArt = ({ onClose }) => {
     } = createNewConstants()
     const { user } = useUser()
     const { setDbUpdate } = useData()
+    // Local state for loading and form data
     const [isLoading, setIsLoading] = useState(false)
     const [formData, setFormData] = useState({
         ...INITIAL_FORM_STATE,
@@ -20,6 +23,7 @@ export const useCreateNewArt = ({ onClose }) => {
         artistId: user.artistData.id,
         artistName: `${user.firstName} ${user.lastName}`,
     })
+    // Validate image URL: check file extension and allowed host
     const validateImageUrl = (url) => {
         try {
             const parsedUrl = new URL(url)
@@ -43,7 +47,7 @@ export const useCreateNewArt = ({ onClose }) => {
             return { isValid: false, message: "Invalid URL format" }
         }
     }
-
+    // Update form state and validate image URL for 'picture' field
     const handleChange = (e) => {
         const { name, value } = e.target
 
@@ -57,7 +61,7 @@ export const useCreateNewArt = ({ onClose }) => {
 
         setFormData((prev) => ({ ...prev, [name]: value }))
     }
-
+    // Handle form submission: validate, post data, update UI
     const handleSubmit = async (e) => {
         e.preventDefault()
 

@@ -1,6 +1,7 @@
 "use client"
 import { useLogin } from "../../hooks/useLogin"
 
+// The LoginForm component renders the login form and handles user authentication
 const LoginForm = () => {
     const { formData, responseMessage, handleChange, handleSubmit } = useLogin()
 
