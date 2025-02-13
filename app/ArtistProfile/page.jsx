@@ -22,7 +22,7 @@ const ArtistProfilePage = () => {
     }
 
     return (
-        <div className="p-6 max-w-7xl mx-auto mt-24">
+        <div className="p-6 max-w-7xl mx-auto mt-24 min-h-screen">
             <div className="mb-8">
                 <div className="mb-4">
                     <h2 className="text-3xl font-bold">Artist Profile</h2>
